@@ -41,7 +41,7 @@ export class FacultyController {
     return this.facultyService.insertUser(mydto);
   }
 
-  @Put('/updateuser/')
+  @Put('/updateuser')
   @UsePipes(new ValidationPipe())
   updateUser(
     @Body('Uname') Uname: string,
@@ -53,7 +53,7 @@ export class FacultyController {
   @Put('/updateuser/:id')
   updateUserbyid(
     @Body('Uname') Uname: string,
-    @Param('id', ParseIntPipe) universityId: number,
+    @Param('universityId', ParseIntPipe) universityId: number,
   ): any {
     return this.facultyService.updateUserbyid(Uname, universityId);
   }
@@ -93,10 +93,10 @@ export class FacultyController {
 
   @Put('/updategrades/:id')
   updateGradesbyid(
-    @Body('Uname') Uname: string,
-    @Param('id', ParseIntPipe) universityId: number,
+    @Body('name') name: string,
+    @Param('universityId', ParseIntPipe) universityId: number,
   ): any {
-    return this.facultyService.updateGradesbyid(Uname, universityId);
+    return this.facultyService.updateGradesbyid(name, universityId);
   }
 
   @Delete('/deletegrades/:id')
