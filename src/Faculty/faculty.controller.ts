@@ -15,7 +15,7 @@ import {
 } from '@nestjs/common';
 
 import { FacultyService } from './faculty.service';
-import { FacultyDto } from './facultydto.dto';
+import { FacultyDto, LoginDto } from './facultydto.dto';
 
 @Controller('/faculty')
 export class FacultyController {
@@ -104,5 +104,11 @@ export class FacultyController {
     @Param('universityId', ParseIntPipe) universityId: number,
   ): any {
     return this.facultyService.deleteGradesbyid(universityId);
+  }
+
+  @Post('/login')
+  @UsePipes(new ValidationPipe())
+  login(@Body() mydto: LoginDto): any {
+    return this.facultyService.login(mydto);
   }
 }

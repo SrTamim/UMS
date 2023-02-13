@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { FacultyDto } from './facultydto.dto';
+import { FacultyDto, LoginDto } from './facultydto.dto';
 
 @Injectable()
 export class FacultyService {
@@ -17,9 +17,11 @@ export class FacultyService {
   insertUser(mydto: FacultyDto): any {
     return (
       'Faculty Inserted name: ' +
-      mydto.Uname +
+      mydto.name +
       ' and id is ' +
-      mydto.universityId
+      mydto.universityId +
+      ' and Uname is ' +
+      mydto.Uname
     );
   }
 
@@ -59,5 +61,9 @@ export class FacultyService {
 
   deleteGradesbyid(universityId): any {
     return 'Grades Deleted by id';
+  }
+
+  login(mydto: LoginDto): any {
+    return 'Login by ' + mydto.email + ' and password is ' + mydto.password;
   }
 }
