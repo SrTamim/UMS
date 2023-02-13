@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { AdminForm } from "./adminform.dto";
+import { AdminForm,AdminRoom,AdminCourse,AdminNotice } from "./adminform.dto";
+
 
 @Injectable()
 export class AdminService {
@@ -9,33 +10,40 @@ getIndex():string {
 
 }
 getAdminByID(id):any {
+    
     return "Admin id is "+id;
 }
 
 getAdminByIDName(qry):any {
     
-    return "Admin id is "+qry.id +" and name is "+qry.name;
+    return "Admin id is "+qry.id +" and Admin is "+qry.name;
 }
 
+insertAdmin(mydto:AdminForm):any {
+    
+        return "Admin Inserted name: " + mydto.name+" and id is: " + mydto.id;
+    }
+
 updateAdmin(name,id):any {
-        return "Admin updated name: " +name+" and id is " +id;
+        return "Admin updated name: " +name+" and id is: " +id;
     }
 updateAdminbyid(name,id):any {
-        return "Update admin where id " +id+" and change name to " +name;
+        return "Update admin where id: " +id+" and change name to: " +name;
     }
     deleteAdminbyid(id):any {
     
-        return "Delete id is "+id;
+        return "Delete Admin id is: "+id;
     }
-    //---------------
+	
+	//////////////////////////////////////////
     getCourseByID(Cid):any {
-        return "Course id is "+Cid;
+        return "Course id is: "+Cid;
     }
     updateCoursebyid(Cname,Cid):any {
         return "Update Course where id " +Cid+" and change name to " +Cname;
     }
     //------------------
-    insertRoom(mydto:AdminForm):any {
+    insertRoom(mydto:AdminRoom):any {
         return " Room id is " + mydto.Rid;
     }
     updateRoombyid(Rid):any {
@@ -43,7 +51,7 @@ updateAdminbyid(name,id):any {
     }
 
     //------------
-    insertNotice(mydto:AdminForm):any {
+    insertNotice(mydto:AdminNotice):any {
         return " Notice id is " + mydto.Nid;
     }
 
@@ -51,6 +59,6 @@ updateAdminbyid(name,id):any {
         return "Update Grade where id " +Sid+" and change name to " +Sname;
     }
 
-
     
+
 }
