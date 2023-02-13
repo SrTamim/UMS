@@ -1,14 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import { StudentForm } from "./studentform.dto";
-
-
+import { LoginStudentForm, StudentForm, UpdateStudentform} from "./studentform.dto";
 
 @Injectable()
 export class StudentService {
 
 getIndex():string { 
     return "Student Index"; 
-
 }
 getCourseByID(id):any {
     
@@ -22,11 +19,22 @@ getCourseByIDName(qry):any {
 
 insertStudent(mydto:StudentForm):any {
     
-        return "Admin Inserted name: " + mydto.name+" and id is " + mydto.id;
+        return "Inserted name: " + mydto.name+
+        ", id is " + mydto.id+
+        ", address is " + mydto.address+
+        ", phone is " + mydto.phone+
+        ", cgpa is " + mydto.CGPA+
+        ", semester is " + mydto.semester+
+        ", department is " + mydto.department+
+        ", faculty is " + mydto.faculty+
+        ", course is " + mydto.course+
+        ", section is " + mydto.section+
+        ", studentID is " + mydto.studentId+
+        ", facultyFeedback is " + mydto.facultyFeedback;
     }
 
-updateStudent(name,id):any {
-        return "Admin updated name: " +name+" and id is " +id;
+updateStudent(mydto:UpdateStudentform):any {
+        return "updated name: " +" and id is " ;
     }
 updateStudentbyid(name,id):any {
         return "Update admin where id " +id+" and change name to " +name;
@@ -54,6 +62,11 @@ facultyFeedback(mydto:StudentForm):any {
 }
 getPaymentDetails(qry):any {
     
-  return "the paymentdetails is : ";
+  return "the paymentdetails for id : "+qry.id+" name:"+qry.name;
+}
+
+loginStudent(mydto:LoginStudentForm):any {
+  return  " email is " + mydto.email+
+  " password is " + mydto.password;
 }
 }
