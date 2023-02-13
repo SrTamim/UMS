@@ -51,16 +51,16 @@ export class FacultyService {
     return 'Grades Inserted';
   }
 
-  updateGrades(Uname, universityId): any {
-    return 'Grades Updated';
+  updateGrades(name, universityId): any {
+    return 'Grades Updated by name' + name + 'and id' + universityId;
   }
 
-  updateGradesbyid(Uname, universityId): any {
-    return 'Grades Updated by id';
+  updateGradesbyid(name, universityId): any {
+    return 'Grades Updated by id  ' + universityId + 'and name' + name;
   }
 
   deleteGradesbyid(universityId): any {
-    return 'Grades Deleted by id';
+    return 'Grades Deleted by id ' + universityId;
   }
 
   login(mydto: LoginDto): any {
