@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Req, Request, UsePipes, ValidationPipe } from "@nestjs/common";
-import { StudentForm } from "./studentform.dto";
+import { Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UsePipes,ValidationPipe } from "@nestjs/common";
+import { LoginStudentForm, StudentForm,  UpdateStudentform } from "./studentform.dto";
 import { StudentService } from "./student.service";
 
 @Controller("/student")
@@ -12,59 +12,60 @@ export class StudentController
         return this.studentService.getIndex();
     }
     @Get("/findcourse/:id")
-    getCourseID(@Param("id", ParseIntPipe) id:number,): any {
+      getCourseByID(@Param('id', ParseIntPipe) id: number): any {
       return this.studentService.getCourseByID(id);
     }
 
-
     @Get("/findcourse")
-    getUserByIDName(@Query() qry:any): any {
+      getUserByIDName(@Query() qry:any): any {
       return this.studentService.getCourseByIDName(qry);
     }  
     
     @Post("/insertstudent")
     @UsePipes(new ValidationPipe())
-    insertStudent(@Body() mydto:StudentForm): any {
+      insertStudent(@Body() mydto:StudentForm): any {
       return this.studentService.insertStudent(mydto);
     }
   
-    @Put("/updatestudent/")
+    @Put("/updatestudent")
     @UsePipes(new ValidationPipe())
-    updateStudent( 
-      @Body("name") name:string, 
-      @Body("id") id:number
-      ): any {
-    return this.studentService.updateStudent(name, id);
+    updateStudent(@Body() mydto:UpdateStudentform): any {
+    return this.studentService.updateStudent(mydto);
     }
     
     @Put("/updatestudent/:id")
-  updateStudentbyid( 
-      @Body("name") name:string, 
-      @Param("id", ParseIntPipe) id:number
+    @UsePipes(new ValidationPipe())
+      updateStudentbyid( 
+      @Body() mydto:UpdateStudentform, 
+      @Param('id', ParseIntPipe) id: number
       ): any {
-    return this.studentService.updateStudentbyid(name,id);
+    return this.studentService.updateStudentbyid(mydto,id);
     }
 
     @Delete("/deletecourse/:id")
-  deleteCoursebyid( 
-     @Param("id", ParseIntPipe) id:number
+     deleteCoursebyid( 
+     @Param("id") id:number
       ): any {
     return this.studentService.deleteCoursebyid(id);
     }
+
     @Get("/notice")
     getNoticeByFacultyId(@Query() qry:any): any {
       return this.studentService.getNoticeByFacultyId(qry);
     } 
 
-  @Get("/grade")
+    @Get("/grade")
     getGrade(@Query() qry:any): any {
       return this.studentService.getGrade(qry);
     } 
-  @Get("/gradebysemester")
+
+    @Get("/gradebysemester")
     getGradeBySemester(@Query() qry:any): any {
       return this.studentService.getGradeBySemester(qry);
     } 
+
     @Post("/facultyfeedback")
+    @UsePipes(new ValidationPipe())
     facultyFeedback(@Body() mydto:StudentForm): any {
       return this.studentService.facultyFeedback(mydto);
     }
@@ -73,5 +74,9 @@ export class StudentController
       return this.studentService.getPaymentDetails(qry);
     } 
 
-
+    @Post("/loginstudent")
+    @UsePipes(new ValidationPipe())
+    loginStudent(@Body() mydto:LoginStudentForm): any {
+      return this.studentService.loginStudent(mydto);
+    }
 }
