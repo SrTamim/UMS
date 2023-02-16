@@ -35,10 +35,9 @@ export class LoginDto {
 
   @IsNotEmpty()
   @Length(3, 8, { message: 'Password must be between 3 and 8 characters' })
-  //@Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,50}$/)
+  @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$@$!%*?&#]{6,}$/) //pa1234,pa#123,pa@123,pa1234
   password: string;
 
   //@Equals(passward,{ message: 'Password confirmation does not match password' })
   //conformPassword: string;
 }
-
