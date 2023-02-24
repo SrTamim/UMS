@@ -1,9 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
-import { Body, Post } from '@nestjs/common/decorators';
+import { Controller, Get, Body, Post, Param } from '@nestjs/common';
 import { FacultyInfoDTO } from '../DTOs/facultyInfo.dto';
 import { FacultyService } from '../Services/facultyservice.service';
 
-@Controller('/NewFaculty')
+@Controller('/faculty')
 export class FacultyController {
   constructor(private readonly facultyService: FacultyService) {}
 
@@ -15,5 +14,10 @@ export class FacultyController {
   @Post('/insert')
   insertFaculty(@Body() facultydto: FacultyInfoDTO): any {
     return this.facultyService.insertFaculty(facultydto);
+  }
+
+  @Get('/getall')
+  getAllFaculty(): any {
+    return this.facultyService.getAllFaculty();
   }
 }

@@ -12,7 +12,7 @@ export class FacultyInfoDTO {
   BloodGroup: string;
   Nationality: string;
   PermanentAddress: string;
-  DOB: string;
+  DOB: Date;
   BSC: string;
   MSC: string;
   SSC: string;
