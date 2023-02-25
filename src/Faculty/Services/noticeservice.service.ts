@@ -27,6 +27,10 @@ export class NoticeService {
     return this.facultyRepo.update(id, noticedto);
   }
 
+  updateNoticeById(noticedto, id): any {
+    return this.facultyRepo.update(id, noticedto);
+  }
+
   deleteNotice(id): any {
     return this.facultyRepo.delete(id);
   }
