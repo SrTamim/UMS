@@ -19,6 +19,7 @@ export class AdminController {
   getAdmin(): any {
     return this.adminService.getIndex();
   }
+
   @Get('/findadmin/:id')
   getAdminByID(@Param('id') id: number): any {
     return this.adminService.getAdminByID(id);
@@ -28,7 +29,6 @@ export class AdminController {
   getAdminByIDName(@Query() qry: any): any {
     return this.adminService.getAdminByIDName(qry);
   }
-
   @Put('/updateadmin/')
   updateAdmin(@Body('name') name: string, @Body('id') id: number): any {
     return this.adminService.updateAdmin(name, id);
@@ -43,9 +43,6 @@ export class AdminController {
   deleteAdminbyid(@Param('id') id: number): any {
     return this.adminService.deleteAdminbyid(id);
   }
-
-  //---------------------
-
   @Get('/findCourse')
   getCourseByID(@Query() qry: any): any {
     return this.adminService.getCourseByID(qry);
@@ -59,7 +56,7 @@ export class AdminController {
     return this.adminService.updateCoursebyid(Cname, Cid);
   }
 
-  //----------------------
+
   @Post('/insertRoom')
   insertRoom(@Body() mydto: AdminForm): any {
     return this.adminService.insertRoom(mydto);
@@ -69,14 +66,10 @@ export class AdminController {
   updateRoombyid(@Param('Rid') Rid: number): any {
     return this.adminService.updateRoombyid(Rid);
   }
-
-  //-------------
   @Post('/insertNotice')
   insertNotice(@Body() mydto: AdminForm): any {
     return this.adminService.insertNotice(mydto);
   }
-
-  //----------
   @Put('/updateGrade/:id')
   updateGradebyid(
     @Body('StudentName') Sname: string,
