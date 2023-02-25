@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { FacultyNotice } from '../Entitys/facultyNotice.entity';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { NoticeDto } from '../DTOs/noticeDto.dto';
 import { NoticeService } from '../Services/noticeservice.service';
 
 @Controller('/notice')
@@ -12,7 +12,17 @@ export class FacultyNoticeController {
   }
 
   @Post('/insertnotice')
-  insertNotice(@Body() facultyNotice: FacultyNotice): any {
-    return this.facultyNoticeService.insertNotice(facultyNotice);
+  insertNotice(@Body() noticedto: NoticeDto): any {
+    return this.facultyNoticeService.insertNotice(noticedto);
+  }
+
+  @Put('/updatenotice')
+  updateNotice(@Body() noticedto: NoticeDto): any {
+    return this.facultyNoticeService.updateNotice(noticedto, noticedto.id);
+  }
+
+  @Delete('/deletenotice/:id')
+  deleteNotice(@Param('id') id: number): any {
+    return this.facultyNoticeService.deleteNotice(id);
   }
 }

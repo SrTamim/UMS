@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { NoticeDto } from '../DTOs/noticeDto.dto';
 import { FacultyNotice } from '../Entitys/facultyNotice.entity';
 
 @Injectable()
@@ -14,11 +15,19 @@ export class NoticeService {
     return this.facultyRepo.find();
   }
 
-  insertNotice(facultyNotice: FacultyNotice): any {
+  insertNotice(noticedto: NoticeDto): any {
     const notice = new FacultyNotice();
-    notice.facultyId = facultyNotice.facultyId;
-    notice.subject = facultyNotice.subject;
-    notice.Details = facultyNotice.Details;
-    return this.facultyRepo.save(facultyNotice);
+    notice.facultyId = noticedto.facultyId;
+    notice.subject = noticedto.subject;
+    notice.Details = noticedto.Details;
+    return this.facultyRepo.save(noticedto);
+  }
+
+  updateNotice(noticedto, id): any {
+    return this.facultyRepo.update(id, noticedto);
+  }
+
+  deleteNotice(id): any {
+    return this.facultyRepo.delete(id);
   }
 }
