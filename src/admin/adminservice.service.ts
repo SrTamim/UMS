@@ -17,18 +17,20 @@ getIndex():any {
 
 }
 getAdminByID(id):any {
-    
-    return "Admin id is "+id;
+    return this.adminRepo.findOneBy({ id });
+    //return "Admin id is "+id;
 }
 
 getAdminByIDName(qry):any {
-    
-    return "Admin id is "+qry.id +" and Admin is "+qry.name;
+    return this.adminRepo.findOneBy({ id:qry.id,name:qry.name });
+    //return "Admin id is "+qry.id +" and Admin is "+qry.name;
 }
 
 insertAdmin(mydto:AdminForm):any {
-    
-        return "Admin Inserted name: " + mydto.name+" and id is: " + mydto.id;
+    const adminaccount = new AdminEntity()
+    adminaccount.name = mydto.name;
+    return this.adminRepo.save(adminaccount);
+        //return "Admin Inserted name: " + mydto.name+" and id is: " + mydto.id;
     }
 
 updateAdmin(name,id):any {
