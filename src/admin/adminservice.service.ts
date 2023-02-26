@@ -1,12 +1,19 @@
 import { Injectable } from "@nestjs/common";
 import { AdminForm,AdminRoom,AdminCourse,AdminNotice } from "./adminform.dto";
-
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm';
+import { AdminEntity } from "./adminentity.entity"
 
 @Injectable()
 export class AdminService {
+    constructor(
+        @InjectRepository(AdminEntity)
+        private adminRepo: Repository<AdminEntity>,
+      ) {}
 
-getIndex():string { 
-    return "Welcome Admin"; 
+getIndex():any { 
+    return this.adminRepo.find();
+    //return "Welcome Admin"; 
 
 }
 getAdminByID(id):any {
