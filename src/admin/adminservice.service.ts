@@ -34,7 +34,9 @@ insertAdmin(mydto:AdminForm):any {
     }
 
 updateAdmin(name,id):any {
-        return "Admin updated name: " +name+" and id is: " +id;
+        console.log(name+id);
+        return this.adminRepo.update(id,{name:name});
+        //return "Admin updated name: " +name+" and id is: " +id;
     }
 updateAdminbyid(name,id):any {
         return "Update admin where id: " +id+" and change name to: " +name;
