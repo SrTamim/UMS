@@ -1,5 +1,4 @@
-
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe,Patch } from "@nestjs/common";
 import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "./adminform.dto";
 import { AdminService } from "./adminservice.service";
 
@@ -11,7 +10,9 @@ export class AdminController {
     getAdmin(): any { 
         return this.adminService.getIndex();
     }
+
     @Get("/findadmin/:id")
+    @UsePipes(new ValidationPipe())
     getAdminByID(@Param("id", ParseIntPipe) id:number,): any {
       return this.adminService.getAdminByID(id);
     }
@@ -21,6 +22,7 @@ export class AdminController {
     getAdminByIDName(@Query() qry:any): any {
       return this.adminService.getAdminByIDName(qry);
     }  
+
     @Post("/insertAdmin")
     @UsePipes(new ValidationPipe())
     insertAdmin(@Body() mydto:AdminForm): any {
@@ -38,9 +40,9 @@ export class AdminController {
     
     @Put("/updateAdmin/:id")
     @UsePipes(new ValidationPipe())
-  updateAdminbyid( 
-      @Body("name") name:any, 
-      @Param("id", ParseIntPipe) id:number
+      updateAdminbyid( 
+        @Body("name") name:any, 
+        @Param("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.updateAdminbyid(name,id);
     }
@@ -95,6 +97,15 @@ export class AdminController {
       insertNotice(@Body() mydto:AdminNotice): any {
         return this.adminService.insertNotice(mydto);
       }
+
+      @Patch("/updateNotice/")
+      @UsePipes(new ValidationPipe())
+      PatchNoticebyid( 
+        @Body('Nid', ParseIntPipe) Nid:number,
+        @Body('details') details:string
+          ): any {
+        return this.adminService.PatchNoticebyid(Nid,details);
+        }
 
       //----------
       @Put("/updateGrade/:id")

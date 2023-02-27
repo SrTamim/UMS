@@ -18,9 +18,7 @@ export class AdminService {
       ) {}
 
 getIndex():any { 
-    return this.adminRepo.find();
-    //return "Welcome Admin"; 
-
+    return "Welcome Admin"; 
 }
 getAdminByID(id):any {
     return this.adminRepo.findOneBy({ id });
@@ -42,7 +40,7 @@ insertAdmin(mydto:AdminForm):any {
 updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
-        //return "Admin updated name: " +name+" and id is: " +id;
+        return "Admin updated name: " +name+" and id is: " +id;
     }
 
 updateAdminbyid(mydto:AdminForm,id):any {
@@ -81,16 +79,19 @@ updateAdminbyid(mydto:AdminForm,id):any {
 
     //------------
     insertNotice(mydto:AdminNotice):any {
-        // const noticeaccount = new NoticeEntity()
-        // noticeaccount.notice = mydto.notice;
-        // return this.adminRepo.save(noticeaccount);
+        const noticeaccount = new NoticeEntity()
+        noticeaccount.details = mydto.details;
+        return this.noticeRepo.save(noticeaccount);
         //return " Notice id is " + mydto.Nid;
+    }
+
+    PatchNoticebyid(Nid,details):any {
+        console.log(Nid+details);
+        return this.noticeRepo.update(Nid,{details:details});
     }
 
     updateGradebyid(Sname,Sid):any {
         return "Update Grade where id " +Sid+" and change name to " +Sname;
     }
-
-    
 
 }
