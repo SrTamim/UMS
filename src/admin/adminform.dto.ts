@@ -49,5 +49,5 @@ export class AdminForm {
     @IsNotEmpty()
     @IsInt()
     @IsPositive()
-    details: number;
+    details: string;
     }

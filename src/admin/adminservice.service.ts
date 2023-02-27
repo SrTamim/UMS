@@ -81,16 +81,14 @@ updateAdminbyid(mydto:AdminForm,id):any {
 
     //------------
     insertNotice(mydto:AdminNotice):any {
-        // const noticeaccount = new NoticeEntity()
-        // noticeaccount.notice = mydto.notice;
-        // return this.adminRepo.save(noticeaccount);
+        const noticeaccount = new NoticeEntity()
+        noticeaccount.details = mydto.details;
+        return this.noticeRepo.save(noticeaccount);
         //return " Notice id is " + mydto.Nid;
     }
 
     updateGradebyid(Sname,Sid):any {
         return "Update Grade where id " +Sid+" and change name to " +Sname;
     }
-
-    
 
 }
