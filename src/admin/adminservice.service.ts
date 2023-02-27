@@ -2,13 +2,16 @@ import { Injectable } from "@nestjs/common";
 import { AdminForm,AdminRoom,AdminCourse,AdminNotice } from "./adminform.dto";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm';
-import { AdminEntity } from "./adminentity.entity"
+import { AdminEntity} from "./adminentity.entity"
+import { CourseEntity } from "./course.entity"
 
 @Injectable()
 export class AdminService {
     constructor(
         @InjectRepository(AdminEntity)
         private adminRepo: Repository<AdminEntity>,
+        @InjectRepository(CourseEntity)
+        private courseRepo: Repository<CourseEntity>,
       ) {}
 
 getIndex():any { 
@@ -38,12 +41,13 @@ updateAdmin(name,id):any {
         return this.adminRepo.update(id,{name:name});
         //return "Admin updated name: " +name+" and id is: " +id;
     }
-updateAdminbyid(name,id):any {
-        return "Update admin where id: " +id+" and change name to: " +name;
+updateAdminbyid(mydto:AdminForm,id):any {
+    return this.adminRepo.update(id,mydto);
+        //return "Update admin where id: " +id+" and change name to: " +name;
     }
     deleteAdminbyid(id):any {
-    
-        return "Delete Admin id is: "+id;
+        return this.adminRepo.delete(id);
+        //return "Delete Admin id is: "+id;
     }
 	
 	//////////////////////////////////////////

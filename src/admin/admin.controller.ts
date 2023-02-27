@@ -40,19 +40,20 @@ export class AdminController
     @Put("/updateAdmin/:id")
     @UsePipes(new ValidationPipe())
   updateAdminbyid( 
-      @Body("name") name:string, 
+      @Body("name") name:any, 
       @Param("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.updateAdminbyid(name,id);
     }
 
-    @Delete("/deleteAdmin/:id")
+    @Delete("/deleteAdmin/")
     @UsePipes(new ValidationPipe())
   deleteAdminbyid( 
-     @Param("id", ParseIntPipe) id:number
+     @Body("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.deleteAdminbyid(id);
     }
+
 	 //--------------------------
     @Get("/findCourse")
     @UsePipes(new ValidationPipe())
