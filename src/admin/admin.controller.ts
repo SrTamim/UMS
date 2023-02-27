@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe,Patch } from "@nestjs/common";
 import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "./adminform.dto";
 import { AdminService } from "./adminservice.service";
 
@@ -97,6 +97,15 @@ export class AdminController
       insertNotice(@Body() mydto:AdminNotice): any {
         return this.adminService.insertNotice(mydto);
       }
+
+      @Patch("/updateNotice/")
+      @UsePipes(new ValidationPipe())
+      PatchNoticebyid( 
+        @Body('Nid', ParseIntPipe) Nid:number,
+        @Body('details') details:string
+          ): any {
+        return this.adminService.PatchNoticebyid(Nid,details);
+        }
 
       //----------
       @Put("/updateGrade/:id")

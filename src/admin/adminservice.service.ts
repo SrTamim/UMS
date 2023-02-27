@@ -87,6 +87,11 @@ updateAdminbyid(mydto:AdminForm,id):any {
         //return " Notice id is " + mydto.Nid;
     }
 
+    PatchNoticebyid(Nid,details):any {
+        console.log(Nid+details);
+        return this.noticeRepo.update(Nid,{details:details});
+    }
+
     updateGradebyid(Sname,Sid):any {
         return "Update Grade where id " +Sid+" and change name to " +Sname;
     }
