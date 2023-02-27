@@ -51,11 +51,11 @@ updateStudentbyid(mydto:UpdateStudentform,id):any {
       return "the id is "+qry.id +" and notice is "+qry.name;
   }
     
-  getGrade(mydto,id):any {
+//   getGrade(mydto,id):any {
 
-    const student=this.studentRepository.find(id);
-     return "the grade is : " +mydto.CGPA;
-}
+//     const student=this.studentRepository.find(id);
+//      return "the grade is : " +mydto.CGPA;
+// }
 getGradeBySemester(id):any {
     
   return "the grade is : "+id;

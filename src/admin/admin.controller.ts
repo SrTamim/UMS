@@ -49,7 +49,7 @@ export class AdminController {
 
     @Delete("/deleteAdmin/")
     @UsePipes(new ValidationPipe())
-  deleteAdminbyid( 
+    deleteAdminbyid( 
      @Body("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.deleteAdminbyid(id);
@@ -59,13 +59,13 @@ export class AdminController {
    @UsePipes(new ValidationPipe())
    insertCourse(@Body() mydto:AdminCourse): any {
      return this.adminService.insertCourse(mydto);
-   }
+   } 
 
-    @Get("/findCourse")
+    @Get('/findCourse/:Cid')
     @UsePipes(new ValidationPipe())
-    getCourseByID(@Query() qry:any): any {
-      return this.adminService.getCourseByID(qry);
-    }  
+    getCourseByID(@Param('Cid', ParseIntPipe) Cid: number): any {
+      return this.adminService.getCourseByID(Cid);
+    }
 
     @Put("/updateCourse/")
     @UsePipes(new ValidationPipe())
