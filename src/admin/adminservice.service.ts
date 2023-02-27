@@ -18,9 +18,7 @@ export class AdminService {
       ) {}
 
 getIndex():any { 
-    return this.adminRepo.find();
-    //return "Welcome Admin"; 
-
+    return "Welcome Admin"; 
 }
 getAdminByID(id):any {
     return this.adminRepo.findOneBy({ id });
@@ -42,7 +40,7 @@ insertAdmin(mydto:AdminForm):any {
 updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
-        //return "Admin updated name: " +name+" and id is: " +id;
+        return "Admin updated name: " +name+" and id is: " +id;
     }
 
 updateAdminbyid(mydto:AdminForm,id):any {

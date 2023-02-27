@@ -12,8 +12,9 @@ export class AdminController
     getAdmin(): any { 
         return this.adminService.getIndex();
     }
-    
+
     @Get("/findadmin/:id")
+    @UsePipes(new ValidationPipe())
     getAdminByID(@Param("id", ParseIntPipe) id:number,): any {
       return this.adminService.getAdminByID(id);
     }
@@ -23,6 +24,7 @@ export class AdminController
     getAdminByIDName(@Query() qry:any): any {
       return this.adminService.getAdminByIDName(qry);
     }  
+
     @Post("/insertAdmin")
     @UsePipes(new ValidationPipe())
     insertAdmin(@Body() mydto:AdminForm): any {
@@ -40,9 +42,9 @@ export class AdminController
     
     @Put("/updateAdmin/:id")
     @UsePipes(new ValidationPipe())
-  updateAdminbyid( 
-      @Body("name") name:any, 
-      @Param("id", ParseIntPipe) id:number
+      updateAdminbyid( 
+        @Body("name") name:any, 
+        @Param("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.updateAdminbyid(name,id);
     }
