@@ -12,6 +12,7 @@ export class AdminController
     getAdmin(): any { 
         return this.adminService.getIndex();
     }
+    
     @Get("/findadmin/:id")
     getAdminByID(@Param("id", ParseIntPipe) id:number,): any {
       return this.adminService.getAdminByID(id);
