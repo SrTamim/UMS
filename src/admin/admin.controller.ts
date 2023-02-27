@@ -3,11 +3,9 @@ import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "./adminform.dto";
 import { AdminService } from "./adminservice.service";
 
 
-@Controller("/admin")
-export class AdminController
-{ 
-  constructor(private adminService: AdminService){}
-
+@Controller('/admin')
+export class AdminController {
+  constructor(private adminService: AdminService) {}
   @Get("/admin")
     getAdmin(): any { 
         return this.adminService.getIndex();
@@ -55,8 +53,7 @@ export class AdminController
      @Body("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.deleteAdminbyid(id);
-    }
-
+  }
 	 //--------------------------
    @Post("/insertCourse")
    @UsePipes(new ValidationPipe())

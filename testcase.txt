@@ -1,0 +1,27 @@
+http://localhost:3000/admin/findadmin/:id
+
+http://localhost:3000/admin/insertAdmin
+{
+    "name":"22",
+    "id":"Tamim"
+}
+{
+    "name":"tamim",
+    "id":22
+}
+
+http://localhost:3000/admin/updateCourse/:Cid
+{
+    "Cname":"CSE",
+    "Cid":"22"
+}
+
+http://localhost:3000/admin/insertRoom
+{
+    "Rid":"-2"
+}
+
+http://localhost:3000/admin/insertNotice
+{
+    "Nid":"-1"
+}
