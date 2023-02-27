@@ -1,13 +1,12 @@
+
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from "@nestjs/common";
 import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "./adminform.dto";
 import { AdminService } from "./adminservice.service";
 
 
-@Controller("/admin")
-export class AdminController
-{ 
-  constructor(private adminService: AdminService){}
-
+@Controller('/admin')
+export class AdminController {
+  constructor(private adminService: AdminService) {}
   @Get("/admin")
     getAdmin(): any { 
         return this.adminService.getIndex();
@@ -40,19 +39,19 @@ export class AdminController
     @Put("/updateAdmin/:id")
     @UsePipes(new ValidationPipe())
   updateAdminbyid( 
-      @Body("name") name:string, 
+      @Body("name") name:any, 
       @Param("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.updateAdminbyid(name,id);
     }
 
-    @Delete("/deleteAdmin/:id")
+    @Delete("/deleteAdmin/")
     @UsePipes(new ValidationPipe())
   deleteAdminbyid( 
-     @Param("id", ParseIntPipe) id:number
+     @Body("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.deleteAdminbyid(id);
-    }
+  }
 	 //--------------------------
     @Get("/findCourse")
     @UsePipes(new ValidationPipe())
