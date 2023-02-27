@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { FacultyNotice } from './facultyNotice.entity';
 
 @Entity('facultyinfo')
 export class FacultyInfo {
@@ -52,4 +53,8 @@ export class FacultyInfo {
 
   @Column()
   HSC: string;
+/*
+  @OneToOne(() => FacultyNotice, (facultyNotice) => facultyNotice.facultyId)
+  facultyNotice: FacultyNotice;
+  */
 }
