@@ -49,10 +49,10 @@ export class StudentController
       return this.studentService.getNoticeByFacultyId(qry);
     } 
 
-    @Get("/grade/:id")
-    getGrade(@Query() id:any): any {
-      return this.studentService.getGrade(id);
-    } 
+    // @Get("/grade/:id")
+    // getGrade(@Query() id:any): any {
+    //   return this.studentService.getGrade(id);
+    // } 
 
     @Get("/gradebysemester")
     getGradeBySemester(@Query() qry:any): any {
