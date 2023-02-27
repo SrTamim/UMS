@@ -1,18 +1,20 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { IsAlpha, IsInt, IsNotEmpty } from 'class-validator';
 
 export class StudentgradeDTO {
-  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @IsNotEmpty()
+  @IsInt({ message: 'ID must be a number' })
   studentId: number;
 
-  @Column()
+  @IsNotEmpty()
+  @IsInt({ message: 'ID must be a number' })
   curseId: number;
 
-  @Column()
+  @IsNotEmpty()
+  @IsAlpha()
   subject: string;
 
-  @Column()
+  @IsNotEmpty()
   grade: string;
 }

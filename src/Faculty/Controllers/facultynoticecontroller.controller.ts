@@ -4,8 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { NoticeDto } from '../DTOs/noticeDto.dto';
 import { NoticeService } from '../Services/noticeservice.service';
@@ -20,22 +23,29 @@ export class FacultyNoticeController {
   }
 
   @Post('/insertnotice')
+  @UsePipes(new ValidationPipe())
   insertNotice(@Body() noticedto: NoticeDto): any {
     return this.facultyNoticeService.insertNotice(noticedto);
   }
 
   @Put('/updatenotice')
+  @UsePipes(new ValidationPipe())
   updateNotice(@Body() noticedto: NoticeDto): any {
     return this.facultyNoticeService.updateNotice(noticedto, noticedto.id);
   }
 
   @Put('/updatenoticeBy/:id')
-  updateNoticeById(@Body() noticedto: NoticeDto, @Param('id') id: number): any {
+  @UsePipes(new ValidationPipe())
+  updateNoticeById(
+    @Body() noticedto: NoticeDto,
+    @Param('id', ParseIntPipe) id: number,
+  ): any {
     return this.facultyNoticeService.updateNotice(noticedto, id);
   }
 
   @Delete('/deletenotice/:id')
-  deleteNotice(@Param('id') id: number): any {
+  @UsePipes(new ValidationPipe())
+  deleteNotice(@Param('id', ParseIntPipe) id: number): any {
     return this.facultyNoticeService.deleteNotice(id);
   }
 }

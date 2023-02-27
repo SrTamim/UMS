@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { StudentgradeDTO } from '../DTOs/studentgradeDto.dto';
 import { StudentGradeService } from '../Services/studentgradeservice.service';
 
@@ -17,12 +17,15 @@ export class StudentGradeController {
   }
 
   @Put('/updatestudentgrade/:id')
-  updateStudentGrade(@Body() studentgradedto, @Param('id') id): any {
+  updateStudentGrade(
+    @Body() studentgradedto,
+    @Param('id', ParseIntPipe) id,
+  ): any {
     return this.studentGradeService.updateStudentGrade(studentgradedto, id);
   }
 
   @Delete('deletestudentgrade/:id')
-  deleteStudentGrade(@Param('id') id): any {
+  deleteStudentGrade(@Param('id', ParseIntPipe) id): any {
     return this.studentGradeService.deleteStudentGrade(id);
   }
 }

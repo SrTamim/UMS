@@ -39,4 +39,16 @@ export class FacultyService {
   getAllFaculty(): any {
     return this.facultyRepo.find();
   }
+
+  getFacultyById(id): any {
+    return this.facultyRepo.findOneBy(id);
+  }
+
+  updateFaculty(facultydto, id): any {
+    return this.facultyRepo.update(id, facultydto);
+  }
+
+  deleteFaculty(id): any {
+    return this.facultyRepo.delete(id);
+  }
 }

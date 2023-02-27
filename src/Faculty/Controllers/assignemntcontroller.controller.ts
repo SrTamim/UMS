@@ -4,8 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AssignmentDto } from '../DTOs/assignmentDto.dto';
 import { AssignmentService } from '../Services/assignmentservice.service';
@@ -20,17 +23,20 @@ export class AssignmentController {
   }
 
   @Post('/insertassignment')
+  @UsePipes(new ValidationPipe())
   insertAssignment(@Body() assignmentdto: AssignmentDto): any {
     return this.assignmentService.insertAssignment(assignmentdto);
   }
 
   @Put('/updateassignment/:id')
-  updateAssignment(@Body() assignmentdto, @Param('id') id): any {
+  @UsePipes(new ValidationPipe())
+  updateAssignment(@Body() assignmentdto, @Param('id', ParseIntPipe) id): any {
     return this.assignmentService.updateAssignment(assignmentdto, id);
   }
 
   @Delete('deleteassignment/:id')
-  deleteAssignment(@Param('id') id): any {
+  @UsePipes(new ValidationPipe())
+  deleteAssignment(@Param('id', ParseIntPipe) id): any {
     return this.assignmentService.deleteAssignment(id);
   }
 }
