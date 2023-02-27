@@ -53,13 +53,19 @@ export class AdminController {
     return this.adminService.deleteAdminbyid(id);
   }
 	 //--------------------------
+   @Post("/insertCourse")
+   @UsePipes(new ValidationPipe())
+   insertCourse(@Body() mydto:AdminCourse): any {
+     return this.adminService.insertCourse(mydto);
+   }
+
     @Get("/findCourse")
     @UsePipes(new ValidationPipe())
     getCourseByID(@Query() qry:any): any {
       return this.adminService.getCourseByID(qry);
     }  
 
-    @Put("/updateCourse/:Cid")
+    @Put("/updateCourse/")
     @UsePipes(new ValidationPipe())
     updateCoursebyid( 
         @Body('Cname') Cname:string, 

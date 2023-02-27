@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm';
 import { AdminEntity} from "./adminentity.entity"
 import { CourseEntity } from "./course.entity"
+import { NoticeEntity } from "./notice.entity"
 
 @Injectable()
 export class AdminService {
@@ -12,6 +13,8 @@ export class AdminService {
         private adminRepo: Repository<AdminEntity>,
         @InjectRepository(CourseEntity)
         private courseRepo: Repository<CourseEntity>,
+        @InjectRepository(NoticeEntity)
+        private noticeRepo: Repository<NoticeEntity>,
       ) {}
 
 getIndex():any { 
@@ -41,6 +44,7 @@ updateAdmin(name,id):any {
         return this.adminRepo.update(id,{name:name});
         //return "Admin updated name: " +name+" and id is: " +id;
     }
+
 updateAdminbyid(mydto:AdminForm,id):any {
     return this.adminRepo.update(id,mydto);
         //return "Update admin where id: " +id+" and change name to: " +name;
@@ -51,11 +55,21 @@ updateAdminbyid(mydto:AdminForm,id):any {
     }
 	
 	//////////////////////////////////////////
+    insertCourse(mydto:AdminCourse):any {
+        const courseaccount = new CourseEntity()
+        courseaccount.Cname = mydto.Cname;
+        return this.courseRepo.save(courseaccount);
+        //return " Notice id is " + mydto.Nid;
+    }
+
     getCourseByID(Cid):any {
-        return "Course id is: "+Cid;
+        return this.courseRepo.findOneBy({ Cid });
+        //return "Course id is: "+Cid;
     }
     updateCoursebyid(Cname,Cid):any {
-        return "Update Course where id " +Cid+" and change name to " +Cname;
+        console.log(Cname+Cid);
+        return this.courseRepo.update(Cid,{Cname:Cname});
+        //return "Update Course where id " +Cid+" and change name to " +Cname;
     }
     //------------------
     insertRoom(mydto:AdminRoom):any {
@@ -67,7 +81,10 @@ updateAdminbyid(mydto:AdminForm,id):any {
 
     //------------
     insertNotice(mydto:AdminNotice):any {
-        return " Notice id is " + mydto.Nid;
+        // const noticeaccount = new NoticeEntity()
+        // noticeaccount.notice = mydto.notice;
+        // return this.adminRepo.save(noticeaccount);
+        //return " Notice id is " + mydto.Nid;
     }
 
     updateGradebyid(Sname,Sid):any {

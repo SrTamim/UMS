@@ -46,4 +46,8 @@ export class AdminForm {
     @IsInt()
     @IsPositive()
     Nid: number;
+    @IsNotEmpty()
+    @IsInt()
+    @IsPositive()
+    details: number;
     }
