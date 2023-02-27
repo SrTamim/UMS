@@ -10,7 +10,7 @@ import {
      } from "class-validator";
 
 export class AdminForm {   
-    @IsNotEmpty({message: "Please enter id"}) 
+    @IsNotEmpty() 
     @IsInt()
     @Min(1)
     @Max(1000)

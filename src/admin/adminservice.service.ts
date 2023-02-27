@@ -40,7 +40,7 @@ insertAdmin(mydto:AdminForm):any {
 updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
-        return "Admin updated name: " +name+" and id is: " +id;
+        //return "Admin updated name: " +name+" and id is: " +id;
     }
 
 updateAdminbyid(mydto:AdminForm,id):any {
