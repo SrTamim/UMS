@@ -22,13 +22,55 @@ export class AdminController {
     getAdminByIDName(@Query() qry:any): any {
       return this.adminService.getAdminByIDName(qry);
     }  
-
+//------------------------------------------------------------------------------------------------------------------------------
     @Post("/insertAdmin")
     @UsePipes(new ValidationPipe())
     insertAdmin(@Body() mydto:AdminForm): any {
       return this.adminService.insertAdmin(mydto);
     }
-  
+
+    @Post("/insertteacher")
+    @UsePipes(new ValidationPipe())
+    insertteacher(@Body() mydto:AdminForm): any {
+      return this.adminService.insertteacher(mydto);
+    }
+
+    @Post("/insertstudent")
+    @UsePipes(new ValidationPipe())
+    insertstudent(@Body() mydto:AdminForm): any {
+      return this.adminService.insertstudent(mydto);
+    }
+
+    @Post("/insertofficer")
+    @UsePipes(new ValidationPipe())
+    insertofficer(@Body() mydto:AdminForm): any {
+      return this.adminService.insertofficer(mydto);
+    }
+
+    @Post("/insertfacultysal")
+    @UsePipes(new ValidationPipe())
+    insertfacultysal(@Body() mydto:AdminForm): any {
+      return this.adminService.insertfacultysal(mydto);
+    }
+
+    @Post("/insertofficersal")
+    @UsePipes(new ValidationPipe())
+    insertofficersal(@Body() mydto:AdminForm): any {
+      return this.adminService.insertofficersal(mydto);
+    }
+
+    @Post("/insertcourse")
+    @UsePipes(new ValidationPipe())
+    insertcourse(@Body() mydto:AdminForm): any {
+      return this.adminService.insertcourse(mydto);
+    }
+
+    @Post("/insertnotice")
+    @UsePipes(new ValidationPipe())
+    insertnotice(@Body() mydto:AdminForm): any {
+      return this.adminService.insertnotice(mydto);
+    }
+//--------------------------------------------------------------------------------------------------------------------------------
     @Put("/updateAdmin/")
     @UsePipes(new ValidationPipe())
     updateAdmin( 

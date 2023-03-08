@@ -29,14 +29,55 @@ getAdminByIDName(qry):any {
     return this.adminRepo.findOneBy({ id:qry.id,name:qry.name });
     //return "Admin id is "+qry.id +" and Admin is "+qry.name;
 }
-
+//---------------------------------------------------------------------------------------------------------------------------
 insertAdmin(mydto:AdminForm):any {
     const adminaccount = new AdminEntity()
     adminaccount.name = mydto.name;
     return this.adminRepo.save(adminaccount);
-        //return "Admin Inserted name: " + mydto.name+" and id is: " + mydto.id;
     }
 
+    insertstudent(mydto:AdminForm):any {
+        const adminaccount = new AdminEntity()
+        adminaccount.name = mydto.name;
+        return this.adminRepo.save(adminaccount);
+        }
+
+        insertteacher(mydto:AdminForm):any {
+            const adminaccount = new AdminEntity()
+            adminaccount.name = mydto.name;
+            return this.adminRepo.save(adminaccount);
+            }
+
+            insertofficer(mydto:AdminForm):any {
+                const adminaccount = new AdminEntity()
+                adminaccount.name = mydto.name;
+                return this.adminRepo.save(adminaccount);
+                }
+
+                insertfacultysal(mydto:AdminForm):any {
+                    const adminaccount = new AdminEntity()
+                    adminaccount.name = mydto.name;
+                    return this.adminRepo.save(adminaccount);
+                    }
+
+                    insertofficersal(mydto:AdminForm):any {
+                        const adminaccount = new AdminEntity()
+                        adminaccount.name = mydto.name;
+                        return this.adminRepo.save(adminaccount);
+                        }
+
+                        insertcourse(mydto:AdminForm):any {
+                            const adminaccount = new AdminEntity()
+                            adminaccount.name = mydto.name;
+                            return this.adminRepo.save(adminaccount);
+                            }
+
+                            insertnotice(mydto:AdminForm):any {
+                                const adminaccount = new AdminEntity()
+                                adminaccount.name = mydto.name;
+                                return this.adminRepo.save(adminaccount);
+                                }
+//---------------------------------------------------------------------------------------------------------
 updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
