@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { AdminForm,AdminRoom,AdminCourse,AdminNotice,Adminstudent,Adminfaculty,Adminofficer } from "../DTO/adminform.dto";
+import { AdminForm,AdminRoom,AdminCourse,AdminNotice,Adminstudent,Adminfaculty,Adminofficer,Adminfacultysal,Adminofficersal } from "../DTO/adminform.dto";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm';
 import { AdminEntity} from "../ENTITY/adminentity.entity"
@@ -9,6 +9,7 @@ import { StudentEntity } from "../ENTITY/student.entity"
 import { FacultyEntity } from "../ENTITY/faculty.entity"
 import { OfficerEntity } from "../ENTITY/officer.entity"
 import { FacultysalEntity } from "../ENTITY/facultysal.entity"
+import { OfficersalEntity } from "../ENTITY/officersal.entity"
 
 @Injectable()
 export class AdminService {
@@ -29,6 +30,8 @@ export class AdminService {
 
         @InjectRepository(FacultysalEntity)
         private facultysalRepo: Repository<FacultysalEntity>,
+        @InjectRepository(OfficersalEntity)
+        private officersalRepo: Repository<OfficersalEntity>,
       ) {}
 
 getIndex():any { 
@@ -51,45 +54,45 @@ insertAdmin(mydto:AdminForm):any {
     }
 
     insertstudent(mydto:Adminstudent):any {
-        const adminaccount = new AdminEntity()
-        adminaccount.name = mydto.Sname;
-        return this.adminRepo.save(adminaccount);
+        const studentaccount = new StudentEntity()
+        studentaccount.Sname = mydto.Sname;
+        return this.studentRepo.save(studentaccount);
         }
 
-        insertfaculty(mydto:AdminForm):any {
-            const adminaccount = new AdminEntity()
-            adminaccount.name = mydto.name;
-            return this.adminRepo.save(adminaccount);
+        insertfaculty(mydto:Adminfaculty):any {
+            const facultyaccount = new FacultyEntity()
+            facultyaccount.Fname = mydto.Fname;
+            return this.facultyRepo.save(facultyaccount);
             }
 
-            insertofficer(mydto:AdminForm):any {
-                const adminaccount = new AdminEntity()
-                adminaccount.name = mydto.name;
-                return this.adminRepo.save(adminaccount);
+            insertofficer(mydto:Adminofficer):any {
+                const officeraccount = new OfficerEntity()
+                officeraccount.Oname = mydto.Oname;
+                return this.officerRepo.save(officeraccount);
                 }
 
-                insertfacultysal(mydto:AdminForm):any {
-                    const adminaccount = new AdminEntity()
-                    adminaccount.name = mydto.name;
-                    return this.adminRepo.save(adminaccount);
+                insertfacultysal(mydto:Adminfacultysal):any {
+                    const facultysalaccount = new FacultysalEntity()
+                    facultysalaccount.amount = mydto.amount;
+                    return this.facultysalRepo.save(facultysalaccount);
                     }
 
-                    insertofficersal(mydto:AdminForm):any {
-                        const adminaccount = new AdminEntity()
-                        adminaccount.name = mydto.name;
-                        return this.adminRepo.save(adminaccount);
+                    insertofficersal(mydto:Adminofficersal):any {
+                        const officersalaccount = new OfficersalEntity()
+                        officersalaccount.amount = mydto.amount;
+                        return this.officersalRepo.save(officersalaccount);
                         }
 
-                        insertcourse(mydto:AdminForm):any {
-                            const adminaccount = new AdminEntity()
-                            adminaccount.name = mydto.name;
-                            return this.adminRepo.save(adminaccount);
+                        insertcourse(mydto:AdminCourse):any {
+                            const courseaccount = new CourseEntity()
+                            courseaccount.Cname = mydto.Cname;
+                            return this.courseRepo.save(courseaccount);
                             }
 
-                            insertnotice(mydto:AdminForm):any {
-                                const adminaccount = new AdminEntity()
-                                adminaccount.name = mydto.name;
-                                return this.adminRepo.save(adminaccount);
+                            insertnotice(mydto:AdminNotice):any {
+                                const noticeaccount = new NoticeEntity()
+                                noticeaccount.Ndetails = mydto.Ndetails;
+                                return this.noticeRepo.save(noticeaccount);
                                 }
 //---------------------------------------------------------------------------------------------------------
 updateAdmin(name,id):any {
@@ -108,12 +111,12 @@ updateAdminbyid(mydto:AdminForm,id):any {
     }
 	
 	//////////////////////////////////////////
-    insertCourse(mydto:AdminCourse):any {
-        const courseaccount = new CourseEntity()
-        courseaccount.Cname = mydto.Cname;
-        return this.courseRepo.save(courseaccount);
-        //return " Notice id is " + mydto.Nid;
-    }
+    // insertCourse(mydto:AdminCourse):any {
+    //     const courseaccount = new CourseEntity()
+    //     courseaccount.Cname = mydto.Cname;
+    //     return this.courseRepo.save(courseaccount);
+    //     //return " Notice id is " + mydto.Nid;
+    //}
 
     getCourseByID(Cid):any {
         return this.courseRepo.findOneBy({ Cid });
@@ -133,12 +136,12 @@ updateAdminbyid(mydto:AdminForm,id):any {
     }
 
     //------------
-    insertNotice(mydto:AdminNotice):any {
-        const noticeaccount = new NoticeEntity()
-        noticeaccount.Ndetails = mydto.Ndetails;
-        return this.noticeRepo.save(noticeaccount);
-        //return " Notice id is " + mydto.Nid;
-    }
+    // insertNotice(mydto:AdminNotice):any {
+    //     const noticeaccount = new NoticeEntity()
+    //     noticeaccount.Ndetails = mydto.Ndetails;
+    //     return this.noticeRepo.save(noticeaccount);
+    //     //return " Notice id is " + mydto.Nid;
+    //}
 
     PatchNoticebyid(Nid,details):any {
         console.log(Nid+details);

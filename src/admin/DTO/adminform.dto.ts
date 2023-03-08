@@ -106,3 +106,10 @@ export class AdminForm {
         year: string;
         amount: string;
     }
+    export class Adminofficersal{
+        id: number; //(primary key)
+        teacher_id: number; //(foreign key referencing teacher table)
+        month: string;
+        year: string;
+        amount: string;
+    }
