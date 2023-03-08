@@ -1,12 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn,PrimaryColumn } from 'typeorm';
 
 @Entity("facultysal")
 export class FacultysalEntity{
 
+@PrimaryGeneratedColumn()
+Ffid:number; //(primary key)
 @Column()
-Fid //(primary key)
-@Column()
-ff_id //(foreign key referencing faculty table)
+Ff_id: number; //(foreign key referencing faculty table)
 @Column()
 month: string;
 @Column()

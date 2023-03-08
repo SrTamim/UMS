@@ -55,30 +55,52 @@ insertAdmin(mydto:AdminForm):any {
 
     insertstudent(mydto:Adminstudent):any {
         const studentaccount = new StudentEntity()
+        studentaccount.Sidd = mydto.Sidd;
         studentaccount.Sname = mydto.Sname;
+        studentaccount.Sprogram = mydto.Sprogram;
+        studentaccount.Sdep = mydto.Sdep;
+        studentaccount.Saddress = mydto.Saddress;
+        studentaccount.Snum = mydto.Snum;
+        studentaccount.Sdob = mydto.Sdob;
         return this.studentRepo.save(studentaccount);
         }
 
         insertfaculty(mydto:Adminfaculty):any {
             const facultyaccount = new FacultyEntity()
+            facultyaccount.Fidd = mydto.Fidd;
             facultyaccount.Fname = mydto.Fname;
+            facultyaccount.Fprogram = mydto.Fprogram;
+            facultyaccount.Fdep = mydto.Fdep;
+            facultyaccount.Faddress = mydto.Faddress;
+            facultyaccount.Fnum = mydto.Fnum;
+            facultyaccount.Fdob = mydto.Fdob;
             return this.facultyRepo.save(facultyaccount);
             }
 
             insertofficer(mydto:Adminofficer):any {
                 const officeraccount = new OfficerEntity()
+                officeraccount.Oidd = mydto.Oidd;
                 officeraccount.Oname = mydto.Oname;
+                officeraccount.Odep = mydto.Odep;
+                officeraccount.Oaddress = mydto.Oaddress;
+                officeraccount.Onum = mydto.Onum;
+                officeraccount.Odob = mydto.Odob;
                 return this.officerRepo.save(officeraccount);
                 }
 
                 insertfacultysal(mydto:Adminfacultysal):any {
                     const facultysalaccount = new FacultysalEntity()
+                    facultysalaccount.Ff_id = mydto.Ff_id;
+                    facultysalaccount.amount = mydto.amount;
                     facultysalaccount.amount = mydto.amount;
                     return this.facultysalRepo.save(facultysalaccount);
                     }
 
                     insertofficersal(mydto:Adminofficersal):any {
                         const officersalaccount = new OfficersalEntity()
+                        officersalaccount.Of_id = mydto.Of_id;
+                        officersalaccount.month = mydto.month;
+                        officersalaccount.year = mydto.year;
                         officersalaccount.amount = mydto.amount;
                         return this.officersalRepo.save(officersalaccount);
                         }
@@ -86,11 +108,15 @@ insertAdmin(mydto:AdminForm):any {
                         insertcourse(mydto:AdminCourse):any {
                             const courseaccount = new CourseEntity()
                             courseaccount.Cname = mydto.Cname;
+                            courseaccount.credit = mydto.credit;
+                            courseaccount.room = mydto.room;
+                            courseaccount.time = mydto.time;
                             return this.courseRepo.save(courseaccount);
                             }
 
                             insertnotice(mydto:AdminNotice):any {
                                 const noticeaccount = new NoticeEntity()
+                                noticeaccount.Nsub = mydto.Nsub;
                                 noticeaccount.Ndetails = mydto.Ndetails;
                                 return this.noticeRepo.save(noticeaccount);
                                 }

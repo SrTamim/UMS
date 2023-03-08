@@ -78,9 +78,8 @@ export class AdminForm {
 
         Fnum: string;
  
-        dob: string;
+        Fdob: string;
 
-        Fsal: string;
     }
 
     export class Adminofficer{
@@ -95,20 +94,18 @@ export class AdminForm {
         Onum: string;
 
         Odob: string;
-
-        Osal: string;
     }
 
     export class Adminfacultysal{
-        id: number; //(primary key)
-        teacher_id: number; //(foreign key referencing teacher table)
+        // Ffid: number; //(primary key)
+        Ff_id: number; //(foreign key referencing teacher table)
         month: string;
         year: string;
         amount: string;
     }
     export class Adminofficersal{
-        id: number; //(primary key)
-        teacher_id: number; //(foreign key referencing teacher table)
+        // Ooid: number; //(primary key)
+        Of_id: number; //(foreign key referencing teacher table)
         month: string;
         year: string;
         amount: string;

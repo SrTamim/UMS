@@ -17,8 +17,6 @@ export class FacultyEntity{
   @Column()
   Fnum: string;
   @Column()
-  dob: string;
-  @Column()
-  Fsal: string;
+  Fdob: string;
 
 }
