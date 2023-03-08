@@ -7,4 +7,11 @@ export class CourseEntity{
 
   @Column()
   Cname: string;
+  @Column()
+  credit: string;
+  @Column()
+  room: string;
+  @Column()
+  time: string;
+
 }

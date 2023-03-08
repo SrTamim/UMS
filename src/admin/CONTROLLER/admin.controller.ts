@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe,Patch } from "@nestjs/common";
-import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "./adminform.dto";
-import { AdminService } from "./adminservice.service";
+import { AdminForm,AdminRoom,AdminCourse,AdminNotice,Adminstudent,Adminfaculty,Adminofficer,Adminfacultysal,Adminofficersal} from "../DTO/adminform.dto";
+import { AdminService } from "../SERVICE/adminservice.service";
 
 
 @Controller('/admin')
@@ -22,13 +22,55 @@ export class AdminController {
     getAdminByIDName(@Query() qry:any): any {
       return this.adminService.getAdminByIDName(qry);
     }  
-
+//------------------------------------------------------------------------------------------------------------------------------
     @Post("/insertAdmin")
     @UsePipes(new ValidationPipe())
     insertAdmin(@Body() mydto:AdminForm): any {
       return this.adminService.insertAdmin(mydto);
     }
-  
+
+    @Post("/insertfaculty")
+    @UsePipes(new ValidationPipe())
+    insertfaculty(@Body() mydto:Adminfaculty): any {
+      return this.adminService.insertfaculty(mydto);
+    }
+
+    @Post("/insertstudent")
+    @UsePipes(new ValidationPipe())
+    insertstudent(@Body() mydto:Adminstudent): any {
+      return this.adminService.insertstudent(mydto);
+    }
+
+    @Post("/insertofficer")
+    @UsePipes(new ValidationPipe())
+    insertofficer(@Body() mydto:Adminofficer): any {
+      return this.adminService.insertofficer(mydto);
+    }
+
+    @Post("/insertfacultysal")
+    @UsePipes(new ValidationPipe())
+    insertfacultysal(@Body() mydto:Adminfacultysal): any {
+      return this.adminService.insertfacultysal(mydto);
+    }
+
+    @Post("/insertofficersal")
+    @UsePipes(new ValidationPipe())
+    insertofficersal(@Body() mydto:Adminofficersal): any {
+      return this.adminService.insertofficersal(mydto);
+    }
+
+    @Post("/insertcourse")
+    @UsePipes(new ValidationPipe())
+    insertcourse(@Body() mydto:AdminCourse): any {
+      return this.adminService.insertcourse(mydto);
+    }
+
+    @Post("/insertnotice")
+    @UsePipes(new ValidationPipe())
+    insertnotice(@Body() mydto:AdminNotice): any {
+      return this.adminService.insertnotice(mydto);
+    }
+//--------------------------------------------------------------------------------------------------------------------------------
     @Put("/updateAdmin/")
     @UsePipes(new ValidationPipe())
     updateAdmin( 
@@ -55,11 +97,11 @@ export class AdminController {
     return this.adminService.deleteAdminbyid(id);
   }
 	 //--------------------------
-   @Post("/insertCourse")
-   @UsePipes(new ValidationPipe())
-   insertCourse(@Body() mydto:AdminCourse): any {
-     return this.adminService.insertCourse(mydto);
-   } 
+  //  @Post("/insertCourse")
+  //  @UsePipes(new ValidationPipe())
+  //  insertCourse(@Body() mydto:AdminCourse): any {
+  //    return this.adminService.insertCourse(mydto);
+  //  } 
 
     @Get('/findCourse/:Cid')
     @UsePipes(new ValidationPipe())
@@ -92,11 +134,11 @@ export class AdminController {
       }
 
       //-------------
-      @Post("/insertNotice")
-      @UsePipes(new ValidationPipe())
-      insertNotice(@Body() mydto:AdminNotice): any {
-        return this.adminService.insertNotice(mydto);
-      }
+      // @Post("/insertNotice")
+      // @UsePipes(new ValidationPipe())
+      // insertNotice(@Body() mydto:AdminNotice): any {
+      //   return this.adminService.insertNotice(mydto);
+      // }
 
       @Patch("/updateNotice/")
       @UsePipes(new ValidationPipe())
