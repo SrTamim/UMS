@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe,Patch } from "@nestjs/common";
-import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "./adminform.dto";
-import { AdminService } from "./adminservice.service";
+import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "../DTO/adminform.dto";
+import { AdminService } from "../SERVICE/adminservice.service";
 
 
 @Controller('/admin')

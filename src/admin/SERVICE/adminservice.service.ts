@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { AdminForm,AdminRoom,AdminCourse,AdminNotice } from "./adminform.dto";
+import { AdminForm,AdminRoom,AdminCourse,AdminNotice } from "../DTO/adminform.dto";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm';
-import { AdminEntity} from "./adminentity.entity"
-import { CourseEntity } from "./course.entity"
-import { NoticeEntity } from "./notice.entity"
+import { AdminEntity} from "../ENTITY/adminentity.entity"
+import { CourseEntity } from "../ENTITY/course.entity"
+import { NoticeEntity } from "../ENTITY/notice.entity"
 
 @Injectable()
 export class AdminService {
