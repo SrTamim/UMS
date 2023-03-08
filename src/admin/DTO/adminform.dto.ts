@@ -23,13 +23,10 @@ export class AdminForm {
     }
 
     export class AdminCourse {  
-    @IsNotEmpty()
-    @IsInt()
-    @IsPositive()
-	Cid: number;
-    @IsNotEmpty()
-    @IsAlphanumeric()
-    Cname: string;
+        Cname: string;
+        credit: string;
+        room: string;
+        time: string;
     }
 
     export class AdminRoom {  
@@ -47,7 +44,8 @@ export class AdminForm {
     @IsPositive()
     Nid: number;
     @IsNotEmpty()
-    details: string;
+    Ndetails: string;
+    Nsub: string;
     }
 
     export class Adminstudent{
@@ -65,4 +63,46 @@ export class AdminForm {
         Snum: string;
 
         Sdob: string;
+    }
+
+    export class Adminfaculty{
+        Fidd: string;
+
+        Fname: string;
+
+        Fprogram: string;
+
+        Fdep: string;
+
+        Faddress: string;
+
+        Fnum: string;
+ 
+        dob: string;
+
+        Fsal: string;
+    }
+
+    export class Adminofficer{
+        Oidd: number;
+
+        Oname: string;
+
+        Odep: string;
+
+        Oaddress: string;
+
+        Onum: string;
+
+        Odob: string;
+
+        Osal: string;
+    }
+
+    export class Adminfacultysal{
+        id: number; //(primary key)
+        teacher_id: number; //(foreign key referencing teacher table)
+        month: string;
+        year: string;
+        amount: string;
     }

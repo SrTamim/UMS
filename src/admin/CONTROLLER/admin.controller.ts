@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe,Patch } from "@nestjs/common";
-import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "../DTO/adminform.dto";
+import { AdminForm,AdminRoom,AdminCourse,AdminNotice,Adminstudent,Adminfaculty,Adminofficer,Adminfacultysal} from "../DTO/adminform.dto";
 import { AdminService } from "../SERVICE/adminservice.service";
 
 
@@ -31,19 +31,19 @@ export class AdminController {
 
     @Post("/insertfaculty")
     @UsePipes(new ValidationPipe())
-    insertfaculty(@Body() mydto:AdminForm): any {
+    insertfaculty(@Body() mydto:Adminfaculty): any {
       return this.adminService.insertfaculty(mydto);
     }
 
     @Post("/insertstudent")
     @UsePipes(new ValidationPipe())
-    insertstudent(@Body() mydto:AdminForm): any {
+    insertstudent(@Body() mydto:Adminstudent): any {
       return this.adminService.insertstudent(mydto);
     }
 
     @Post("/insertofficer")
     @UsePipes(new ValidationPipe())
-    insertofficer(@Body() mydto:AdminForm): any {
+    insertofficer(@Body() mydto:Adminofficer): any {
       return this.adminService.insertofficer(mydto);
     }
 

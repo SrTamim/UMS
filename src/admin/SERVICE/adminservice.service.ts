@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { AdminForm,AdminRoom,AdminCourse,AdminNotice } from "../DTO/adminform.dto";
+import { AdminForm,AdminRoom,AdminCourse,AdminNotice,Adminstudent,Adminfaculty,Adminofficer } from "../DTO/adminform.dto";
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm';
 import { AdminEntity} from "../ENTITY/adminentity.entity"
@@ -8,6 +8,7 @@ import { NoticeEntity } from "../ENTITY/notice.entity"
 import { StudentEntity } from "../ENTITY/student.entity"
 import { FacultyEntity } from "../ENTITY/faculty.entity"
 import { OfficerEntity } from "../ENTITY/officer.entity"
+import { FacultysalEntity } from "../ENTITY/facultysal.entity"
 
 @Injectable()
 export class AdminService {
@@ -18,6 +19,16 @@ export class AdminService {
         private courseRepo: Repository<CourseEntity>,
         @InjectRepository(NoticeEntity)
         private noticeRepo: Repository<NoticeEntity>,
+
+        @InjectRepository(StudentEntity)
+        private studentRepo: Repository<StudentEntity>,
+        @InjectRepository(FacultyEntity)
+        private facultyRepo: Repository<FacultyEntity>,
+        @InjectRepository(OfficerEntity)
+        private officerRepo: Repository<OfficerEntity>,
+
+        @InjectRepository(FacultysalEntity)
+        private facultysalRepo: Repository<FacultysalEntity>,
       ) {}
 
 getIndex():any { 
@@ -39,9 +50,9 @@ insertAdmin(mydto:AdminForm):any {
     return this.adminRepo.save(adminaccount);
     }
 
-    insertstudent(mydto:AdminForm):any {
+    insertstudent(mydto:Adminstudent):any {
         const adminaccount = new AdminEntity()
-        adminaccount.name = mydto.name;
+        adminaccount.name = mydto.Sname;
         return this.adminRepo.save(adminaccount);
         }
 
@@ -124,7 +135,7 @@ updateAdminbyid(mydto:AdminForm,id):any {
     //------------
     insertNotice(mydto:AdminNotice):any {
         const noticeaccount = new NoticeEntity()
-        noticeaccount.Ndetails = mydto.details;
+        noticeaccount.Ndetails = mydto.Ndetails;
         return this.noticeRepo.save(noticeaccount);
         //return " Notice id is " + mydto.Nid;
     }
