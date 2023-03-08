@@ -4,7 +4,8 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 export class NoticeEntity{
   @PrimaryGeneratedColumn()
   Nid: number;
-
   @Column()
-  details: string;
+  Nsub: string;
+  @Column()
+  Ndetails: string;
 }

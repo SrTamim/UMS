@@ -49,3 +49,20 @@ export class AdminForm {
     @IsNotEmpty()
     details: string;
     }
+
+    export class Adminstudent{
+
+        Sidd: string;
+
+        Sname: string;
+
+        Sprogram: string;
+
+        Sdep: string;
+
+        Saddress: string;
+
+        Snum: string;
+
+        Sdob: string;
+    }

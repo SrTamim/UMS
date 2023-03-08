@@ -29,10 +29,10 @@ export class AdminController {
       return this.adminService.insertAdmin(mydto);
     }
 
-    @Post("/insertteacher")
+    @Post("/insertfaculty")
     @UsePipes(new ValidationPipe())
-    insertteacher(@Body() mydto:AdminForm): any {
-      return this.adminService.insertteacher(mydto);
+    insertfaculty(@Body() mydto:AdminForm): any {
+      return this.adminService.insertfaculty(mydto);
     }
 
     @Post("/insertstudent")

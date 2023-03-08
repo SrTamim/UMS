@@ -5,6 +5,9 @@ import { Repository } from 'typeorm';
 import { AdminEntity} from "../ENTITY/adminentity.entity"
 import { CourseEntity } from "../ENTITY/course.entity"
 import { NoticeEntity } from "../ENTITY/notice.entity"
+import { StudentEntity } from "../ENTITY/student.entity"
+import { FacultyEntity } from "../ENTITY/faculty.entity"
+import { OfficerEntity } from "../ENTITY/officer.entity"
 
 @Injectable()
 export class AdminService {
@@ -42,7 +45,7 @@ insertAdmin(mydto:AdminForm):any {
         return this.adminRepo.save(adminaccount);
         }
 
-        insertteacher(mydto:AdminForm):any {
+        insertfaculty(mydto:AdminForm):any {
             const adminaccount = new AdminEntity()
             adminaccount.name = mydto.name;
             return this.adminRepo.save(adminaccount);
@@ -121,14 +124,14 @@ updateAdminbyid(mydto:AdminForm,id):any {
     //------------
     insertNotice(mydto:AdminNotice):any {
         const noticeaccount = new NoticeEntity()
-        noticeaccount.details = mydto.details;
+        noticeaccount.Ndetails = mydto.details;
         return this.noticeRepo.save(noticeaccount);
         //return " Notice id is " + mydto.Nid;
     }
 
     PatchNoticebyid(Nid,details):any {
         console.log(Nid+details);
-        return this.noticeRepo.update(Nid,{details:details});
+        return this.noticeRepo.update(Nid,{Ndetails:details});
     }
 
     updateGradebyid(Sname,Sid):any {
