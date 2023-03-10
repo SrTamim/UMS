@@ -124,13 +124,49 @@ insertAdmin(mydto:AdminForm):any {
 updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
-        //return "Admin updated name: " +name+" and id is: " +id;
     }
+
+    updateStudent(Sid,Sidd,Sname,Sprogram,Sdep,Saddress,Snum,Sdob):any {
+        console.log(Sid+Sidd+Sname+Sprogram+Sdep+Saddress+Snum+Sdob);
+        return this.studentRepo.update(Sid,{Sidd:Sidd,Sname:Sname,Sprogram:Sprogram,Sdep:Sdep,Saddress:Saddress,Snum:Snum,Sdob:Sdob});
+    }
+
+    updateFaculty(Fid,Fidd,Fname,Fprogram,Fdep,Faddress,Fnum,Fdob):any {
+        console.log(Fid+Fidd+Fname+Fprogram+Fdep+Faddress+Fnum+Fdob);
+        return this.facultyRepo.update(Fid,{Fidd:Fidd,Fname:Fname,Fprogram:Fprogram,Fdep:Fdep,Faddress:Faddress,Fnum:Fnum,Fdob:Fdob});
+    }
+    updateOfficer(name,id):any {
+        console.log(name+id);
+        return this.adminRepo.update(id,{name:name});
+    }
+    updateFacultysal(name,id):any {
+        console.log(name+id);
+        return this.adminRepo.update(id,{name:name});
+    }
+    updateOfficersal(name,id):any {
+        console.log(name+id);
+        return this.adminRepo.update(id,{name:name});
+    }
+    updateCourse(name,id):any {
+        console.log(name+id);
+        return this.adminRepo.update(id,{name:name});
+    }
+
+    updateNotice(name,id):any {
+        console.log(name+id);
+        return this.adminRepo.update(id,{name:name});
+    }
+// update --------------------------------------------------------------------------------------------------
+
 
 updateAdminbyid(mydto:AdminForm,id):any {
     return this.adminRepo.update(id,mydto);
-        //return "Update admin where id: " +id+" and change name to: " +name;
     }
+
+    updateStudentid(mydto:Adminstudent,Sid):any {
+        return this.studentRepo.update(Sid,mydto);
+        }
+
     deleteAdminbyid(id):any {
         return this.adminRepo.delete(id);
         //return "Delete Admin id is: "+id;

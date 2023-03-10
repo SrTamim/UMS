@@ -5,7 +5,7 @@ export class StudentEntity{
   @PrimaryGeneratedColumn()
   Sid: number;
   @Column()
-  Sidd: string;
+  Sidd: number;
   @Column()
   Sname: string;
   @Column()
