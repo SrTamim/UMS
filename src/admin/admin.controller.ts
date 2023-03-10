@@ -1,92 +1,103 @@
-import { Body, Controller, Delete, Get, Param, Put, Query, Post } from "@nestjs/common";
+
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from "@nestjs/common";
+import { AdminForm, AdminRoom,AdminCourse,AdminNotice} from "./adminform.dto";
 import { AdminService } from "./adminservice.service";
-import { AdminForm } from "./adminform.dto";
 
 
-@Controller("/admin")
-export class AdminController
-{ 
-  constructor(private adminService: AdminService){}
-
-  @Get("/index")
+@Controller('/admin')
+export class AdminController {
+  constructor(private adminService: AdminService) {}
+  @Get("/admin")
     getAdmin(): any { 
         return this.adminService.getIndex();
     }
     @Get("/findadmin/:id")
-    getAdminByID(@Param("id") id:number,): any {
+    getAdminByID(@Param("id", ParseIntPipe) id:number,): any {
       return this.adminService.getAdminByID(id);
     }
 
     @Get("/findadmin")
+    @UsePipes(new ValidationPipe())
     getAdminByIDName(@Query() qry:any): any {
       return this.adminService.getAdminByIDName(qry);
     }  
+    @Post("/insertAdmin")
+    @UsePipes(new ValidationPipe())
+    insertAdmin(@Body() mydto:AdminForm): any {
+      return this.adminService.insertAdmin(mydto);
+    }
   
-    @Put("/updateadmin/")
+    @Put("/updateAdmin/")
+    @UsePipes(new ValidationPipe())
     updateAdmin( 
       @Body("name") name:string, 
-      @Body("id") id:number
+      @Body("id",ParseIntPipe) id:number
       ): any {
     return this.adminService.updateAdmin(name, id);
     }
     
-    @Put("/updateadmin/:id")
+    @Put("/updateAdmin/:id")
+    @UsePipes(new ValidationPipe())
   updateAdminbyid( 
-      @Body("name") name:string, 
-      @Param("id") id:number
+      @Body("name") name:any, 
+      @Param("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.updateAdminbyid(name,id);
     }
 
-    @Delete("/deleteadmin/:id")
+    @Delete("/deleteAdmin/")
+    @UsePipes(new ValidationPipe())
   deleteAdminbyid( 
-     @Param("id") id:number
+     @Body("id", ParseIntPipe) id:number
       ): any {
     return this.adminService.deleteAdminbyid(id);
-    }
-
-    //---------------------
-
+  }
+	 //--------------------------
     @Get("/findCourse")
+    @UsePipes(new ValidationPipe())
     getCourseByID(@Query() qry:any): any {
       return this.adminService.getCourseByID(qry);
     }  
 
-    @Put("/updateCourse/:id")
+    @Put("/updateCourse/:Cid")
+    @UsePipes(new ValidationPipe())
     updateCoursebyid( 
-        @Body("Cname") Cname:string, 
-        @Param("Cid") Cid:number
+        @Body('Cname') Cname:string, 
+        @Body('Cid', ParseIntPipe) Cid:number
         ): any {
       return this.adminService.updateCoursebyid(Cname,Cid);
       }
 
       //----------------------
       @Post("/insertRoom")
-      insertRoom(@Body() mydto:AdminForm): any {
+      @UsePipes(new ValidationPipe())
+      insertRoom(@Body() mydto:AdminRoom): any {
         return this.adminService.insertRoom(mydto);
       }
 
       @Put("/updateRoom/:Rid")
+      @UsePipes(new ValidationPipe())
     updateRoombyid( 
-        @Param("Rid") Rid:number
+        @Param("Rid",ParseIntPipe) Rid:number
         ): any {
       return this.adminService.updateRoombyid(Rid);
       }
 
       //-------------
       @Post("/insertNotice")
-      insertNotice(@Body() mydto:AdminForm): any {
+      @UsePipes(new ValidationPipe())
+      insertNotice(@Body() mydto:AdminNotice): any {
         return this.adminService.insertNotice(mydto);
       }
 
       //----------
       @Put("/updateGrade/:id")
+      @UsePipes(new ValidationPipe())
       updateGradebyid( 
           @Body("StudentName") Sname:string, 
-          @Param("Sid") Sid:number
+          @Param("Sid",ParseIntPipe) Sid:number
           ): any {
         return this.adminService.updateGradebyid(Sname,Sid);
         }
-
 
 }
