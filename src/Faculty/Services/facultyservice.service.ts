@@ -17,22 +17,14 @@ export class FacultyService {
 
   insertFaculty(facultydto: FacultyInfoDTO): any {
     const faculty = new FacultyInfo();
-    faculty.name = facultydto.name;
-    faculty.universityId = facultydto.universityId;
-    faculty.password = facultydto.password;
-    faculty.Email = facultydto.Email;
-    faculty.photo = facultydto.photo;
-    faculty.PhoneNumber = facultydto.PhoneNumber;
-    faculty.department = facultydto.department;
-    faculty.Sex = facultydto.Sex;
-    faculty.MaritalStatus = facultydto.MaritalStatus;
-    faculty.BloodGroup = facultydto.BloodGroup;
-    faculty.PermanentAddress = facultydto.PermanentAddress;
-    faculty.DOB = facultydto.DOB;
-    faculty.BSC = facultydto.BSC;
-    faculty.MSC = facultydto.MSC;
-    faculty.SSC = facultydto.SSC;
-    faculty.HSC = facultydto.HSC;
+    faculty.Fname = facultydto.Fname;
+    faculty.Fidd = facultydto.Fidd;
+    faculty.Fdep = facultydto.Fdep;
+    faculty.Fprogram = facultydto.Fprogram;
+    faculty.Faddress = facultydto.Faddress;
+    faculty.Fnum = facultydto.Fnum;
+    faculty.dob = facultydto.dob;
+    faculty.Fsal = facultydto.Fsal;
     return this.facultyRepo.save(faculty);
   }
 

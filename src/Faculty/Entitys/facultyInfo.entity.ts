@@ -4,57 +4,29 @@ import { FacultyNotice } from './facultyNotice.entity';
 @Entity('facultyinfo')
 export class FacultyInfo {
   @PrimaryGeneratedColumn()
-  id: number;
+  Fid: number;
 
   @Column()
-  name: string;
+  Fidd: number;
 
   @Column()
-  universityId: number;
+  Fname: string;
 
   @Column()
-  password: string;
+  Fprogram: string;
 
   @Column()
-  Email: string;
+  Fdep: string;
 
   @Column()
-  photo: number;
+  Faddress: string;
 
   @Column()
-  PhoneNumber: number;
+  Fnum: number;
 
   @Column()
-  department: string;
+  dob: Date;
 
   @Column()
-  Sex: string;
-
-  @Column()
-  MaritalStatus: string;
-
-  @Column()
-  BloodGroup: string;
-
-  @Column()
-  PermanentAddress: string;
-
-  @Column()
-  DOB: Date;
-
-  @Column()
-  BSC: string;
-
-  @Column()
-  MSC: string;
-
-  @Column()
-  SSC: string;
-
-  @Column()
-  HSC: string;
-/*
-  @OneToOne(() => FacultyNotice, (facultyNotice) => facultyNotice.facultyId)
-  facultyNotice: FacultyNotice;
-  */
+  Fsal: number;
 }
