@@ -170,7 +170,58 @@ export class AdminController {
     return this.adminService.updateNotice(Nid,Nsub, Ndetails);
     }
 // update -------------------------------------------------------------------------------------------------------------------------
-    @Put("/updateAdmin/:id")
+// delete -----------------------------------------------------
+@Delete("/deleteStudent/")
+@UsePipes(new ValidationPipe())
+deleteStudentbyid( 
+ @Body("Sid", ParseIntPipe) Sid:number
+  ): any {
+return this.adminService.deleteStudentbyid(Sid);
+}
+  @Delete("/deleteFaculty/")
+  @UsePipes(new ValidationPipe())
+  deleteFacultybyid( 
+  @Body("Fid", ParseIntPipe) Fid:number
+    ): any {
+  return this.adminService.deleteFacultybyid(Fid);
+  }
+      @Delete("/deleteOfficer/")
+      @UsePipes(new ValidationPipe())
+      deleteOfficerbyid( 
+      @Body("Oid", ParseIntPipe) Oid:number
+        ): any {
+      return this.adminService.deleteOfficerbyid(Oid);
+      }
+        @Delete("/deleteFacultysal/")
+        @UsePipes(new ValidationPipe())
+        deleteFacultysalbyid( 
+        @Body("Fsid", ParseIntPipe) Fsid:number
+          ): any {
+        return this.adminService.deleteFacultysalbyid(Fsid);
+        }
+          @Delete("/deleteOfficersal/")
+          @UsePipes(new ValidationPipe())
+          deleteOfficersalbyid( 
+          @Body("Osid", ParseIntPipe) Osid:number
+            ): any {
+          return this.adminService.deleteOfficersalbyid(Osid);
+          }
+            @Delete("/deleteCourse/")
+            @UsePipes(new ValidationPipe())
+            deleteCoursebyid( 
+            @Body("Cid", ParseIntPipe) Cid:number
+              ): any {
+            return this.adminService.deleteCoursebyid(Cid);
+            }
+              @Delete("/deleteNotice/")
+              @UsePipes(new ValidationPipe())
+              deleteNoticebyid( 
+              @Body("Nid", ParseIntPipe) Nid:number
+                ): any {
+              return this.adminService.deleteNoticebyid(Nid);
+              }
+//-------------------------------------------------------------    
+@Put("/updateAdmin/:id")
     @UsePipes(new ValidationPipe())
       updateAdminbyid( 
         @Body("name") name:any, 
@@ -186,12 +237,6 @@ export class AdminController {
       ): any {
     return this.adminService.deleteAdminbyid(id);
   }
-	 //--------------------------
-  //  @Post("/insertCourse")
-  //  @UsePipes(new ValidationPipe())
-  //  insertCourse(@Body() mydto:AdminCourse): any {
-  //    return this.adminService.insertCourse(mydto);
-  //  } 
 
     @Get('/findCourse/:Cid')
     @UsePipes(new ValidationPipe())
@@ -222,13 +267,6 @@ export class AdminController {
         ): any {
       return this.adminService.updateRoombyid(Rid);
       }
-
-      //-------------
-      // @Post("/insertNotice")
-      // @UsePipes(new ValidationPipe())
-      // insertNotice(@Body() mydto:AdminNotice): any {
-      //   return this.adminService.insertNotice(mydto);
-      // }
 
       @Patch("/updateNotice/")
       @UsePipes(new ValidationPipe())

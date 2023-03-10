@@ -125,39 +125,59 @@ updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
     }
-
-    updateStudent(Sid,Sidd,Sname,Sprogram,Sdep,Saddress,Snum,Sdob):any {
-        console.log(Sid+Sidd+Sname+Sprogram+Sdep+Saddress+Snum+Sdob);
-        return this.studentRepo.update(Sid,{Sidd:Sidd,Sname:Sname,Sprogram:Sprogram,Sdep:Sdep,Saddress:Saddress,Snum:Snum,Sdob:Sdob});
-    }
-
-    updateFaculty(Fid,Fidd,Fname,Fprogram,Fdep,Faddress,Fnum,Fdob):any {
-        console.log(Fid+Fidd+Fname+Fprogram+Fdep+Faddress+Fnum+Fdob);
-        return this.facultyRepo.update(Fid,{Fidd:Fidd,Fname:Fname,Fprogram:Fprogram,Fdep:Fdep,Faddress:Faddress,Fnum:Fnum,Fdob:Fdob});
-    }
-    updateOfficer(Oid, Oidd,Oname,Odep,Oaddress,Onum,Odob):any {
-        console.log(Oid+ Oidd+Oname+Odep+Oaddress+Onum+Odob);
-        return this.officerRepo.update(Oid,{Oidd:Oidd,Oname:Oname,Odep:Odep,Oaddress:Oaddress,Onum:Onum,Odob:Odob});
-    }
-    updateFacultysal(Fsid, Fsfid,month,year,amount):any {
-        console.log(Fsid+Fsfid+month+year+amount);
-        return this.facultysalRepo.update(Fsid,{Fsfid:Fsfid,month:month,year:year,amount:amount});
-    }
-    updateOfficersal(Osid, Osfid,month,year,amount):any {
-        console.log(Osid+Osfid+month+year+amount);
-        return this.officersalRepo.update(Osid,{Osfid:Osfid,month:month,year:year,amount:amount});
-    }
-    updateCourse(Cid, Cname,credit,room,time):any {
-        console.log(Cid+Cname+credit+room+time);
-        return this.courseRepo.update(Cid,{Cname:Cname,credit:credit,room:room,time:time});
-    }
-
-    updateNotice(Nid,Nsub, Ndetails):any {
-        console.log(Nid+Nsub+Ndetails);
-        return this.noticeRepo.update(Nid,{Nsub:Nsub,Ndetails:Ndetails});
-    }
+        updateStudent(Sid,Sidd,Sname,Sprogram,Sdep,Saddress,Snum,Sdob):any {
+            console.log(Sid+Sidd+Sname+Sprogram+Sdep+Saddress+Snum+Sdob);
+            return this.studentRepo.update(Sid,{Sidd:Sidd,Sname:Sname,Sprogram:Sprogram,Sdep:Sdep,Saddress:Saddress,Snum:Snum,Sdob:Sdob});
+        }
+            updateFaculty(Fid,Fidd,Fname,Fprogram,Fdep,Faddress,Fnum,Fdob):any {
+                console.log(Fid+Fidd+Fname+Fprogram+Fdep+Faddress+Fnum+Fdob);
+                return this.facultyRepo.update(Fid,{Fidd:Fidd,Fname:Fname,Fprogram:Fprogram,Fdep:Fdep,Faddress:Faddress,Fnum:Fnum,Fdob:Fdob});
+            }
+                updateOfficer(Oid, Oidd,Oname,Odep,Oaddress,Onum,Odob):any {
+                    console.log(Oid+ Oidd+Oname+Odep+Oaddress+Onum+Odob);
+                    return this.officerRepo.update(Oid,{Oidd:Oidd,Oname:Oname,Odep:Odep,Oaddress:Oaddress,Onum:Onum,Odob:Odob});
+                }
+                    updateFacultysal(Fsid, Fsfid,month,year,amount):any {
+                        console.log(Fsid+Fsfid+month+year+amount);
+                        return this.facultysalRepo.update(Fsid,{Fsfid:Fsfid,month:month,year:year,amount:amount});
+                    }
+                        updateOfficersal(Osid, Osfid,month,year,amount):any {
+                            console.log(Osid+Osfid+month+year+amount);
+                            return this.officersalRepo.update(Osid,{Osfid:Osfid,month:month,year:year,amount:amount});
+                        }
+                            updateCourse(Cid, Cname,credit,room,time):any {
+                                console.log(Cid+Cname+credit+room+time);
+                                return this.courseRepo.update(Cid,{Cname:Cname,credit:credit,room:room,time:time});
+                            }
+                                updateNotice(Nid,Nsub, Ndetails):any {
+                                    console.log(Nid+Nsub+Ndetails);
+                                    return this.noticeRepo.update(Nid,{Nsub:Nsub,Ndetails:Ndetails});
+                                }
 // update --------------------------------------------------------------------------------------------------
-
+//-delete-----------------------------------------------------
+deleteStudentbyid(Sid):any {
+    return this.studentRepo.delete(Sid);
+}
+    deleteFacultybyid(Fid):any {
+        return this.facultyRepo.delete(Fid);
+    }
+        deleteOfficerbyid(Oid):any {
+            return this.officerRepo.delete(Oid);
+        }
+            deleteFacultysalbyid(Fsid):any {
+                return this.facultysalRepo.delete(Fsid);
+            }
+                deleteOfficersalbyid(Osid):any {
+                    return this.officersalRepo.delete(Osid);
+                }
+                    deleteCoursebyid(Cid):any {
+                        return this.courseRepo.delete(Cid);
+                    }
+                        deleteNoticebyid(Nid):any {
+                            return this.noticeRepo.delete(Nid);
+                        }
+                
+//---------------------------------------------------------------
 
 updateAdminbyid(mydto:AdminForm,id):any {
     return this.adminRepo.update(id,mydto);
@@ -169,7 +189,6 @@ updateAdminbyid(mydto:AdminForm,id):any {
 
     deleteAdminbyid(id):any {
         return this.adminRepo.delete(id);
-        //return "Delete Admin id is: "+id;
     }
 	
 	//////////////////////////////////////////
