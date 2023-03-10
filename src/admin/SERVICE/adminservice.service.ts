@@ -90,7 +90,7 @@ insertAdmin(mydto:AdminForm):any {
 
                 insertfacultysal(mydto:Adminfacultysal):any {
                     const facultysalaccount = new FacultysalEntity()
-                    facultysalaccount.Ff_id = mydto.Ff_id;
+                    facultysalaccount.Fsfid = mydto.Fsfid;
                     facultysalaccount.amount = mydto.amount;
                     facultysalaccount.amount = mydto.amount;
                     return this.facultysalRepo.save(facultysalaccount);
@@ -98,7 +98,7 @@ insertAdmin(mydto:AdminForm):any {
 
                     insertofficersal(mydto:Adminofficersal):any {
                         const officersalaccount = new OfficersalEntity()
-                        officersalaccount.Of_id = mydto.Of_id;
+                        officersalaccount.Osfid = mydto.Osfid;
                         officersalaccount.month = mydto.month;
                         officersalaccount.year = mydto.year;
                         officersalaccount.amount = mydto.amount;
@@ -124,13 +124,49 @@ insertAdmin(mydto:AdminForm):any {
 updateAdmin(name,id):any {
         console.log(name+id);
         return this.adminRepo.update(id,{name:name});
-        //return "Admin updated name: " +name+" and id is: " +id;
     }
+
+    updateStudent(Sid,Sidd,Sname,Sprogram,Sdep,Saddress,Snum,Sdob):any {
+        console.log(Sid+Sidd+Sname+Sprogram+Sdep+Saddress+Snum+Sdob);
+        return this.studentRepo.update(Sid,{Sidd:Sidd,Sname:Sname,Sprogram:Sprogram,Sdep:Sdep,Saddress:Saddress,Snum:Snum,Sdob:Sdob});
+    }
+
+    updateFaculty(Fid,Fidd,Fname,Fprogram,Fdep,Faddress,Fnum,Fdob):any {
+        console.log(Fid+Fidd+Fname+Fprogram+Fdep+Faddress+Fnum+Fdob);
+        return this.facultyRepo.update(Fid,{Fidd:Fidd,Fname:Fname,Fprogram:Fprogram,Fdep:Fdep,Faddress:Faddress,Fnum:Fnum,Fdob:Fdob});
+    }
+    updateOfficer(Oid, Oidd,Oname,Odep,Oaddress,Onum,Odob):any {
+        console.log(Oid+ Oidd+Oname+Odep+Oaddress+Onum+Odob);
+        return this.officerRepo.update(Oid,{Oidd:Oidd,Oname:Oname,Odep:Odep,Oaddress:Oaddress,Onum:Onum,Odob:Odob});
+    }
+    updateFacultysal(Fsid, Fsfid,month,year,amount):any {
+        console.log(Fsid+Fsfid+month+year+amount);
+        return this.facultysalRepo.update(Fsid,{Fsfid:Fsfid,month:month,year:year,amount:amount});
+    }
+    updateOfficersal(Osid, Osfid,month,year,amount):any {
+        console.log(Osid+Osfid+month+year+amount);
+        return this.officersalRepo.update(Osid,{Osfid:Osfid,month:month,year:year,amount:amount});
+    }
+    updateCourse(Cid, Cname,credit,room,time):any {
+        console.log(Cid+Cname+credit+room+time);
+        return this.courseRepo.update(Cid,{Cname:Cname,credit:credit,room:room,time:time});
+    }
+
+    updateNotice(Nid,Nsub, Ndetails):any {
+        console.log(Nid+Nsub+Ndetails);
+        return this.noticeRepo.update(Nid,{Nsub:Nsub,Ndetails:Ndetails});
+    }
+// update --------------------------------------------------------------------------------------------------
+
 
 updateAdminbyid(mydto:AdminForm,id):any {
     return this.adminRepo.update(id,mydto);
-        //return "Update admin where id: " +id+" and change name to: " +name;
     }
+
+    updateStudentid(mydto:Adminstudent,Sid):any {
+        return this.studentRepo.update(Sid,mydto);
+        }
+
     deleteAdminbyid(id):any {
         return this.adminRepo.delete(id);
         //return "Delete Admin id is: "+id;

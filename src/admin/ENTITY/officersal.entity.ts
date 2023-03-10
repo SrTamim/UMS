@@ -4,9 +4,9 @@ import { Entity, Column, PrimaryGeneratedColumn,PrimaryColumn } from 'typeorm';
 export class OfficersalEntity{
 
 @PrimaryGeneratedColumn()
-Ooid:number; //(primary key)
+Osid:number; //(primary key)
 @Column()
-Of_id:number; //(foreign key referencing faculty table)
+Osfid:number; //(foreign key referencing faculty table)
 @Column()
 month: string;
 @Column()
