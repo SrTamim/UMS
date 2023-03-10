@@ -5,7 +5,7 @@ export class OfficerEntity{
   @PrimaryGeneratedColumn()
   Oid: number;
   @Column()
-  Oidd: number;
+  Oidd: string;
   @Column()
   Oname: string;
   @Column()

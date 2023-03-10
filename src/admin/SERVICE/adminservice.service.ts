@@ -90,7 +90,7 @@ insertAdmin(mydto:AdminForm):any {
 
                 insertfacultysal(mydto:Adminfacultysal):any {
                     const facultysalaccount = new FacultysalEntity()
-                    facultysalaccount.Ff_id = mydto.Ff_id;
+                    facultysalaccount.Fsfid = mydto.Fsfid;
                     facultysalaccount.amount = mydto.amount;
                     facultysalaccount.amount = mydto.amount;
                     return this.facultysalRepo.save(facultysalaccount);
@@ -98,7 +98,7 @@ insertAdmin(mydto:AdminForm):any {
 
                     insertofficersal(mydto:Adminofficersal):any {
                         const officersalaccount = new OfficersalEntity()
-                        officersalaccount.Of_id = mydto.Of_id;
+                        officersalaccount.Osfid = mydto.Osfid;
                         officersalaccount.month = mydto.month;
                         officersalaccount.year = mydto.year;
                         officersalaccount.amount = mydto.amount;
@@ -135,21 +135,21 @@ updateAdmin(name,id):any {
         console.log(Fid+Fidd+Fname+Fprogram+Fdep+Faddress+Fnum+Fdob);
         return this.facultyRepo.update(Fid,{Fidd:Fidd,Fname:Fname,Fprogram:Fprogram,Fdep:Fdep,Faddress:Faddress,Fnum:Fnum,Fdob:Fdob});
     }
-    updateOfficer(name,id):any {
-        console.log(name+id);
-        return this.adminRepo.update(id,{name:name});
+    updateOfficer(Oid, Oidd,Oname,Odep,Oaddress,Onum,Odob):any {
+        console.log(Oid+ Oidd+Oname+Odep+Oaddress+Onum+Odob);
+        return this.officerRepo.update(Oid,{Oidd:Oidd,Oname:Oname,Odep:Odep,Oaddress:Oaddress,Onum:Onum,Odob:Odob});
     }
-    updateFacultysal(name,id):any {
-        console.log(name+id);
-        return this.adminRepo.update(id,{name:name});
+    updateFacultysal(Fsid, Fsfid,month,year,amount):any {
+        console.log(Fsid+Fsfid+month+year+amount);
+        return this.facultysalRepo.update(Fsid,{Fsfid:Fsfid,month:month,year:year,amount:amount});
     }
-    updateOfficersal(name,id):any {
-        console.log(name+id);
-        return this.adminRepo.update(id,{name:name});
+    updateOfficersal(Osid, Osfid,month,year,amount):any {
+        console.log(Osid+Osfid+month+year+amount);
+        return this.officersalRepo.update(Osid,{Osfid:Osfid,month:month,year:year,amount:amount});
     }
-    updateCourse(name,id):any {
-        console.log(name+id);
-        return this.adminRepo.update(id,{name:name});
+    updateCourse(Cid, Cname,credit,room,time):any {
+        console.log(Cid+Cname+credit+room+time);
+        return this.courseRepo.update(Cid,{Cname:Cname,credit:credit,room:room,time:time});
     }
 
     updateNotice(name,id):any {

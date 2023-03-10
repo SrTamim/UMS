@@ -4,7 +4,6 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 export class CourseEntity{
   @PrimaryGeneratedColumn()
   Cid: number;
-
   @Column()
   Cname: string;
   @Column()

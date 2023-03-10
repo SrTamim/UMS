@@ -89,7 +89,9 @@ export class AdminForm {
 
     export class Adminofficer{
         @IsNotEmpty()
-        Oidd: number;
+        Oid: number;
+        @IsNotEmpty()
+        Oidd: string;
         @IsNotEmpty()
         Oname: string;
         @IsNotEmpty()
@@ -103,9 +105,9 @@ export class AdminForm {
     }
 
     export class Adminfacultysal{
-        // Ffid: number; //(primary key)
+        Fsid: number; //(primary key)
         @IsNotEmpty()
-        Ff_id: number; //(foreign key referencing teacher table)
+        Fsfid: number; //(foreign key referencing teacher table)
         @IsNotEmpty()
         month: string;
         @IsNotEmpty()
@@ -114,9 +116,9 @@ export class AdminForm {
         amount: string;
     }
     export class Adminofficersal{
-        // Ooid: number; //(primary key)
+        Osid: number; //(primary key)
         @IsNotEmpty()
-        Of_id: number; //(foreign key referencing teacher table)
+        Osfid: number; //(foreign key referencing teacher table)
         @IsNotEmpty()
         month: string;
         @IsNotEmpty()

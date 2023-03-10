@@ -114,42 +114,50 @@ export class AdminController {
     @UsePipes(new ValidationPipe())
     updateOfficer( 
       @Body("Oid",ParseIntPipe) Oid:number,
-      @Body("Oidd") Oidd:string, 
-      @Body("Fname") Fname:string, 
-      @Body("Fprogram") Fprogram:string,
-      @Body("Fdep") Fdep:string,
-      @Body("Faddress") Faddress:string,
-      @Body("Fnum") Fnum:string,
-      @Body("Fdob") Fdob:string
+      @Body("Oid") Oidd:string, 
+      @Body("Oname") Oname:string, 
+      @Body("Odep") Odep:string,
+      @Body("Oaddress") Oaddress:string,
+      @Body("Onum") Onum:string,
+      @Body("Odob") Odob:string
       ): any {
-    return this.adminService.updateOfficer(Oid, Oidd,);
+    return this.adminService.updateOfficer(Oid, Oidd,Oname,Odep,Oaddress,Onum,Odob);
     }
 
     @Put("/updateFacultysal/")
     @UsePipes(new ValidationPipe())
     updateFacultysal( 
-      @Body("name") name:string, 
-      @Body("id",ParseIntPipe) id:number
+      @Body("Fsid",ParseIntPipe) Fsid:number,
+      @Body("Fsfid") Fsfid:number, 
+      @Body("month") month:string, 
+      @Body("year") year:string,
+      @Body("amount") amount:string,
       ): any {
-    return this.adminService.updateFacultysal(name, id);
+    return this.adminService.updateFacultysal(Fsid, Fsfid,month,year,amount);
     }
 
     @Put("/updateOfficersal/")
     @UsePipes(new ValidationPipe())
     updateOfficersal( 
-      @Body("name") name:string, 
-      @Body("id",ParseIntPipe) id:number
+      @Body("Osid",ParseIntPipe) Osid:number,
+      @Body("Osfid") Osfid:number, 
+      @Body("month") month:string, 
+      @Body("year") year:string,
+      @Body("amount") amount:string,
       ): any {
-    return this.adminService.updateOfficersal(name, id);
+    return this.adminService.updateOfficersal(Osid, Osfid,month,year,amount);
     }
 
     @Put("/updateCourse/")
     @UsePipes(new ValidationPipe())
     updateCourse( 
-      @Body("name") name:string, 
-      @Body("id",ParseIntPipe) id:number
+      @Body("Cid",ParseIntPipe) Cid:number,
+      @Body("Cname") Cname:number, 
+      @Body("credit") credit:string, 
+      @Body("room") room:string,
+      @Body("time") time:string,
       ): any {
-    return this.adminService.updateCourse(name, id);
+    return this.adminService.updateCourse(Cid, Cname,credit,room,time);
     }
 
     @Put("/updateNotice/")
