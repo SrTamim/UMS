@@ -163,10 +163,11 @@ export class AdminController {
     @Put("/updateNotice/")
     @UsePipes(new ValidationPipe())
     updateNotice( 
-      @Body("name") name:string, 
-      @Body("id",ParseIntPipe) id:number
+      @Body("Nid",ParseIntPipe) Nid:number,
+      @Body("Nsub") Nsub:number, 
+      @Body("Ndetails") Ndetails:string, 
       ): any {
-    return this.adminService.updateNotice(name, id);
+    return this.adminService.updateNotice(Nid,Nsub, Ndetails);
     }
 // update -------------------------------------------------------------------------------------------------------------------------
     @Put("/updateAdmin/:id")

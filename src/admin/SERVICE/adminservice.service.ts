@@ -152,9 +152,9 @@ updateAdmin(name,id):any {
         return this.courseRepo.update(Cid,{Cname:Cname,credit:credit,room:room,time:time});
     }
 
-    updateNotice(name,id):any {
-        console.log(name+id);
-        return this.adminRepo.update(id,{name:name});
+    updateNotice(Nid,Nsub, Ndetails):any {
+        console.log(Nid+Nsub+Ndetails);
+        return this.noticeRepo.update(Nid,{Nsub:Nsub,Ndetails:Ndetails});
     }
 // update --------------------------------------------------------------------------------------------------
 
