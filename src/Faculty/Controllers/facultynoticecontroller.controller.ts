@@ -22,11 +22,7 @@ export class FacultyNoticeController {
     return this.facultyNoticeService.getNotice();
   }
 
-  @Post('/insertnotice')
-  @UsePipes(new ValidationPipe())
-  insertNotice(@Body() noticedto: NoticeDto): any {
-    return this.facultyNoticeService.insertNotice(noticedto);
-  }
+  
 
   @Put('/updatenotice')
   @UsePipes(new ValidationPipe())

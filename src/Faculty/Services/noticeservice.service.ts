@@ -17,7 +17,6 @@ export class NoticeService {
 
   insertNotice(noticedto: NoticeDto): any {
     const notice = new FacultyNotice();
-    notice.facultyId = noticedto.facultyId;
     notice.subject = noticedto.subject;
     notice.Details = noticedto.Details;
     return this.facultyRepo.save(noticedto);

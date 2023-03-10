@@ -11,11 +11,16 @@ import {
   Delete,
 } from '@nestjs/common';
 import { FacultyInfoDTO } from '../DTOs/facultyInfo.dto';
+import { NoticeDto } from '../DTOs/noticeDto.dto';
 import { FacultyService } from '../Services/facultyservice.service';
+import { NoticeService } from '../Services/noticeservice.service';
 
 @Controller('/faculty')
 export class FacultyController {
-  constructor(private readonly facultyService: FacultyService) {}
+  constructor(
+    private readonly facultyService: FacultyService,
+    private noticeService: NoticeService,
+  ) {}
 
   @Get('/index')
   getFaculty(): any {
@@ -48,5 +53,11 @@ export class FacultyController {
   @UsePipes(new ValidationPipe())
   deleteFaculty(@Param('id', ParseIntPipe) id): any {
     return this.facultyService.deleteFaculty(id);
+  }
+
+  @Post('/insertnotice')
+  @UsePipes(new ValidationPipe())
+  insertnotice(@Body() noticedto: NoticeDto): any {
+    return this.noticeService.insertNotice(noticedto);
   }
 }

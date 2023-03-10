@@ -3,8 +3,6 @@ import { IsAlpha, IsInt, IsLowercase, IsNotEmpty } from "class-validator";
 export class NoticeDto {
   id: number;
   @IsNotEmpty()
-  @IsInt({ message: 'ID must be a number' })
-  facultyId: number;
 
   @IsNotEmpty()
   @IsAlpha()
@@ -13,4 +11,6 @@ export class NoticeDto {
 
   @IsNotEmpty()
   Details: string;
+
+  
 }

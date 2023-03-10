@@ -1,4 +1,5 @@
 import { IsAlpha, IsEmail, IsInt, IsNotEmpty, IsPhoneNumber, Length, Matches } from "class-validator";
+import { NoticeDto } from "./noticeDto.dto";
 
 export class FacultyInfoDTO {
   /*@IsNotEmpty()
@@ -70,7 +71,6 @@ export class FacultyInfoDTO {
   @IsAlpha()
   HSC: string;*/
 
-  @IsNotEmpty()
   @IsInt({ message: 'ID must be a number' })
   Fid: number;
 
@@ -103,4 +103,6 @@ export class FacultyInfoDTO {
 
   @IsNotEmpty()
   Fsal: number;
+
+  facultyNotices: NoticeDto[];
 }
