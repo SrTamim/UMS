@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { LoginStudentForm, StudentForm, UpdateStudentform} from "./studentform.dto";
-import { StudentEntity } from "./student.entity";
+import { LoginStudentForm, StudentForm, UpdateStudentform} from "../DTOs/studentform.dto";
+import { StudentEntity } from "../Entities/student.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
@@ -27,13 +27,13 @@ getCourseByIDName(qry):any {
 insertStudent(mydto:StudentForm):any {
     
       const student = new StudentEntity();
-      student.name = mydto.name;
-      student.CGPA = mydto.CGPA;
-      student.semester = mydto.semester;
-      student.department = mydto.department;
-      student.studentId = mydto.studentId;
-      student.address = mydto.address;
-      student.phone = mydto.phone;
+      student.Sname = mydto.Sname;
+      student.Sdep = mydto.Sdep;
+      student.Sidd = mydto.Sidd;
+      student.Saddress = mydto.Saddress;
+      student.Snum = mydto.Snum;
+      student.Sdob = mydto.Sdob;
+      student.Sprogram = mydto.Sprogram;
       return this.studentRepository.save(student);
 
     }
@@ -51,10 +51,10 @@ updateStudentbyid(mydto:UpdateStudentform,id):any {
       return "the id is "+qry.id +" and notice is "+qry.name;
   }
     
-  getGrade(mydto,id):any {
+  getGrade(id):any {
 
     const student=this.studentRepository.find(id);
-     return "the grade is : " +mydto.CGPA;
+     return "the grade is : " +student;
 }
 getGradeBySemester(id):any {
     

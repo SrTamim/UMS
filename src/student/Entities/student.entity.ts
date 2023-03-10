@@ -3,27 +3,27 @@ import{Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 @Entity('student')
 export class StudentEntity{
     @PrimaryGeneratedColumn()
-    id: number;
+    Sid: number;
 
     @Column()
-    name: string;
+    Sname: string;
 
     @Column()
-    CGPA: number;
+    Sdep: string;
 
     @Column()
-    semester: number;
+    Sidd: string;
 
     @Column()
-    department: string;
+    Saddress: string;
 
     @Column()
-    studentId: string;
+    Snum: string;
 
     @Column()
-    address: string;
+    Sdob: string;
 
     @Column()
-    phone: string;
+    Sprogram: string;
 
 }

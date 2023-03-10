@@ -1,6 +1,6 @@
 import { Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UsePipes,ValidationPipe } from "@nestjs/common";
-import { LoginStudentForm, StudentForm,  UpdateStudentform } from "./studentform.dto";
-import { StudentService } from "./student.service";
+import { LoginStudentForm, StudentForm,  UpdateStudentform } from "../DTOs/studentform.dto";
+import { StudentService } from "../Services/student.service";
 
 @Controller("/student")
 export class StudentController
