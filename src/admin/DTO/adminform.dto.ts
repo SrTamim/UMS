@@ -11,21 +11,27 @@ import {
 
 export class AdminForm {   
     @IsNotEmpty() 
-    @IsInt()
     @Min(1)
     @Max(1000)
     id: number;
-
     @IsNotEmpty()
     @Length(3,8)
     @IsAlpha()
     name: string;
+    email:string;
+    pass:string;
     }
 
     export class AdminCourse {  
+        @IsNotEmpty()
+        Cid:number;
+        @IsNotEmpty()
         Cname: string;
+        @IsNotEmpty()
         credit: string;
+        @IsNotEmpty()
         room: string;
+        @IsNotEmpty()
         time: string;
     }
 

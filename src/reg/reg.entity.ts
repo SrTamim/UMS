@@ -1,15 +1,14 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("admin")
-export class AdminEntity{
+@Entity("reg")
+export class RegEntity{
   @PrimaryGeneratedColumn()
   id: number;
-
   @Column()
   name: string;
   @Column()
-  email:string;
+  email: string;
   @Column()
-  pass:string;
+  pass: string;
 
 }

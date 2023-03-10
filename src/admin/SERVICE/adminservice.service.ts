@@ -37,19 +37,35 @@ export class AdminService {
 getIndex():any { 
     return "Welcome Admin"; 
 }
+//---- get / view --------------------------------------------
 getAdminByID(id):any {
     return this.adminRepo.findOneBy({ id });
-    //return "Admin id is "+id;
 }
+    getStudentByID(Sid):any {
+        return this.studentRepo.findOneBy({Sid});
+    }
+        getFacultyByID(Fid):any {
+            return this.facultyRepo.findOneBy({Fid});
+        }
+        getFacultysalByID(Fsid):any {
+            return this.facultysalRepo.findOneBy({Fsid});
+        }
+            getOfficerByID(Oid):any {
+                return this.officerRepo.findOneBy({Oid});
+            }
+                getOfficersalByID(Osid):any {
+                    return this.officersalRepo.findOneBy({Osid});
+                }
+                    getCourseByID(Cid):any {
+                        return this.courseRepo.findOneBy({ Cid });
+                    }
 
-getAdminByIDName(qry):any {
-    return this.adminRepo.findOneBy({ id:qry.id,name:qry.name });
-    //return "Admin id is "+qry.id +" and Admin is "+qry.name;
-}
-//---------------------------------------------------------------------------------------------------------------------------
+//--insert-----------------------------------------------------------------------------------------------------------
 insertAdmin(mydto:AdminForm):any {
     const adminaccount = new AdminEntity()
     adminaccount.name = mydto.name;
+    adminaccount.email = mydto.email;
+    adminaccount.pass = mydto.pass;
     return this.adminRepo.save(adminaccount);
     }
 
@@ -91,7 +107,8 @@ insertAdmin(mydto:AdminForm):any {
                 insertfacultysal(mydto:Adminfacultysal):any {
                     const facultysalaccount = new FacultysalEntity()
                     facultysalaccount.Fsfid = mydto.Fsfid;
-                    facultysalaccount.amount = mydto.amount;
+                    facultysalaccount.month = mydto.month;
+                    facultysalaccount.year = mydto.year;
                     facultysalaccount.amount = mydto.amount;
                     return this.facultysalRepo.save(facultysalaccount);
                     }
@@ -120,6 +137,7 @@ insertAdmin(mydto:AdminForm):any {
                                 noticeaccount.Ndetails = mydto.Ndetails;
                                 return this.noticeRepo.save(noticeaccount);
                                 }
+
 //---------------------------------------------------------------------------------------------------------
 updateAdmin(name,id):any {
         console.log(name+id);
@@ -190,40 +208,6 @@ updateAdminbyid(mydto:AdminForm,id):any {
     deleteAdminbyid(id):any {
         return this.adminRepo.delete(id);
     }
-	
-	//////////////////////////////////////////
-    // insertCourse(mydto:AdminCourse):any {
-    //     const courseaccount = new CourseEntity()
-    //     courseaccount.Cname = mydto.Cname;
-    //     return this.courseRepo.save(courseaccount);
-    //     //return " Notice id is " + mydto.Nid;
-    //}
-
-    getCourseByID(Cid):any {
-        return this.courseRepo.findOneBy({ Cid });
-        //return "Course id is: "+Cid;
-    }
-    updateCoursebyid(Cname,Cid):any {
-        console.log(Cname+Cid);
-        return this.courseRepo.update(Cid,{Cname:Cname});
-        //return "Update Course where id " +Cid+" and change name to " +Cname;
-    }
-    //------------------
-    insertRoom(mydto:AdminRoom):any {
-        return " Room id is " + mydto.Rid;
-    }
-    updateRoombyid(Rid):any {
-        return "Update Room id " +Rid;
-    }
-
-    //------------
-    // insertNotice(mydto:AdminNotice):any {
-    //     const noticeaccount = new NoticeEntity()
-    //     noticeaccount.Ndetails = mydto.Ndetails;
-    //     return this.noticeRepo.save(noticeaccount);
-    //     //return " Notice id is " + mydto.Nid;
-    //}
-
     PatchNoticebyid(Nid,details):any {
         console.log(Nid+details);
         return this.noticeRepo.update(Nid,{Ndetails:details});
