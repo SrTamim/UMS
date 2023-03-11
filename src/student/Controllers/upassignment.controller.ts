@@ -9,14 +9,9 @@ import {
     ParseFilePipe,
     ParseIntPipe,
     Post,
-    Put,
-    Query,
     UploadedFile,
     UseInterceptors,
-    UsePipes,
-    ValidationPipe,
-    Session,
-    UseGuards
+   
   }from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
