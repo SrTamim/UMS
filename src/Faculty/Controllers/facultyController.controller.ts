@@ -16,6 +16,8 @@ import {
   MaxFileSizeValidator,
   UseFilters,
   BadRequestException,
+  Session,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FacultyInfoDTO } from '../DTOs/facultyInfo.dto';
@@ -32,6 +34,8 @@ import { AssignmentService } from '../Services/assignmentservice.service';
 import { AssignmentDto } from '../DTOs/assignmentDto.dto';
 import { StudentGradeService } from '../Services/studentgradeservice.service';
 import { StudentgradeDTO } from '../DTOs/studentgradeDto.dto';
+import { UserDto } from '../DTOs/UsreDto.dto';
+import { UserInfoservice } from '../Services/UserInfoservice.service';
 
 @Controller('/faculty')
 export class FacultyController {
@@ -43,6 +47,7 @@ export class FacultyController {
     private requestRoomService: RequestRoomService,
     private assignmentService: AssignmentService,
     private studentGradeService: StudentGradeService,
+    private userservice: UserInfoservice,
   ) {}
 
   //Faculty Controller
@@ -112,12 +117,12 @@ export class FacultyController {
 
   //Notice Controller
 
-  @Post('/insertnotice')
+  @Post('/insertnotice/:id')
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
-  insertnotice(@Body() noticedto: NoticeDto): any {
+  insertnotice(@Body() noticedto: NoticeDto, @Param() id: number): any {
     try {
-      return this.noticeService.insertNotice(noticedto);
+      return this.noticeService.insertNotice(noticedto, id);
     } catch (error) {
       throw new BadRequestException();
     }
@@ -167,6 +172,12 @@ export class FacultyController {
     } catch (error) {
       throw new BadRequestException();
     }
+  }
+
+  //sent mail controller
+  @Post('/sendemail')
+  sendEmail(@Body() mydata) {
+    return this.noticeService.sendEmail(mydata);
   }
 
   //FileUplode Controller
@@ -237,7 +248,7 @@ export class FacultyController {
   getRequestRoom(): any {
     try {
       return this.requestRoomService.getRequestRoom();
-    }catch (error) {
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -248,7 +259,7 @@ export class FacultyController {
   insertRequestRoom(@Body() requestRoomDto: RequestRoom): any {
     try {
       return this.requestRoomService.insertRequestRoom(requestRoomDto);
-    }catch(error){
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -261,8 +272,8 @@ export class FacultyController {
     @Param('id', ParseIntPipe) id,
   ): any {
     try {
-       return this.requestRoomService.updateRequestRoom(requestRoomDto, id);
-    }catch(error){
+      return this.requestRoomService.updateRequestRoom(requestRoomDto, id);
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -271,9 +282,9 @@ export class FacultyController {
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteRequestRoom(@Param('id', ParseIntPipe) id): any {
-    try { 
+    try {
       return this.requestRoomService.deleteRequestRoom(id);
-    }catch(error){
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -285,7 +296,7 @@ export class FacultyController {
   getAssignment(): any {
     try {
       return this.assignmentService.getAssignment();
-    }catch(error){
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -296,8 +307,7 @@ export class FacultyController {
   insertAssignment(@Body() assignmentdto: AssignmentDto): any {
     try {
       return this.assignmentService.insertAssignment(assignmentdto);
-    }catch(error)
-    {
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -307,8 +317,8 @@ export class FacultyController {
   @UsePipes(new ValidationPipe())
   updateAssignment(@Body() assignmentdto, @Param('id', ParseIntPipe) id): any {
     try {
-       return this.assignmentService.updateAssignment(assignmentdto, id);
-    }catch(error){
+      return this.assignmentService.updateAssignment(assignmentdto, id);
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -318,8 +328,8 @@ export class FacultyController {
   @UsePipes(new ValidationPipe())
   deleteAssignment(@Param('id', ParseIntPipe) id): any {
     try {
-      return this.assignmentService.deleteAssignment(id); 
-    }catch(error){
+      return this.assignmentService.deleteAssignment(id);
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -329,19 +339,19 @@ export class FacultyController {
   @Get('/getstudentgrade')
   @UseFilters(HttpExceptionFilter)
   getStudentGrade(): any {
-    try { 
+    try {
       return this.studentGradeService.getStudentGrade();
-    }catch(error){
+    } catch (error) {
       throw new BadRequestException();
     }
   }
 
   @Post('/insertstudentgrade')
   @UseFilters(HttpExceptionFilter)
-  insertStudentGrade(@Body() studentgradedto: StudentgradeDTO): any {   
-    try { 
+  insertStudentGrade(@Body() studentgradedto: StudentgradeDTO): any {
+    try {
       return this.studentGradeService.insertStudentGrade(studentgradedto);
-    } catch(error){
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -354,7 +364,7 @@ export class FacultyController {
   ): any {
     try {
       return this.studentGradeService.updateStudentGrade(studentgradedto, id);
-    }catch(error){
+    } catch (error) {
       throw new BadRequestException();
     }
   }
@@ -364,8 +374,30 @@ export class FacultyController {
   deleteStudentGrade(@Param('id', ParseIntPipe) id): any {
     try {
       return this.studentGradeService.deleteStudentGrade(id);
-    }catch(error){
+    } catch (error) {
       throw new BadRequestException();
+    }
+  }
+
+  //login Controller
+
+  @Get('/singin')
+  singin(@Session() session, @Body() userDto: UserDto) {
+    if (this.userservice.signin(userDto)) {
+      session.email = userDto.email;
+      console.log(session.email);
+      return { message: 'success' };
+    } else {
+      return { message: 'invalid credentials' };
+    }
+  }
+
+  @Get('/signout')
+  signout(@Session() session) {
+    if (session.destroy()) {
+      return { message: 'you are logged out' };
+    } else {
+      throw new UnauthorizedException('invalid actions');
     }
   }
 }

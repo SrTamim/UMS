@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { FacultyInfo } from './facultyInfo.entity';
 
 @Entity('facultyNotice')
@@ -11,7 +11,7 @@ export class FacultyNotice {
   @Column()
   Details: string;
 
-  @ManyToOne(() => FacultyInfo, (FacultyInfo) => 
+  @OneToMany(() => FacultyInfo, (FacultyInfo) => 
   FacultyInfo.facultyNotices)
   facultyinfo: FacultyInfo;
 }
