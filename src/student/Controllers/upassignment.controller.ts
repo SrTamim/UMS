@@ -1,4 +1,5 @@
 import {
+    BadRequestException,
     Body,
     Controller,
     Delete,
@@ -10,6 +11,7 @@ import {
     ParseIntPipe,
     Post,
     UploadedFile,
+    UseFilters,
     UseInterceptors,
    
 }from '@nestjs/common';
@@ -17,6 +19,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AssignForm } from '../DTOs/assignform.dto';
 import { AssignService } from '../Services/assign.service';
+import { HttpExceptionFilter } from "../custom.exception.filter";
 
 
 @Controller('/upassign')
@@ -25,6 +28,7 @@ export class UpassignmentController {
 constructor(private assignService: AssignService){}
 
 @Post('/upload')
+@UseFilters(new HttpExceptionFilter())
 @UseInterceptors(FileInterceptor('myfile',
 {storage:diskStorage({
   destination: './uploads',
@@ -42,7 +46,10 @@ uploadAssign(@Body() mydto:AssignForm,@UploadedFile(  new ParseFilePipe({
 }),) file: Express.Multer.File){
 
 mydto.filename = file.filename;  
-
+try{
 return this.assignService.uploadAssign(mydto);
+}catch(e){
+throw new BadRequestException(e.message);
+}
 }
 }

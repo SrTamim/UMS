@@ -26,4 +26,15 @@ async signup(mydto:LoginForm) {
       return this.studentRepository.save(login);
 
     }
+
+    async signin(mydto:LoginForm){
+    const mydata= await this.studentRepository.findOneBy({email: mydto.email});
+    const isMatch= await bcrypt.compare(mydto.password, mydata.password);
+    if(isMatch) {
+    return 1;
+    }
+    else {
+        return 0;
+        }
+    }
 }

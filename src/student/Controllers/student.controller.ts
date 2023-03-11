@@ -1,6 +1,7 @@
-import { Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UsePipes,ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UsePipes,ValidationPipe } from "@nestjs/common";
 import { StudentForm,  UpdateStudentform } from "../DTOs/studentform.dto";
 import { StudentService } from "../Services/student.service";
+import { HttpExceptionFilter } from "../custom.exception.filter";
 
 @Controller("/student")
 export class StudentController
@@ -8,8 +9,13 @@ export class StudentController
   constructor(private studentService: StudentService){}
 
   @Get("/index")
+  @UseFilters(new HttpExceptionFilter())
     getAdmin(): any { 
+      try{
         return this.studentService.getIndex();
+      }catch(e){
+        throw new BadRequestException(e.message);
+      }
     }
     @Get("/findcourse/:id")
       getCourseByID(@Param('id', ParseIntPipe) id: number): any {
@@ -22,20 +28,30 @@ export class StudentController
     }  
     
     @Post("/insertstudent")
+    @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertStudent(@Body() mydto:StudentForm): any {
+        try{
       return this.studentService.insertStudent(mydto);
+        }catch(e){
+          throw new BadRequestException(e.message);
+        }
     }
   
 
     @Put("/updatestudent/:id")
+    @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       updateStudentbyid( 
       @Body() mydto:UpdateStudentform, 
       @Param('id', ParseIntPipe) id: number
       ): any {
+        try{
     return this.studentService.updateStudentbyid(mydto,id);
+    } catch(e){
+      throw new BadRequestException(e.message);
     }
+  }
 
     @Delete("/deletecourse/:id")
      deleteCoursebyid( 
