@@ -31,14 +31,13 @@ export class UserInfoservice {
   }
 
   async signin(userDto: UserDto) {
-    console.log(userDto.password);
-    const mydata = await this.UserInfoRepo.findOneBy({ email: userDto.email });
+    const mydata = await this.UserInfoRepo.findOneBy({
+      email: userDto.email,
+    });
     const isMatch = await bcrypt.compare(userDto.password, mydata.password);
-    if (isMatch) {
-      return 1;
-    } else {
-      return 0;
-    }
+
+    if (isMatch) return true;
+    else return false;
   }
 
   updateUserInfo(userDto, id): any {

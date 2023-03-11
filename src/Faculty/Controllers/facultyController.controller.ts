@@ -18,6 +18,7 @@ import {
   BadRequestException,
   Session,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FacultyInfoDTO } from '../DTOs/facultyInfo.dto';
@@ -36,6 +37,7 @@ import { StudentGradeService } from '../Services/studentgradeservice.service';
 import { StudentgradeDTO } from '../DTOs/studentgradeDto.dto';
 import { UserDto } from '../DTOs/UsreDto.dto';
 import { UserInfoservice } from '../Services/UserInfoservice.service';
+import { SessionGuard } from '../session.guard';
 
 @Controller('/faculty')
 export class FacultyController {
@@ -53,6 +55,7 @@ export class FacultyController {
   //Faculty Controller
 
   @Get('/index')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getFaculty(): any {
     try {
@@ -63,6 +66,7 @@ export class FacultyController {
   }
 
   @Post('/insert')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   insertFaculty(@Body() facultydto: FacultyInfoDTO): any {
@@ -74,6 +78,7 @@ export class FacultyController {
   }
 
   @Get('/getall')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getAllFaculty(): any {
     try {
@@ -84,6 +89,7 @@ export class FacultyController {
   }
 
   @Get('/get/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getFacultyById(@Param('id', ParseIntPipe) id: number): any {
     try {
@@ -94,6 +100,7 @@ export class FacultyController {
   }
 
   @Put('/update/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateFaculty(@Body() facultydto, @Param('id', ParseIntPipe) id): any {
@@ -105,6 +112,7 @@ export class FacultyController {
   }
 
   @Delete('/delete/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteFaculty(@Param('id', ParseIntPipe) id): any {
@@ -118,6 +126,7 @@ export class FacultyController {
   //Notice Controller
 
   @Post('/insertnotice/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   insertnotice(@Body() noticedto: NoticeDto, @Param() id: number): any {
@@ -129,6 +138,7 @@ export class FacultyController {
   }
 
   @Get('/getnotice')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getNotice(): any {
     try {
@@ -139,6 +149,7 @@ export class FacultyController {
   }
 
   @Put('/updatenotice')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateNotice(@Body() noticedto: NoticeDto): any {
@@ -150,6 +161,7 @@ export class FacultyController {
   }
 
   @Put('/updatenoticeBy/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateNoticeById(
@@ -164,6 +176,7 @@ export class FacultyController {
   }
 
   @Delete('/deletenotice/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteNotice(@Param('id', ParseIntPipe) id: number): any {
@@ -210,6 +223,7 @@ export class FacultyController {
   }
 
   @Get('/getallfile')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getAllFileUplode(): any {
     try {
@@ -220,6 +234,7 @@ export class FacultyController {
   }
 
   @Put('/updatefile')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateFileUplode(@Body() fileUplodeDto, @Param('id', ParseIntPipe) id): any {
@@ -231,6 +246,7 @@ export class FacultyController {
   }
 
   @Delete('/deletefile/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteFileUplode(@Param('id', ParseIntPipe) id): any {
@@ -244,6 +260,7 @@ export class FacultyController {
   //Request Room Controller
 
   @Get('/getrequestroom')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getRequestRoom(): any {
     try {
@@ -254,6 +271,7 @@ export class FacultyController {
   }
 
   @Post('/insertrequestroom')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   insertRequestRoom(@Body() requestRoomDto: RequestRoom): any {
@@ -265,6 +283,7 @@ export class FacultyController {
   }
 
   @Put('/updaterequestroom/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateRequestRoom(
@@ -279,6 +298,7 @@ export class FacultyController {
   }
 
   @Delete('deleterequestroom/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteRequestRoom(@Param('id', ParseIntPipe) id): any {
@@ -292,6 +312,7 @@ export class FacultyController {
   //Assingment Controller
 
   @Get('/getassignment')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getAssignment(): any {
     try {
@@ -302,6 +323,7 @@ export class FacultyController {
   }
 
   @Post('/insertassignment')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   insertAssignment(@Body() assignmentdto: AssignmentDto): any {
@@ -313,6 +335,7 @@ export class FacultyController {
   }
 
   @Put('/updateassignment/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateAssignment(@Body() assignmentdto, @Param('id', ParseIntPipe) id): any {
@@ -324,6 +347,7 @@ export class FacultyController {
   }
 
   @Delete('deleteassignment/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteAssignment(@Param('id', ParseIntPipe) id): any {
@@ -337,6 +361,7 @@ export class FacultyController {
   //Student Grade Controller
 
   @Get('/getstudentgrade')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getStudentGrade(): any {
     try {
@@ -347,6 +372,7 @@ export class FacultyController {
   }
 
   @Post('/insertstudentgrade')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   insertStudentGrade(@Body() studentgradedto: StudentgradeDTO): any {
     try {
@@ -357,6 +383,7 @@ export class FacultyController {
   }
 
   @Put('/updatestudentgrade/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   updateStudentGrade(
     @Body() studentgradedto,
@@ -370,6 +397,7 @@ export class FacultyController {
   }
 
   @Delete('deletestudentgrade/:id')
+  @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   deleteStudentGrade(@Param('id', ParseIntPipe) id): any {
     try {
@@ -381,11 +409,22 @@ export class FacultyController {
 
   //login Controller
 
-  @Get('/singin')
-  singin(@Session() session, @Body() userDto: UserDto) {
-    if (this.userservice.signin(userDto)) {
+  @Post('/signup')
+  @UsePipes(new ValidationPipe())
+  signup(@Body() userDto: UserDto): any {
+    return this.userservice.signup(userDto);
+  }
+
+  @Post('/signin')
+  async signin(@Session() session, @Body() userDto: UserDto) {
+    const logininfo = await this.userservice.signin(userDto);
+    if (logininfo == true) {
       session.email = userDto.email;
+
+      console.log(userDto.email);
+      console.log(logininfo);
       console.log(session.email);
+
       return { message: 'success' };
     } else {
       return { message: 'invalid credentials' };
