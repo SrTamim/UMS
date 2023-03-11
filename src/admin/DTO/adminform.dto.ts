@@ -20,6 +20,8 @@ export class AdminForm {
     name: string;
     email:string;
     pass:string;
+    address:string;
+    filename:string;
     }
 
     export class AdminCourse {  

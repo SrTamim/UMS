@@ -10,6 +10,7 @@ import { FacultyEntity } from "../ENTITY/faculty.entity"
 import { OfficerEntity } from "../ENTITY/officer.entity"
 import { FacultysalEntity } from "../ENTITY/facultysal.entity"
 import { OfficersalEntity } from "../ENTITY/officersal.entity"
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AdminService {
@@ -59,6 +60,16 @@ getAdminByID(id):any {
                     getCourseByID(Cid):any {
                         return this.courseRepo.findOneBy({ Cid });
                     }
+
+                    findsalbyfacultyid(Fid):any {
+                        return this.facultyRepo.find({ 
+                                where: {Fid:Fid},
+                            relations: {
+                                facultysal: true,
+                            },
+                         });
+                        }
+                    
 
 //--insert-----------------------------------------------------------------------------------------------------------
 insertAdmin(mydto:AdminForm):any {
@@ -195,6 +206,27 @@ deleteStudentbyid(Sid):any {
                             return this.noticeRepo.delete(Nid);
                         }
                 
+//---signup---------------------------------------------------
+async signup(mydto) {
+    const salt = await bcrypt.genSalt();
+    const hassedpassed = await bcrypt.hash(mydto.pass, salt);
+    mydto.pass= hassedpassed;
+    return this.adminRepo.save(mydto);
+    }
+    
+    async signin(mydto){
+        console.log(mydto.pass);
+    const mydata= await this.adminRepo.findOneBy({email: mydto.email});
+    const isMatch= await bcrypt.compare(mydto.pass, mydata.pass);
+    if(isMatch) {
+    return 1;
+    }
+    else {
+        return 0;
+    }
+    
+    }
+
 //---------------------------------------------------------------
 
 updateAdminbyid(mydto:AdminForm,id):any {

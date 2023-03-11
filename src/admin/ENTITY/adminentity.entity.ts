@@ -11,5 +11,10 @@ export class AdminEntity{
   email:string;
   @Column()
   pass:string;
+  @Column()
+  address: string;
+
+  @Column()
+  filename: string;
 
 }

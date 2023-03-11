@@ -1,6 +1,13 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe,Patch } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe,Patch,
+          FileTypeValidator,MaxFileSizeValidator,ParseFilePipe,UploadedFile,
+            UseInterceptors,Session,
+            UseGuards } from "@nestjs/common";
 import { AdminForm,AdminRoom,AdminCourse,AdminNotice,Adminstudent,Adminfaculty,Adminofficer,Adminfacultysal,Adminofficersal} from "../DTO/adminform.dto";
 import { AdminService } from "../SERVICE/adminservice.service";
+import { UnauthorizedException } from '@nestjs/common/exceptions';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { SessionGuard } from '../SESSION/session.guard';
 
 
 @Controller('/admin')
@@ -47,6 +54,11 @@ export class AdminController {
                 @UsePipes(new ValidationPipe())
                 getCourseByID(@Param('Cid', ParseIntPipe) Cid: number): any {
                   return this.adminService.getCourseByID(Cid);
+                }
+
+                @Get('/findsalbyfacultyid/:id')
+                findsalbyfacultyid(@Param('Fid', ParseIntPipe) Fid: number): any {
+                  return this.adminService.findsalbyfacultyid(Fid);
                 }
       
 //------------------------------------------------------------------------------------------------------------------------------
@@ -198,56 +210,123 @@ export class AdminController {
                   }
 // update -------------------------------------------------------------------------------------------------------------------------
 // delete -----------------------------------------------------
-@Delete("/deleteStudent/")
-@UsePipes(new ValidationPipe())
-deleteStudentbyid( 
- @Body("Sid", ParseIntPipe) Sid:number
-  ): any {
-return this.adminService.deleteStudentbyid(Sid);
-}
-  @Delete("/deleteFaculty/")
+  @Delete("/deleteStudent/")
   @UsePipes(new ValidationPipe())
-  deleteFacultybyid( 
-  @Body("Fid", ParseIntPipe) Fid:number
+  deleteStudentbyid( 
+  @Body("Sid", ParseIntPipe) Sid:number
     ): any {
-  return this.adminService.deleteFacultybyid(Fid);
+  return this.adminService.deleteStudentbyid(Sid);
   }
-      @Delete("/deleteOfficer/")
-      @UsePipes(new ValidationPipe())
-      deleteOfficerbyid( 
-      @Body("Oid", ParseIntPipe) Oid:number
-        ): any {
-      return this.adminService.deleteOfficerbyid(Oid);
-      }
-        @Delete("/deleteFacultysal/")
+    @Delete("/deleteFaculty/")
+    @UsePipes(new ValidationPipe())
+    deleteFacultybyid( 
+    @Body("Fid", ParseIntPipe) Fid:number
+      ): any {
+    return this.adminService.deleteFacultybyid(Fid);
+    }
+        @Delete("/deleteOfficer/")
         @UsePipes(new ValidationPipe())
-        deleteFacultysalbyid( 
-        @Body("Fsid", ParseIntPipe) Fsid:number
+        deleteOfficerbyid( 
+        @Body("Oid", ParseIntPipe) Oid:number
           ): any {
-        return this.adminService.deleteFacultysalbyid(Fsid);
+        return this.adminService.deleteOfficerbyid(Oid);
         }
-          @Delete("/deleteOfficersal/")
+          @Delete("/deleteFacultysal/")
           @UsePipes(new ValidationPipe())
-          deleteOfficersalbyid( 
-          @Body("Osid", ParseIntPipe) Osid:number
+          deleteFacultysalbyid( 
+          @Body("Fsid", ParseIntPipe) Fsid:number
             ): any {
-          return this.adminService.deleteOfficersalbyid(Osid);
+          return this.adminService.deleteFacultysalbyid(Fsid);
           }
-            @Delete("/deleteCourse/")
+            @Delete("/deleteOfficersal/")
             @UsePipes(new ValidationPipe())
-            deleteCoursebyid( 
-            @Body("Cid", ParseIntPipe) Cid:number
+            deleteOfficersalbyid( 
+            @Body("Osid", ParseIntPipe) Osid:number
               ): any {
-            return this.adminService.deleteCoursebyid(Cid);
+            return this.adminService.deleteOfficersalbyid(Osid);
             }
-              @Delete("/deleteNotice/")
+              @Delete("/deleteCourse/")
               @UsePipes(new ValidationPipe())
-              deleteNoticebyid( 
-              @Body("Nid", ParseIntPipe) Nid:number
+              deleteCoursebyid( 
+              @Body("Cid", ParseIntPipe) Cid:number
                 ): any {
-              return this.adminService.deleteNoticebyid(Nid);
+              return this.adminService.deleteCoursebyid(Cid);
               }
+                @Delete("/deleteNotice/")
+                @UsePipes(new ValidationPipe())
+                deleteNoticebyid( 
+                @Body("Nid", ParseIntPipe) Nid:number
+                  ): any {
+                return this.adminService.deleteNoticebyid(Nid);
+                }
 //-------------------------------------------------------------    
+//----Signup------------------------------------------------ 
+
+@Post('/signup')
+@UseInterceptors(FileInterceptor('myfile',
+{storage:diskStorage({
+  destination: './uploads',
+  filename: function (_req, file, cb) {
+    cb(null,Date.now()+file.originalname)
+  }
+})
+
+}))
+signup(@Body() mydto:AdminForm,@UploadedFile(  new ParseFilePipe({
+  validators: [
+    new MaxFileSizeValidator({ maxSize: 90000 }),
+    new FileTypeValidator({ fileType: 'png|jpg|jpeg|' }),
+  ],
+}),) 
+
+myfile: Express.Multer.File){
+mydto.filename = myfile.filename;  
+return this.adminService.signup(mydto);
+console.log(myfile.filename)
+}
+
+@Get('/signin')
+signin(@Session() session, @Body() mydto:AdminForm)
+{
+if(this.adminService.signin(mydto))
+{
+  session.email = mydto.email;
+
+  console.log(session.email);
+  return {message:"success"};
+
+}
+else
+{
+  return {message:"invalid credentials"};
+}
+
+}
+@Get('/signout')
+signout(@Session() session)
+{
+  if(session.destroy())
+  {
+    return {message:"you are logged out"};
+  }
+  else
+  {
+    throw new UnauthorizedException("invalid actions");
+  }
+}
+
+
+
+//--------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 @Put("/updateAdmin/:id")
     @UsePipes(new ValidationPipe())
       updateAdminbyid( 
