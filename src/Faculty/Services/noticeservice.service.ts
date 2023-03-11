@@ -18,7 +18,7 @@ export class NoticeService {
   getNotice(): any {
     return this.NoticeRepo.find();
   }
-  /*
+  
   insertNotice(noticedto: NoticeDto, id: any): any {
     const notice = new FacultyNotice();
     notice.subject = noticedto.subject;
@@ -31,14 +31,6 @@ export class NoticeService {
       },
     });
     faculty.facultyNotices = [...faculty.facultyNotices,notice];
-  }*/
-
-  async createFacultyNotice(NoticeDto: NoticeDto): Promise<FacultyNotice> {
-    const facultyInfo = await this.facultyRepo.findOne(NoticeDto.facultyInfoId);
-    const facultyNotice = new FacultyNotice();
-    facultyNotice.subject = NoticeDto.subject;
-    facultyNotice.details = NoticeDto.details;
-    return this.NoticeRepo.save(facultyNotice);
   }
 
   updateNotice(noticedto, id): any {
