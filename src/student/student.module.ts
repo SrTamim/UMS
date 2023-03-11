@@ -15,10 +15,13 @@ import { FacfeedbackController } from './Controllers/facfeedback.controller';
 import { DropService } from './Services/drop.service';
 import { DropEntity } from './Entities/drop.entity';
 import { DropController } from './Controllers/drop.controller';
+import { AssignService } from './Services/assign.service';
+import { AssignEntity } from './Entities/assign.entity';
+import { UpassignmentController } from './Controllers/upassignment.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([StudentEntity,GradeEntity,IssueEntity,FacfeedbackEntity,DropEntity])],
-  controllers: [StudentController,GradeController,IssueController,FacfeedbackController,DropController],
-  providers: [StudentService,GradeService,IssueService,FacfeedbackService,DropService],
+  imports: [TypeOrmModule.forFeature([StudentEntity,GradeEntity,IssueEntity,FacfeedbackEntity,DropEntity,AssignEntity])],
+  controllers: [StudentController,GradeController,IssueController,FacfeedbackController,DropController,UpassignmentController],
+  providers: [StudentService,GradeService,IssueService,FacfeedbackService,DropService,AssignService],
 })
 export class StudentModule {}
