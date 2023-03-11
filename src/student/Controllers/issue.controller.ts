@@ -1,13 +1,15 @@
-import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UsePipes,ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UseGuards,UsePipes,ValidationPipe } from "@nestjs/common";
 import { IssueForm } from "../DTOs/issueform.dto";
 import { IssueService } from "../Services/issue.service";
 import { HttpExceptionFilter } from "../custom.exception.filter";
+import { SessionGuard } from "../session.guard";
 
 @Controller("/issue")
 export class IssueController 
 {
     constructor(private issueService: IssueService){}
     @Get("/index")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -17,6 +19,7 @@ export class IssueController
     }
     }
     @Post("/insertissue")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertIssue(@Body() mydto:IssueForm): any {
@@ -28,6 +31,7 @@ export class IssueController
     }
 
     @Post('/sendemail')
+    @UseGuards(SessionGuard)
     sendEmail(@Body() mydata){
     return this.issueService.sendEmail(mydata);
     }

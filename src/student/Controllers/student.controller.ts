@@ -1,7 +1,8 @@
-import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UsePipes,ValidationPipe } from "@nestjs/common";
+import { UseGuards,BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UsePipes,ValidationPipe } from "@nestjs/common";
 import { StudentForm,  UpdateStudentform } from "../DTOs/studentform.dto";
 import { StudentService } from "../Services/student.service";
 import { HttpExceptionFilter } from "../custom.exception.filter";
+import { SessionGuard } from "../session.guard";
 
 @Controller("/student")
 export class StudentController
@@ -28,6 +29,7 @@ export class StudentController
     }  
     
     @Post("/insertstudent")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertStudent(@Body() mydto:StudentForm): any {
@@ -40,6 +42,7 @@ export class StudentController
   
 
     @Put("/updatestudent/:id")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       updateStudentbyid( 
@@ -61,11 +64,13 @@ export class StudentController
     }
 
     @Get("/notice")
+    @UseGuards(SessionGuard)
     getNoticeByFacultyId(@Query() qry:any): any {
       return this.studentService.getNoticeByFacultyId(qry);
     } 
 
     @Get("/grade/:id")
+    @UseGuards(SessionGuard)
     getGrade(@Query() id:any): any {
       return this.studentService.getGrade(id);
     } 

@@ -1,7 +1,8 @@
-import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UsePipes,ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UseGuards,UsePipes,ValidationPipe } from "@nestjs/common";
 import { GradeForm } from "../DTOs/gradeform.dto";
 import { GradeService } from "../Services/grade.service";
 import { HttpExceptionFilter } from "../custom.exception.filter";
+import { SessionGuard } from "../session.guard";
 
 @Controller("/grade")
 export class GradeController 
@@ -9,6 +10,7 @@ export class GradeController
     constructor(private gradeService: GradeService){}
 
     @Get("/index")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -19,6 +21,7 @@ export class GradeController
   }
 
     @Post("/insertgrade")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertGrade(@Body() mydto:GradeForm): any {

@@ -1,7 +1,8 @@
-import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UsePipes,ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UseGuards,UsePipes,ValidationPipe } from "@nestjs/common";
 import { DropForm } from "../DTOs/dropform.dto";
 import { DropService } from "../Services/drop.service";
 import { HttpExceptionFilter } from "../custom.exception.filter";
+import { SessionGuard } from "../session.guard";
 
 @Controller("/drop")
 export class DropController 
@@ -9,6 +10,7 @@ export class DropController
     constructor(private dropService: DropService ){}
 
     @Get("/index")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -19,6 +21,7 @@ export class DropController
   }
 
     @Post("/insertdrop")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertDrop(@Body() mydto:DropForm): any {

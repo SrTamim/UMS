@@ -12,6 +12,7 @@ import {
     Post,
     UploadedFile,
     UseFilters,
+    UseGuards,
     UseInterceptors,
    
 }from '@nestjs/common';
@@ -20,6 +21,7 @@ import { diskStorage } from 'multer';
 import { AssignForm } from '../DTOs/assignform.dto';
 import { AssignService } from '../Services/assign.service';
 import { HttpExceptionFilter } from "../custom.exception.filter";
+import { SessionGuard } from '../session.guard';
 
 
 @Controller('/upassign')
@@ -28,6 +30,7 @@ export class UpassignmentController {
 constructor(private assignService: AssignService){}
 
 @Post('/upload')
+@UseGuards(SessionGuard)
 @UseFilters(new HttpExceptionFilter())
 @UseInterceptors(FileInterceptor('myfile',
 {storage:diskStorage({

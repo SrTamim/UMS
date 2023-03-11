@@ -1,7 +1,8 @@
-import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UsePipes,ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UseGuards,UsePipes,ValidationPipe } from "@nestjs/common";
 import { facfeedbackform } from "../DTOs/facfeedbackform.dto";
 import { FacfeedbackService } from "../Services/facfeedback.service";
 import { HttpExceptionFilter } from "../custom.exception.filter";
+import { SessionGuard } from "../session.guard";
 
 @Controller("/facfeedback")
 export class FacfeedbackController 
@@ -9,6 +10,7 @@ export class FacfeedbackController
     constructor(private facfeedbackService: FacfeedbackService){}
 
     @Get("/index")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -19,6 +21,7 @@ export class FacfeedbackController
   }
 
     @Post("/inserfeedback")
+    @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertFacfeedback(@Body() mydto:facfeedbackform): any {

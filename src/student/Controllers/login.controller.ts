@@ -30,6 +30,8 @@ export class LoginController
 
         console.log(mydto.email);
         console.log(logininfo);
+        console.log(session.email);
+
         return {message:"success"};
     }
     else
