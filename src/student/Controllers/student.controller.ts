@@ -1,5 +1,5 @@
 import { Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UsePipes,ValidationPipe } from "@nestjs/common";
-import { LoginStudentForm, StudentForm,  UpdateStudentform } from "../DTOs/studentform.dto";
+import { StudentForm,  UpdateStudentform } from "../DTOs/studentform.dto";
 import { StudentService } from "../Services/student.service";
 
 @Controller("/student")
@@ -69,9 +69,5 @@ export class StudentController
       return this.studentService.getPaymentDetails(qry);
     } 
 
-    @Post("/loginstudent")
-    @UsePipes(new ValidationPipe())
-    loginStudent(@Body() mydto:LoginStudentForm): any {
-      return this.studentService.loginStudent(mydto);
-    }
+   
 }

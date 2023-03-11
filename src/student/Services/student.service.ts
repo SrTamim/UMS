@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { LoginStudentForm, StudentForm, UpdateStudentform} from "../DTOs/studentform.dto";
+import { StudentForm, UpdateStudentform} from "../DTOs/studentform.dto";
 import { StudentEntity } from "../Entities/student.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -69,8 +69,4 @@ getPaymentDetails(qry):any {
   return "the paymentdetails for id : "+qry.id+" name:"+qry.name;
 }
 
-loginStudent(mydto:LoginStudentForm):any {
-  return  " email is " + mydto.email+
-  " password is " + mydto.password;
-}
 }
