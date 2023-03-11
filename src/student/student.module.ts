@@ -6,10 +6,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { StudentEntity } from './Entities/student.entity';
 import { GradeService } from './Services/grade.service';
 import { GradeEntity } from './Entities/grade.entity';
+import { IssueService } from './Services/issue.service';
+import { IssueEntity } from './Entities/issue.entity';
+import { IssueController } from './Controllers/issue.controller';
+import { FacfeedbackService } from './Services/facfeedback.service';
+import { FacfeedbackEntity } from './Entities/facfeedback.entity';
+import { FacfeedbackController } from './Controllers/facfeedback.controller';
+import { DropService } from './Services/drop.service';
+import { DropEntity } from './Entities/drop.entity';
+import { DropController } from './Controllers/drop.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([StudentEntity,GradeEntity])],
-  controllers: [StudentController,GradeController],
-  providers: [StudentService,GradeService],
+  imports: [TypeOrmModule.forFeature([StudentEntity,GradeEntity,IssueEntity,FacfeedbackEntity,DropEntity])],
+  controllers: [StudentController,GradeController,IssueController,FacfeedbackController,DropController],
+  providers: [StudentService,GradeService,IssueService,FacfeedbackService,DropService],
 })
 export class StudentModule {}

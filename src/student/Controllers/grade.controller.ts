@@ -16,9 +16,5 @@ export class GradeController
     @UsePipes(new ValidationPipe())
       insertGrade(@Body() mydto:GradeForm): any {
       return this.gradeService.insertGrade(mydto);
-    }
-
-    
-   
-    
-}
+    }    
+  }
