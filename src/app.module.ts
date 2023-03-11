@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AdminModule } from './admin/adminmodule.module';
+import { AdminModule } from './admin/MODULE/adminmodule.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FacultyModule } from './Faculty/faculty.module';
 
@@ -12,7 +12,7 @@ import { FacultyModule } from './Faculty/faculty.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'Advweb3',
+      password: 'admin',
       database: 'UMS',
       autoLoadEntities: true,
       synchronize: true,

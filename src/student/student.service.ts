@@ -1,11 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { LoginStudentForm, StudentForm, UpdateStudentform} from "./studentform.dto";
+import { StudentEntity } from "./student.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class StudentService {
+  constructor(
+    @InjectRepository(StudentEntity)
+    private studentRepository: Repository<StudentEntity>
+  ) {}
 
-getIndex():string { 
-    return "Student Index"; 
+getIndex():any { 
+    return this.studentRepository.find();
 }
 getCourseByID(id):any {
     
@@ -19,25 +26,21 @@ getCourseByIDName(qry):any {
 
 insertStudent(mydto:StudentForm):any {
     
-        return "Inserted name: " + mydto.name+
-        ", id is " + mydto.id+
-        ", address is " + mydto.address+
-        ", phone is " + mydto.phone+
-        ", cgpa is " + mydto.CGPA+
-        ", semester is " + mydto.semester+
-        ", department is " + mydto.department+
-        ", faculty is " + mydto.faculty+
-        ", course is " + mydto.course+
-        ", section is " + mydto.section+
-        ", studentID is " + mydto.studentId+
-        ", facultyFeedback is " + mydto.facultyFeedback;
+      const student = new StudentEntity();
+      student.name = mydto.name;
+      student.CGPA = mydto.CGPA;
+      student.semester = mydto.semester;
+      student.department = mydto.department;
+      student.studentId = mydto.studentId;
+      student.address = mydto.address;
+      student.phone = mydto.phone;
+      return this.studentRepository.save(student);
+
     }
 
-updateStudent(mydto:UpdateStudentform):any {
-        return "updated name: " +" and id is " ;
-    }
-updateStudentbyid(name,id):any {
-        return "Update admin where id " +id+" and change name to " +name;
+
+updateStudentbyid(mydto:UpdateStudentform,id):any {
+        return this.studentRepository.update(id,mydto);
     }
   deleteCoursebyid(id):any {
     
@@ -48,10 +51,11 @@ updateStudentbyid(name,id):any {
       return "the id is "+qry.id +" and notice is "+qry.name;
   }
     
-  getGrade(qry):any {
-    
-    return "the grade is : "+qry.name;
-}
+//   getGrade(mydto,id):any {
+
+//     const student=this.studentRepository.find(id);
+//      return "the grade is : " +mydto.CGPA;
+// }
 getGradeBySemester(id):any {
     
   return "the grade is : "+id;

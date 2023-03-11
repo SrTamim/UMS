@@ -27,12 +27,7 @@ export class StudentController
       return this.studentService.insertStudent(mydto);
     }
   
-    @Put("/updatestudent")
-    @UsePipes(new ValidationPipe())
-    updateStudent(@Body() mydto:UpdateStudentform): any {
-    return this.studentService.updateStudent(mydto);
-    }
-    
+
     @Put("/updatestudent/:id")
     @UsePipes(new ValidationPipe())
       updateStudentbyid( 
@@ -54,10 +49,10 @@ export class StudentController
       return this.studentService.getNoticeByFacultyId(qry);
     } 
 
-    @Get("/grade")
-    getGrade(@Query() qry:any): any {
-      return this.studentService.getGrade(qry);
-    } 
+    // @Get("/grade/:id")
+    // getGrade(@Query() id:any): any {
+    //   return this.studentService.getGrade(id);
+    // } 
 
     @Get("/gradebysemester")
     getGradeBySemester(@Query() qry:any): any {
