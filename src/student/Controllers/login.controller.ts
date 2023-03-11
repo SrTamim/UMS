@@ -20,14 +20,16 @@ export class LoginController
       return this.loginService.signup(mydto);
     }    
 
-  @Get("/signin")
-    signin(@Session() session, @Body() mydto:LoginForm):any
+  @Post("/signin")
+    async signin(@Session() session, @Body() mydto:LoginForm)
     {
-    if(this.loginService.signin(mydto))
-    {
+        const logininfo = await this.loginService.signin(mydto);
+    if(logininfo==true)
+    {  
         session.email = mydto.email;
 
-        console.log(session.email);
+        console.log(mydto.email);
+        console.log(logininfo);
         return {message:"success"};
     }
     else

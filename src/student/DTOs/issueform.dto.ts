@@ -4,5 +4,6 @@ export class IssueForm {
 
     issueType: string;
     issue: string;
+    studentId: number;
    
 }

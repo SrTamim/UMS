@@ -69,4 +69,13 @@ getPaymentDetails(qry):any {
   return "the paymentdetails for id : "+qry.id+" name:"+qry.name;
 }
 
+getIssuesByStudentID(id):any {
+  return this.studentRepository.find({ 
+          where: {Sid:id},
+          relations: {
+          issues: true,
+      },
+   });
+}
+
 }

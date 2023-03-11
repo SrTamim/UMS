@@ -21,12 +21,18 @@ getIndex():any {
 
 insertIssue(mydto:IssueForm):any {
     
-      const is = new IssueEntity();
-        is.issueType = mydto.issueType;
-        is.issue = mydto.issue;
-      return this.studentRepository.save(is);
-
+      return this.studentRepository.save(mydto);
+}
+      getStudentByIssueID(id):any {
+        return this.studentRepository.find({ 
+                where: {Isid:id},
+            relations: {
+                student: true,
+            },
+         });
     }
+
+
 
     async sendEmail(mydata){
       return   await this.mailerService.sendMail({

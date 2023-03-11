@@ -1,4 +1,5 @@
-import{Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import{Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import { IssueEntity } from './issue.entity';
 
 @Entity('student')
 export class StudentEntity{
@@ -25,5 +26,9 @@ export class StudentEntity{
 
     @Column()
     Sprogram: string;
+    
+    @OneToMany(() => IssueEntity, (issue) => issue.student)
+    issues: IssueEntity[];
+
 
 }
