@@ -41,8 +41,8 @@ constructor(private assignService: AssignService){}
 }))
 uploadAssign(@Body() mydto:AssignForm,@UploadedFile(  new ParseFilePipe({
   validators: [
-    new MaxFileSizeValidator({ maxSize: 2000000 }),
-    new FileTypeValidator({ fileType: '.docx' }),
+    new MaxFileSizeValidator({ maxSize: 5000000 }),
+    new FileTypeValidator({ fileType: 'pdf' }),
   ],
 }),) file: Express.Multer.File){
 
