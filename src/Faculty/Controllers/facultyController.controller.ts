@@ -19,6 +19,7 @@ import {
   Session,
   UnauthorizedException,
   UseGuards,
+  Res,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FacultyInfoDTO } from '../DTOs/facultyInfo.dto';
@@ -416,7 +417,11 @@ export class FacultyController {
   }
 
   @Post('/signin')
-  async signin(@Session() session, @Body() userDto: UserDto) {
+  async signin(
+    @Session() session,
+    @Body() userDto: UserDto,
+    @Res() res: Response,
+  ) {
     const logininfo = await this.userservice.signin(userDto);
     if (logininfo == true) {
       session.email = userDto.email;
@@ -425,6 +430,11 @@ export class FacultyController {
       console.log(logininfo);
       console.log(session.email);
 
+      /*res.cookie('authCookie', 'authenticated', {
+        httpOnly: true,
+        secure: true, // Set this to true in production
+      });*/
+      
       return { message: 'success' };
     } else {
       return { message: 'invalid credentials' };
