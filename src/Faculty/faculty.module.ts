@@ -7,9 +7,11 @@ import { StudentGradeController } from './Controllers/studentgradecontroller.con
 import { AssignmentInfo } from './Entitys/assignemntInfo.entity';
 import { FacultyInfo } from './Entitys/facultyInfo.entity';
 import { FacultyNotice } from './Entitys/facultyNotice.entity';
+import { FileUplode } from './Entitys/fileUplode.entity';
 import { StudentgradeInfo } from './Entitys/studentgradeInfo.entity';
 import { AssignmentService } from './Services/assignmentservice.service';
 import { FacultyService } from './Services/facultyservice.service';
+import { FileUplodeservice } from './Services/fileUplodeservice.service';
 import { NoticeService } from './Services/noticeservice.service';
 import { StudentGradeService } from './Services/studentgradeservice.service';
 @Module({
@@ -19,6 +21,7 @@ import { StudentGradeService } from './Services/studentgradeservice.service';
       FacultyNotice,
       AssignmentInfo,
       StudentgradeInfo,
+      FileUplode,
     ]),
   ],
   controllers: [
@@ -32,6 +35,7 @@ import { StudentGradeService } from './Services/studentgradeservice.service';
     NoticeService,
     AssignmentService,
     StudentGradeService,
+    FileUplodeservice,
   ],
 })
 export class FacultyModule {}

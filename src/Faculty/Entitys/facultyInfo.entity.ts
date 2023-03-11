@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { FacultyNotice } from './facultyNotice.entity';
 
 @Entity('facultyinfo')
@@ -29,4 +29,11 @@ export class FacultyInfo {
 
   @Column()
   Fsal: number;
+
+  @OneToMany(
+    () => FacultyNotice,
+    (FacultyNotice) => FacultyNotice.facultyinfo,
+    { cascade: true },
+  )
+  facultyNotices: FacultyNotice[];
 }
