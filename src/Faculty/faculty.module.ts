@@ -8,20 +8,39 @@ import { AssignmentInfo } from './Entitys/assignemntInfo.entity';
 import { FacultyInfo } from './Entitys/facultyInfo.entity';
 import { FacultyNotice } from './Entitys/facultyNotice.entity';
 import { FileUplode } from './Entitys/fileUplode.entity';
+import { RequestRoom } from './Entitys/requestRoom.entity';
 import { StudentgradeInfo } from './Entitys/studentgradeInfo.entity';
+import { UserInfo } from './Entitys/UserInfo.entity';
 import { AssignmentService } from './Services/assignmentservice.service';
 import { FacultyService } from './Services/facultyservice.service';
 import { FileUplodeservice } from './Services/fileUplodeservice.service';
 import { NoticeService } from './Services/noticeservice.service';
+import { RequestRoomService } from './Services/RequestRoomservice.service';
 import { StudentGradeService } from './Services/studentgradeservice.service';
+import { UserInfoservice } from './Services/UserInfoservice.service';
+import { MailerModule } from '@nestjs-modules/mailer';
 @Module({
   imports: [
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.gmail.com',
+        port: 465,
+        ignoreTLS: true,
+        secure: true,
+        auth: {
+          user: 'kfahim2280@gmail.com',
+          pass: 'gdbgoasutcuptbmd',
+        },
+      },
+    }),
     TypeOrmModule.forFeature([
       FacultyInfo,
       FacultyNotice,
       AssignmentInfo,
       StudentgradeInfo,
+      RequestRoom,
       FileUplode,
+      UserInfo,
     ]),
   ],
   controllers: [
@@ -35,7 +54,9 @@ import { StudentGradeService } from './Services/studentgradeservice.service';
     NoticeService,
     AssignmentService,
     StudentGradeService,
+    RequestRoomService,
     FileUplodeservice,
+    UserInfoservice,
   ],
 })
 export class FacultyModule {}
