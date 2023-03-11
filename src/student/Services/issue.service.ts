@@ -3,12 +3,16 @@ import {IssueForm} from "../DTOs/issueform.dto";
 import { IssueEntity } from "../Entities/issue.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+import { MailerService } from "@nestjs-modules/mailer/dist";
+
 
 @Injectable()
 export class IssueService {
   constructor(
     @InjectRepository(IssueEntity)
-    private studentRepository: Repository<IssueEntity>
+    private studentRepository: Repository<IssueEntity>,
+    private mailerService: MailerService
+
   ) {}
 
 getIndex():any { 
@@ -23,4 +27,15 @@ insertIssue(mydto:IssueForm):any {
       return this.studentRepository.save(is);
 
     }
+
+    async sendEmail(mydata){
+      return   await this.mailerService.sendMail({
+             from:"iftekharasef18@gmail.com",
+             to: "kabirr572@gmail.com",
+             subject: mydata.subject,
+             text: mydata.text, 
+           });
+     
+     }
+
 }

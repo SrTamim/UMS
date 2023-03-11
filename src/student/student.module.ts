@@ -21,9 +21,25 @@ import { UpassignmentController } from './Controllers/upassignment.controller';
 import { LoginService } from './Services/login.service';
 import { LoginEntity } from './Entities/logininfo.entity';
 import { LoginController } from './Controllers/login.controller';
+import { MailerModule } from "@nestjs-modules/mailer";
+
 
 @Module({
-  imports: [TypeOrmModule.forFeature([StudentEntity,GradeEntity,IssueEntity,FacfeedbackEntity,DropEntity,AssignEntity,LoginEntity])],
+
+  imports: [
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.gmail.com',
+                 port: 465,
+                 ignoreTLS: true,
+                 secure: true,
+                 auth: {
+                     user: 'iftekharasef18@gmail.com',
+                     pass: 'qgxhqykmfxohjlje'
+                 },
+                }
+    }),
+    TypeOrmModule.forFeature([StudentEntity,GradeEntity,IssueEntity,FacfeedbackEntity,DropEntity,AssignEntity,LoginEntity])],
   controllers: [StudentController,GradeController,IssueController,FacfeedbackController,DropController,UpassignmentController,LoginController],
   providers: [StudentService,GradeService,IssueService,FacfeedbackService,DropService,AssignService,LoginService],
 })

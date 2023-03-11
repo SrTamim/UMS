@@ -26,6 +26,14 @@ export class IssueController
       throw new BadRequestException(e.message);
     }
     }
+
+    @Post('/sendemail')
+    sendEmail(@Body() mydata){
+    return this.issueService.sendEmail(mydata);
+    }
+
+
+
     }
     
 
