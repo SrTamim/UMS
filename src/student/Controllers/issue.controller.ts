@@ -36,6 +36,11 @@ export class IssueController
     return this.issueService.sendEmail(mydata);
     }
 
+    @Get("/issuebyid/:id")
+    getIssueById(@Param('id', ParseIntPipe) id: number): any {
+    return this.issueService.getIssueById(id);
+  }
+
     }
     
 

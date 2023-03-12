@@ -33,7 +33,9 @@ getStudentByIssueID(id):any {
          });
     }
 
-
+    getIssueById(id):any {
+      return this.studentRepository.find(id);
+    }
 
     async sendEmail(mydata){
       return   await this.mailerService.sendMail({
