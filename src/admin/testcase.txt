@@ -1,10 +1,16 @@
-insertAdmin
-    id
+signup
     name
     email
     pass
     address
     myfile
+
+signin
+{
+    "email":"tamim@gmail.com",
+    "pass":"$2b$10$ELfLXkCw5WJZc9EXSrVbKunYxyXF/9syk0xZLKT/YjpjfJlJQVZKW"
+}
+
 
 
 
