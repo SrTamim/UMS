@@ -9,7 +9,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { SessionGuard } from '../SESSION/session.guard';
 
-
 @Controller('/admin')
 export class AdminController {
   constructor(private adminService: AdminService) {}
@@ -34,10 +33,10 @@ export class AdminController {
         getFacultyByID(@Param("Fid", ParseIntPipe) Fid:number,): any {
           return this.adminService.getFacultyByID(Fid);
         }
-          @Get("/findFacultysal/:Fsid")
+          @Get("/findFacultysal/:Fid")
           @UsePipes(new ValidationPipe())
-          getFacultysalByID(@Param("Fsid", ParseIntPipe) Fsid:number,): any {
-            return this.adminService.getFacultysalByID(Fsid);
+          getFacultysalByID(@Param("Fid", ParseIntPipe) Fid:number,): any {
+            return this.adminService.getFacultysalByID(Fid);
           }
 
             @Get("/findOfficer/:Fid")
@@ -109,6 +108,7 @@ export class AdminController {
                   insertnotice(@Body() mydto:AdminNotice): any {
                     return this.adminService.insertnotice(mydto);
                   }
+                
 //-----update-------------------------------------------------------------------------------------------------------------------
     @Put("/updateAdmin/")
     @UsePipes(new ValidationPipe())
@@ -166,13 +166,12 @@ export class AdminController {
             @Put("/updateFacultysal/")
             @UsePipes(new ValidationPipe())
             updateFacultysal( 
-              @Body("Fsid",ParseIntPipe) Fsid:number,
-              @Body("Fsfid") Fsfid:number, 
+              @Body("Fid",ParseIntPipe) Fid:number,
               @Body("month") month:string, 
               @Body("year") year:string,
               @Body("amount") amount:string,
               ): any {
-            return this.adminService.updateFacultysal(Fsid, Fsfid,month,year,amount);
+            return this.adminService.updateFacultysal(Fid,month,year,amount);
             }
 
               @Put("/updateOfficersal/")
@@ -234,9 +233,9 @@ export class AdminController {
           @Delete("/deleteFacultysal/")
           @UsePipes(new ValidationPipe())
           deleteFacultysalbyid( 
-          @Body("Fsid", ParseIntPipe) Fsid:number
+          @Body("Fid", ParseIntPipe) Fid:number
             ): any {
-          return this.adminService.deleteFacultysalbyid(Fsid);
+          return this.adminService.deleteFacultysalbyid(Fid);
           }
             @Delete("/deleteOfficersal/")
             @UsePipes(new ValidationPipe())

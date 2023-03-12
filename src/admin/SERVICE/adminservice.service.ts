@@ -48,8 +48,8 @@ getAdminByID(id):any {
         getFacultyByID(Fid):any {
             return this.facultyRepo.findOneBy({Fid});
         }
-        getFacultysalByID(Fsid):any {
-            return this.facultysalRepo.findOneBy({Fsid});
+        getFacultysalByID(Fid):any {
+            return this.facultysalRepo.findOneBy({Fid});
         }
             getOfficerByID(Oid):any {
                 return this.officerRepo.findOneBy({Oid});
@@ -117,7 +117,6 @@ insertAdmin(mydto:AdminForm):any {
 
                 insertfacultysal(mydto:Adminfacultysal):any {
                     const facultysalaccount = new FacultysalEntity()
-                    facultysalaccount.Fsfid = mydto.Fsfid;
                     facultysalaccount.month = mydto.month;
                     facultysalaccount.year = mydto.year;
                     facultysalaccount.amount = mydto.amount;
@@ -149,6 +148,8 @@ insertAdmin(mydto:AdminForm):any {
                                 return this.noticeRepo.save(noticeaccount);
                                 }
 
+        
+
 //---------------------------------------------------------------------------------------------------------
 updateAdmin(name,id):any {
         console.log(name+id);
@@ -166,9 +167,9 @@ updateAdmin(name,id):any {
                     console.log(Oid+ Oidd+Oname+Odep+Oaddress+Onum+Odob);
                     return this.officerRepo.update(Oid,{Oidd:Oidd,Oname:Oname,Odep:Odep,Oaddress:Oaddress,Onum:Onum,Odob:Odob});
                 }
-                    updateFacultysal(Fsid, Fsfid,month,year,amount):any {
-                        console.log(Fsid+Fsfid+month+year+amount);
-                        return this.facultysalRepo.update(Fsid,{Fsfid:Fsfid,month:month,year:year,amount:amount});
+                    updateFacultysal(Fid,month,year,amount):any {
+                        console.log(Fid+month+year+amount);
+                        return this.facultysalRepo.update(Fid,{month:month,year:year,amount:amount});
                     }
                         updateOfficersal(Osid, Osfid,month,year,amount):any {
                             console.log(Osid+Osfid+month+year+amount);
@@ -193,8 +194,8 @@ deleteStudentbyid(Sid):any {
         deleteOfficerbyid(Oid):any {
             return this.officerRepo.delete(Oid);
         }
-            deleteFacultysalbyid(Fsid):any {
-                return this.facultysalRepo.delete(Fsid);
+            deleteFacultysalbyid(Fid):any {
+                return this.facultysalRepo.delete(Fid);
             }
                 deleteOfficersalbyid(Osid):any {
                     return this.officersalRepo.delete(Osid);

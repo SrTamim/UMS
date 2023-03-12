@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn,ManyToOne } from 'typeorm';
 import { FacultysalEntity } from "./facultysal.entity"
 
 @Entity("faculty")
@@ -20,8 +20,7 @@ export class FacultyEntity{
   @Column()
   Fdob: string;
 
-  @OneToOne(() => FacultysalEntity)
-  @JoinColumn()
-  facultysal: FacultysalEntity
+  @ManyToOne(() => FacultysalEntity, (facultysal) => facultysal.facultys)
+  facultysal: FacultysalEntity;
 
 }

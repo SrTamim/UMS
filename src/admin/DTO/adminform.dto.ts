@@ -93,6 +93,7 @@ export class AdminForm {
         @IsNotEmpty()
         Fdob: string;
 
+
     }
 
     export class Adminofficer{
@@ -113,9 +114,7 @@ export class AdminForm {
     }
 
     export class Adminfacultysal{
-        Fsid: number; //(primary key)
-        @IsNotEmpty()
-        Fsfid: number; //(foreign key referencing teacher table)
+        Fid: number; //(primary key)
         @IsNotEmpty()
         month: string;
         @IsNotEmpty()
