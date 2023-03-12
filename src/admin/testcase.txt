@@ -1,25 +1,10 @@
-http://localhost:3000/admin/findadmin/:id
+insertAdmin
+    id
+    name
+    email
+    pass
+    address
+    myfile
 
-http://localhost:3000/admin/insertAdmin
-{
-    "name":"22",
-    "id":"Tamim"
-}
 
-http://localhost:3000/admin/insertCourse
-{
-    "Cid":0,
-    "Cname":""
-}
 
-http://localhost:3000/admin/insertRoom
-{
-    "Rid":"-2"
-}
-
-http://localhost:3000/admin/insertNotice
-{
-    "Nid":"-1"
-}
-
-http://localhost:3000/admin/findadmin?id=1
