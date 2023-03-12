@@ -11,7 +11,6 @@ export class FacultyNotice {
   @Column()
   Details: string;
 
-  @OneToMany(() => FacultyInfo, (FacultyInfo) => 
-  FacultyInfo.facultyNotices)
+  @ManyToOne(() => FacultyInfo, (facultyInfo) => facultyInfo.facultyNotices)
   facultyinfo: FacultyInfo;
 }

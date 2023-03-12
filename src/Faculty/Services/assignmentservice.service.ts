@@ -20,6 +20,8 @@ export class AssignmentService {
     assignment.courseId = assignmentdto.courseId;
     assignment.subject = assignmentdto.subject;
     assignment.Details = assignmentdto.Details;
+    assignment.created_date = assignmentdto.created_date;
+    assignment.due_date = assignmentdto.due_date;
     return this.AssignmentRepo.save(assignment);
   }
 

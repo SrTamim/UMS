@@ -126,13 +126,13 @@ export class FacultyController {
 
   //Notice Controller
 
-  @Post('/insertnotice/:id')
+  @Post('/insertnotice')
   @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
-  insertnotice(@Body() noticedto: NoticeDto, @Param() id: number): any {
+  insertnotice(@Body() noticedto: NoticeDto): any {
     try {
-      return this.noticeService.insertNotice(noticedto, id);
+      return this.noticeService.insertNotice(noticedto);
     } catch (error) {
       throw new BadRequestException();
     }
@@ -420,7 +420,6 @@ export class FacultyController {
   async signin(
     @Session() session,
     @Body() userDto: UserDto,
-    @Res() res: Response,
   ) {
     const logininfo = await this.userservice.signin(userDto);
     if (logininfo == true) {
