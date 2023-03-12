@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { FacultyInfo } from "./facultyInfo.entity";
 
 @Entity('RequestRoom')
 export class RequestRoom {
@@ -19,4 +20,7 @@ export class RequestRoom {
 
   @Column()
   time: Date;
+
+  @ManyToOne(() => FacultyInfo, (facultyInfo) => facultyInfo.requestRooms)
+  facultyInfo: FacultyInfo;
 }

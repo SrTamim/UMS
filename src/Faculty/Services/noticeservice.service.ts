@@ -19,18 +19,19 @@ export class NoticeService {
     return this.NoticeRepo.find();
   }
   
-  insertNotice(noticedto: NoticeDto, id: any): any {
+  insertNotice(noticedto: NoticeDto): any {
     const notice = new FacultyNotice();
     notice.subject = noticedto.subject;
     notice.Details = noticedto.Details;
-    this.NoticeRepo.save(noticedto);
-    const faculty = this.facultyRepo.find({
-      where: { Fid: 2 },
-      relations: {
-        facultyNotices: true,
-      },
-    });
-    faculty.facultyNotices = [...faculty.facultyNotices,notice];
+    console.log(notice);
+    return this.NoticeRepo.save(noticedto);
+    // const faculty = this.facultyRepo.find({
+    //   where: { Fid: 2 },
+    //   relations: {
+    //     facultyNotices: true,
+    //   },
+    // });
+    // faculty.facultyNotices = [...faculty.facultyNotices,notice];
   }
 
   updateNotice(noticedto, id): any {
