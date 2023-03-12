@@ -60,24 +60,19 @@ export class AdminController {
                   return this.adminService.findsalbyfacultyid(Fid);
                 }
       
-//------------------------------------------------------------------------------------------------------------------------------
-    @Post("/insertAdmin")
-    @UsePipes(new ValidationPipe())
-    insertAdmin(@Body() mydto:AdminForm): any {
-      return this.adminService.insertAdmin(mydto);
-    }
-
-      @Post("/insertfaculty")
-      @UsePipes(new ValidationPipe())
-      insertfaculty(@Body() mydto:Adminfaculty): any {
-        return this.adminService.insertfaculty(mydto);
-      }
-
+//----insert-----------------------------------------------------------------------------------------------------------------
+    
         @Post("/insertstudent")
         @UsePipes(new ValidationPipe())
         insertstudent(@Body() mydto:Adminstudent): any {
           return this.adminService.insertstudent(mydto);
         }
+        
+          @Post("/insertfaculty")
+          @UsePipes(new ValidationPipe())
+          insertfaculty(@Body() mydto:Adminfaculty): any {
+            return this.adminService.insertfaculty(mydto);
+          }
 
           @Post("/insertofficer")
           @UsePipes(new ValidationPipe())
@@ -306,7 +301,7 @@ signout(@Session() session)
 {
   if(session.destroy())
   {
-    return {message:"you are logged out"};
+    return {message:"logged out done"};
   }
   else
   {

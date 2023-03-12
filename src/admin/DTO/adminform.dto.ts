@@ -10,11 +10,7 @@ import {
      } from "class-validator";
 
 export class AdminForm {   
-    @Min(1)
-    @Max(1000)
-    id: number;
     @IsNotEmpty()
-    @Length(3,8)
     @IsAlpha()
     name: string;
     @IsNotEmpty() 
@@ -23,7 +19,6 @@ export class AdminForm {
     pass:string;
     @IsNotEmpty() 
     address:string;
-    @IsNotEmpty() 
     filename:string;
     }
 
