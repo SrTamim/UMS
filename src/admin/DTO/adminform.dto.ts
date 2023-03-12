@@ -11,21 +11,29 @@ import {
 
 export class AdminForm {   
     @IsNotEmpty() 
-    @IsInt()
     @Min(1)
     @Max(1000)
     id: number;
-
     @IsNotEmpty()
     @Length(3,8)
     @IsAlpha()
     name: string;
+    email:string;
+    pass:string;
+    address:string;
+    filename:string;
     }
 
     export class AdminCourse {  
+        @IsNotEmpty()
+        Cid:number;
+        @IsNotEmpty()
         Cname: string;
+        @IsNotEmpty()
         credit: string;
+        @IsNotEmpty()
         room: string;
+        @IsNotEmpty()
         time: string;
     }
 
@@ -85,6 +93,7 @@ export class AdminForm {
         @IsNotEmpty()
         Fdob: string;
 
+
     }
 
     export class Adminofficer{
@@ -105,9 +114,7 @@ export class AdminForm {
     }
 
     export class Adminfacultysal{
-        Fsid: number; //(primary key)
-        @IsNotEmpty()
-        Fsfid: number; //(foreign key referencing teacher table)
+        Fid: number; //(primary key)
         @IsNotEmpty()
         month: string;
         @IsNotEmpty()

@@ -7,5 +7,14 @@ export class AdminEntity{
 
   @Column()
   name: string;
+  @Column()
+  email:string;
+  @Column()
+  pass:string;
+  @Column()
+  address: string;
+
+  @Column()
+  filename: string;
 
 }

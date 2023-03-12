@@ -1,16 +1,19 @@
-import { Entity, Column, PrimaryGeneratedColumn,PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn,PrimaryColumn,ManyToOne,OneToMany } from 'typeorm';
+import { FacultyEntity } from "./faculty.entity"
 
 @Entity("facultysal")
 export class FacultysalEntity{
 
 @PrimaryGeneratedColumn()
-Fsid:number; //(primary key)
-@Column()
-Fsfid: number; //(foreign key referencing faculty table)
+Fid:number; //(primary key)
 @Column()
 month: string;
 @Column()
 year: string;
 @Column()
 amount: string;
+
+@OneToMany(() => FacultyEntity, (faculty) => faculty.facultysal)
+facultys: FacultyEntity[]
+
 }
