@@ -41,6 +41,12 @@ export class IssueController
     return this.issueService.getIssueById(id);
   }
 
-    }
+  @Get("getissue/:id")
+  @UseGuards(SessionGuard)
+  getStudentByIssueID(@Param('id', ParseIntPipe) id: number): any {
+    return this.issueService.getStudentByIssueID(id);
+  }
+
+  }
     
 

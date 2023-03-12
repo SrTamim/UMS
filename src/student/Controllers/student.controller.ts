@@ -3,6 +3,8 @@ import { StudentForm,  UpdateStudentform } from "../DTOs/studentform.dto";
 import { StudentService } from "../Services/student.service";
 import { HttpExceptionFilter } from "../custom.exception.filter";
 import { SessionGuard } from "../session.guard";
+import { Response } from 'express';
+
 
 @Controller("/student")
 export class StudentController
@@ -80,5 +82,24 @@ export class StudentController
       return this.studentService.getPaymentDetails(qry);
     } 
 
+    @Get("getstudent/:id")
+    @UseGuards(SessionGuard)
+    getIssuesByStudentID(@Param('id', ParseIntPipe) id: number): any {
+      return this.studentService.getIssuesByStudentID(id);
+    }
+
+
+
+
+    // @Controller('cookie')
+    // export class CookieController {
+    
+    //   @Get()
+    //   setCookie(@Res() res: Response, @Cookie('cookieName') cookieValue: string) {
+    //     res.cookie('cookieName', 'cookieValue');
+    //     return res.status(HttpStatus.OK).send('Cookie is set');
+    //   }
+      
+    // }
    
 }

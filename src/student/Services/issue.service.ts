@@ -21,7 +21,7 @@ getIndex():any {
 
 
 insertIssue(mydto:IssueForm):any {
-    
+    console.log(mydto);
       return this.studentRepository.save(mydto);
 }
 getStudentByIssueID(id):any {
