@@ -30,7 +30,7 @@ export class NoticeService {
         facultyNotices: true,
       },
     });
-    faculty.facultyNotices = [...faculty.facultyNotices,notice];
+    //faculty.facultyNotices = [...faculty.facultyNotices,notice];
   }
 
   updateNotice(noticedto, id): any {

@@ -16,7 +16,7 @@ export class AdminController {
     getAdmin(): any { 
         return this.adminService.getIndex();
     }
-//-- view --------------------------------------------------------------
+//-- view ------------------------
     @Get("/findadmin/:id")
     @UsePipes(new ValidationPipe())
     getAdminByID(@Param("id", ParseIntPipe) id:number,): any {

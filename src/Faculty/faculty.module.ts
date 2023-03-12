@@ -18,21 +18,21 @@ import { NoticeService } from './Services/noticeservice.service';
 import { RequestRoomService } from './Services/RequestRoomservice.service';
 import { StudentGradeService } from './Services/studentgradeservice.service';
 import { UserInfoservice } from './Services/UserInfoservice.service';
-import { MailerModule } from '@nestjs-modules/mailer';
+//import { MailerModule } from '@nestjs-modules/mailer';
 @Module({
   imports: [
-    MailerModule.forRoot({
-      transport: {
-        host: 'smtp.gmail.com',
-        port: 465,
-        ignoreTLS: true,
-        secure: true,
-        auth: {
-          user: 'kfahim2280@gmail.com',
-          pass: 'gdbgoasutcuptbmd',
-        },
-      },
-    }),
+    // MailerModule.forRoot({
+    //   transport: {
+    //     host: 'smtp.gmail.com',
+    //     port: 465,
+    //     ignoreTLS: true,
+    //     secure: true,
+    //     auth: {
+    //       user: 'kfahim2280@gmail.com',
+    //       pass: 'gdbgoasutcuptbmd',
+    //     },
+    //   },
+    // }),
     TypeOrmModule.forFeature([
       FacultyInfo,
       FacultyNotice,
