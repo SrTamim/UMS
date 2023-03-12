@@ -10,24 +10,24 @@ import {
      } from "class-validator";
 
 export class AdminForm {   
-    @IsNotEmpty() 
-    @Min(1)
-    @Max(1000)
-    id: number;
     @IsNotEmpty()
-    @Length(3,8)
     @IsAlpha()
     name: string;
+    @IsNotEmpty() 
     email:string;
+    @IsNotEmpty() 
     pass:string;
+    @IsNotEmpty() 
     address:string;
     filename:string;
     }
 
     export class AdminCourse {  
-        @IsNotEmpty()
+      
+        @IsInt()
         Cid:number;
         @IsNotEmpty()
+        @IsAlpha()
         Cname: string;
         @IsNotEmpty()
         credit: string;
@@ -38,8 +38,8 @@ export class AdminForm {
     }
 
     export class AdminRoom {  
-    @IsNotEmpty()
-    @IsAlphanumeric()
+  
+    @IsInt()
     Rid: number;
     @IsNotEmpty()
     @IsAlphanumeric()
@@ -47,88 +47,112 @@ export class AdminForm {
     }
 
     export class AdminNotice {  
-    @IsNotEmpty()
+  
     @IsInt()
     @IsPositive()
     Nid: number;
     @IsNotEmpty()
+    @IsAlpha()
     Ndetails: string;
+    @IsNotEmpty() 
+    @IsAlpha()
     Nsub: string;
     }
 
     export class Adminstudent{
-        @IsNotEmpty()
+       
+        @IsInt()
         Sid:number;
         @IsNotEmpty()
+        @IsInt()
         Sidd: number;
         @IsNotEmpty()
+        @IsAlpha()
         Sname: string;
         @IsNotEmpty()
         Sprogram: string;
         @IsNotEmpty()
+        @IsAlpha()
         Sdep: string;
         @IsNotEmpty()
+        @IsAlphanumeric()
         Saddress: string;
         @IsNotEmpty()
         Snum: string;
         @IsNotEmpty()
+        @IsAlphanumeric()
         Sdob: string;
     }
 
     export class Adminfaculty{
-        @IsNotEmpty()
+        @IsInt()
         Fid: number;
         @IsNotEmpty()
         Fidd: string;
         @IsNotEmpty()
+        @IsAlpha()
         Fname: string;
         @IsNotEmpty()
+        @IsAlpha()
         Fprogram: string;
         @IsNotEmpty()
         Fdep: string;
         @IsNotEmpty()
+        @IsAlpha()
+        @IsAlphanumeric()
         Faddress: string;
         @IsNotEmpty()
         Fnum: string;
         @IsNotEmpty()
+        @IsAlphanumeric()
         Fdob: string;
 
 
     }
 
     export class Adminofficer{
-        @IsNotEmpty()
+        @IsInt()
         Oid: number;
         @IsNotEmpty()
         Oidd: string;
         @IsNotEmpty()
+        @IsAlpha()
         Oname: string;
         @IsNotEmpty()
+        @IsAlpha()
         Odep: string;
         @IsNotEmpty()
+        @IsAlphanumeric()
         Oaddress: string;
         @IsNotEmpty()
         Onum: string;
         @IsNotEmpty()
+        @IsAlphanumeric()
         Odob: string;
     }
 
     export class Adminfacultysal{
-        Fid: number; //(primary key)
+        @IsInt()
+        Fid: number; 
         @IsNotEmpty()
+        @IsAlphanumeric()
         month: string;
         @IsNotEmpty()
+        @IsAlphanumeric()
         year: string;
         @IsNotEmpty()
         amount: string;
     }
     export class Adminofficersal{
-        Osid: number; //(primary key)
+        @IsInt()
+        Osid: number; 
         @IsNotEmpty()
-        Osfid: number; //(foreign key referencing teacher table)
+        Osfid: number; 
         @IsNotEmpty()
+        @IsAlphanumeric()
         month: string;
         @IsNotEmpty()
+        @IsAlphanumeric()
         year: string;
         @IsNotEmpty()
         amount: string;

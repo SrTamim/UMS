@@ -38,7 +38,7 @@ export class AdminService {
 getIndex():any { 
     return "Welcome Admin"; 
 }
-//---- get / view --------------------------------------------
+//---- get / view -----------------------------
 getAdminByID(id):any {
     return this.adminRepo.findOneBy({ id });
 }
@@ -72,13 +72,7 @@ getAdminByID(id):any {
                     
 
 //--insert-----------------------------------------------------------------------------------------------------------
-insertAdmin(mydto:AdminForm):any {
-    const adminaccount = new AdminEntity()
-    adminaccount.name = mydto.name;
-    adminaccount.email = mydto.email;
-    adminaccount.pass = mydto.pass;
-    return this.adminRepo.save(adminaccount);
-    }
+
 
     insertstudent(mydto:Adminstudent):any {
         const studentaccount = new StudentEntity()
