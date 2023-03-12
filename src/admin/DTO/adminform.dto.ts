@@ -18,9 +18,13 @@ export class AdminForm {
     @Length(3,8)
     @IsAlpha()
     name: string;
+    @IsNotEmpty() 
     email:string;
+    @IsNotEmpty() 
     pass:string;
+    @IsNotEmpty() 
     address:string;
+    @IsNotEmpty() 
     filename:string;
     }
 
