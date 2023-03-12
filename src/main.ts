@@ -16,11 +16,6 @@ async function bootstrap() {
     }),
   );
 
-        maxAge: 30000,
-      },
-    }),
-  );
-
 
   await app.listen(3000);
 }
