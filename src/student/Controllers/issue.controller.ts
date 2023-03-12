@@ -36,8 +36,6 @@ export class IssueController
     return this.issueService.sendEmail(mydata);
     }
 
-
-
     }
     
 

@@ -32,7 +32,10 @@ export class FacfeedbackController
         }
   }
 
-
+  @Get("/feedbackbyid/:id")
+  getFeedbackById(@Param('id', ParseIntPipe) id: number): any {
+  return this.facfeedbackService.getFeedbackById(id);
+}
     
 
 } 

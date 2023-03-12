@@ -22,4 +22,7 @@ insertFacfeedback(mydto:facfeedbackform):any {
       return this.studentRepository.save(ffdbck);
 
     }
+    getFeedbackById(id):any {
+      return this.studentRepository.find(id);
+    }
 }

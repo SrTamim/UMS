@@ -31,4 +31,17 @@ export class DropController
       throw new BadRequestException(e.message);
         }
     }
+    @Delete("/deletedrop/:id")
+    @UseGuards(SessionGuard)
+    @UseFilters(new HttpExceptionFilter())
+    deleteDrop( 
+      @Param("id") id:number
+       ): any {
+        try {
+     return this.dropService.deleteDrop(id);
+    } catch (e) {
+      throw new BadRequestException(e.message);
+        }
+     }
+    
   }

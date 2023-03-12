@@ -63,11 +63,6 @@ export class StudentController
     return this.studentService.deleteCoursebyid(id);
     }
 
-    @Get("/notice")
-    @UseGuards(SessionGuard)
-    getNoticeByFacultyId(@Query() qry:any): any {
-      return this.studentService.getNoticeByFacultyId(qry);
-    } 
 
     @Get("/grade/:id")
     @UseGuards(SessionGuard)
@@ -80,11 +75,6 @@ export class StudentController
       return this.studentService.getGradeBySemester(qry);
     } 
 
-    @Post("/facultyfeedback")
-    @UsePipes(new ValidationPipe())
-    facultyFeedback(@Body() mydto:StudentForm): any {
-      return this.studentService.facultyFeedback(mydto);
-    }
     @Get("/paymentdetails")
     getPaymentDetails(@Query() qry:any): any {
       return this.studentService.getPaymentDetails(qry);

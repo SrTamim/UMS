@@ -23,4 +23,8 @@ insertDrop(mydto:DropForm):any {
       return this.studentRepository.save(drop);
 
     }
+
+deleteDrop(id):any {
+    return this.studentRepository.delete(id);        
+}
 }

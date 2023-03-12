@@ -19,15 +19,16 @@ getIndex():any {
     return this.studentRepository.find();
 }
 
+
 insertIssue(mydto:IssueForm):any {
     
       return this.studentRepository.save(mydto);
 }
-      getStudentByIssueID(id):any {
-        return this.studentRepository.find({ 
-                where: {Isid:id},
-            relations: {
-                student: true,
+getStudentByIssueID(id):any {
+    return this.studentRepository.find({ 
+          where: {Isid:id},
+          relations: {
+          student: true,
             },
          });
     }
