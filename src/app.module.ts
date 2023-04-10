@@ -12,7 +12,7 @@ import { FacultyModule } from './Faculty/faculty.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '123456',
+      password: 'Advweb3',
       database: 'UMS',
       autoLoadEntities: true,
       synchronize: true,
