@@ -79,7 +79,7 @@ export class FacultyController {
   }
 
   @Get('/getall')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getAllFaculty(): any {
     try {
@@ -90,10 +90,11 @@ export class FacultyController {
   }
 
   @Get('/get/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getFacultyById(@Param('id', ParseIntPipe) id: number): any {
     try {
+      //console.log(id);
       return this.facultyService.getFacultyById(id);
     } catch (error) {
       throw new BadRequestException();
@@ -139,7 +140,7 @@ export class FacultyController {
   }
 
   @Get('/getnotice')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getNotice(): any {
     try {
@@ -261,7 +262,7 @@ export class FacultyController {
   //Request Room Controller
 
   @Get('/getrequestroom')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getRequestRoom(): any {
     try {
@@ -362,7 +363,7 @@ export class FacultyController {
   //Student Grade Controller
 
   @Get('/getstudentgrade')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getStudentGrade(): any {
     try {
@@ -417,10 +418,7 @@ export class FacultyController {
   }
 
   @Post('/signin')
-  async signin(
-    @Session() session,
-    @Body() userDto: UserDto,
-  ) {
+  async signin(@Session() session, @Body() userDto: UserDto) {
     const logininfo = await this.userservice.signin(userDto);
     if (logininfo == true) {
       session.email = userDto.email;
@@ -433,7 +431,7 @@ export class FacultyController {
         httpOnly: true,
         secure: true, // Set this to true in production
       });*/
-      
+
       return { message: 'success' };
     } else {
       return { message: 'invalid credentials' };
@@ -449,5 +447,3 @@ export class FacultyController {
     }
   }
 }
-
-

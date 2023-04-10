@@ -58,7 +58,7 @@ export class FacultyService {
   }
 
   getFacultyById(id): any {
-    return this.facultyRepo.findOneBy(id);
+    return this.facultyRepo.findOneBy({ Fid: id });
   }
 
   updateFaculty(facultydto, id): any {
