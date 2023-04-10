@@ -69,6 +69,19 @@ getAdminByID(id):any {
                             },
                          });
                         }
+
+                        //--------------------------
+                        getNotice():any {
+                            return this.noticeRepo.find();
+                        }
+
+                        getStudentByName(Sname):any {
+                            return this.studentRepo.findBy({Sname});
+                        }
+
+                        getNoticeByID(Nid):any {
+                            return this.noticeRepo.findOneBy({ Nid });
+                        }
                     
 
 //--insert-----------------------------------------------------------------------------------------------------------

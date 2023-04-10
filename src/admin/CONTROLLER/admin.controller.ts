@@ -12,10 +12,10 @@ import { SessionGuard } from '../SESSION/session.guard';
 @Controller('/admin')
 export class AdminController {
   constructor(private adminService: AdminService) {}
-  @Get("/admin")
-    getAdmin(): any { 
-        return this.adminService.getIndex();
-    }
+  // @Get("/admin")
+  //   getAdmin(): any { 
+  //       return this.adminService.getIndex();
+  //   }
 //-- view ------------------------
     @Get("/findadmin/:id")
     @UsePipes(new ValidationPipe())
@@ -58,6 +58,23 @@ export class AdminController {
                 @Get('/findsalbyfacultyid/:id')
                 findsalbyfacultyid(@Param('Fid', ParseIntPipe) Fid: number): any {
                   return this.adminService.findsalbyfacultyid(Fid);
+                }
+
+                //----------------------
+                @Get("/findallnotice/")
+                getNotice(): any {
+                  return this.adminService.getNotice();
+                }
+
+                @Get("/findStudentname/:Sname")
+                getStudentByName(@Param("Sname") Sname:string,): any {
+                return this.adminService.getStudentByName(Sname);
+                }
+
+                @Get('/findNotice/:Nid')
+                //@UsePipes(new ValidationPipe())
+                getNoticeByID(@Param('Nid', ParseIntPipe) Nid: number): any {
+                  return this.adminService.getNoticeByID(Nid);
                 }
       
 //----insert-----------------------------------------------------------------------------------------------------------------
