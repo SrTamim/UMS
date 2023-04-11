@@ -60,7 +60,7 @@ export class AdminController {
                   return this.adminService.findsalbyfacultyid(Fid);
                 }
 
-                //----------------------
+                //------------search in get
                 @Get("/findallnotice/")
                 getNotice(): any {
                   return this.adminService.getNotice();
