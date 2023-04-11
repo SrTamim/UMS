@@ -12,10 +12,10 @@ import { SessionGuard } from '../SESSION/session.guard';
 @Controller('/admin')
 export class AdminController {
   constructor(private adminService: AdminService) {}
-  @Get("/admin")
-    getAdmin(): any { 
-        return this.adminService.getIndex();
-    }
+  // @Get("/admin")
+  //   getAdmin(): any { 
+  //       return this.adminService.getIndex();
+  //   }
 //-- view ------------------------
     @Get("/findadmin/:id")
     @UsePipes(new ValidationPipe())
@@ -58,6 +58,46 @@ export class AdminController {
                 @Get('/findsalbyfacultyid/:id')
                 findsalbyfacultyid(@Param('Fid', ParseIntPipe) Fid: number): any {
                   return this.adminService.findsalbyfacultyid(Fid);
+                }
+
+                //------------search in get
+                @Get("/findallnotice/")
+                getNotice(): any {
+                  return this.adminService.getNotice();
+                }
+
+                @Get("/findallstudent/")
+                getStudent(): any {
+                  return this.adminService.getStudent();
+                }
+
+                @Get("/findallcourse/")
+                getCourse(): any {
+                  return this.adminService.getCourse();
+                }
+                //---------------------------------
+
+                @Get("/findStudentname/:Sname")
+                getStudentByName(@Param("Sname") Sname:string,): any {
+                return this.adminService.getStudentByName(Sname);
+                }
+
+                @Get('/findNotice/:Nid')
+                //@UsePipes(new ValidationPipe())
+                getNoticeByID(@Param('Nid', ParseIntPipe) Nid: number): any {
+                  return this.adminService.getNoticeByID(Nid);
+                }
+
+                @Get("/findFacultydep/:Fdep")
+                @UsePipes(new ValidationPipe())
+                getFacultyBydep(@Param("Fdep") Fdep:number,): any {
+                  return this.adminService.getFacultyBydep(Fdep);
+                }
+
+                @Get("/findOfficerByid/:Oid")
+                @UsePipes(new ValidationPipe())
+                getOfficerByid(@Param("Oid") Oid:number,): any {
+                  return this.adminService.getOfficerByid(Oid);
                 }
       
 //----insert-----------------------------------------------------------------------------------------------------------------

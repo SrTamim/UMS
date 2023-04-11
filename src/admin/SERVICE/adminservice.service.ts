@@ -69,6 +69,34 @@ getAdminByID(id):any {
                             },
                          });
                         }
+
+                        //--------------------------
+                        getNotice():any {
+                            return this.noticeRepo.find();
+                        }
+                        getStudent():any {
+                            return this.studentRepo.find();
+                        }
+                        getCourse():any {
+                            return this.courseRepo.find();
+                        }
+                        //-------------------------------
+
+                        getStudentByName(Sname):any {
+                            return this.studentRepo.findOneBy({Sname});
+                        }
+
+                        getNoticeByID(Nid):any {
+                            return this.noticeRepo.findOneBy({ Nid });
+                        }
+
+                        getFacultyBydep(Fdep):any {
+                            return this.facultyRepo.findOneBy({Fdep});
+                        }
+
+                        getOfficerByid(Oid):any {
+                            return this.officerRepo.findOneBy({Oid});
+                        }
                     
 
 //--insert-----------------------------------------------------------------------------------------------------------
