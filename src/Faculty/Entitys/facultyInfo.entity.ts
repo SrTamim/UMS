@@ -1,7 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { AssignmentInfo } from './assignemntInfo.entity';
-import { FacultyNotice } from './facultyNotice.entity';
-import { RequestRoom } from './requestRoom.entity';
+
 
 @Entity('facultyinfo')
 export class FacultyInfo {
@@ -32,15 +30,15 @@ export class FacultyInfo {
   @Column()
   Fsal: number;
 
-  @OneToMany(() => FacultyNotice, (FacultyNotice) => FacultyNotice.facultyinfo)
-  facultyNotices: FacultyNotice[];
+  //@OneToMany(() => FacultyNotice, (FacultyNotice) => FacultyNotice.facultyinfo)
+  //facultyNotices: FacultyNotice[];
 
-  @OneToMany(() => RequestRoom, (RequestRoom) => RequestRoom.facultyInfo)
-  requestRooms: RequestRoom[];
+  //@OneToMany(() => RequestRoom, (RequestRoom) => RequestRoom.facultyInfo)
+  //requestRooms: RequestRoom[];
 
   // @OneToOne(() => UserInfo, (UserInfo) => UserInfo.facultyInfo)
   // userInfo: UserInfo;
 
-  @OneToMany(() => AssignmentInfo, (AssignmentInfo) => AssignmentInfo.facultyInfo)
-  assignmentInfos: AssignmentInfo[];
+  //@OneToMany(() => AssignmentInfo, (AssignmentInfo) => AssignmentInfo.facultyInfo)
+  //assignmentInfos: AssignmentInfo[];
 }

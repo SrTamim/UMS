@@ -33,13 +33,13 @@ export class NoticeService {
     //   },
     // });
     // faculty.facultyNotices = [...faculty.facultyNotices,notice];
-    this.NoticeRepo.save(noticedto);
-    const faculty = this.facultyRepo.find({
-      where: { Fid: 2 },
-      relations: {
-        facultyNotices: true,
-      },
-    });
+    //this.NoticeRepo.save(noticedto);
+    //const faculty = this.facultyRepo.find({
+     // where: { Fid: 2 },
+     // relations: {
+     //   facultyNotices: true,
+     // },
+    //});
     //faculty.facultyNotices = [...faculty.facultyNotices,notice];
 
   }
