@@ -21,6 +21,6 @@ export class RequestRoom {
   @Column()
   time: Date;
 
-  @ManyToOne(() => FacultyInfo, (facultyInfo) => facultyInfo.requestRooms)
-  facultyInfo: FacultyInfo;
+//@ManyToOne(() => FacultyInfo, (facultyInfo) => facultyInfo.requestRooms)
+  //facultyInfo: FacultyInfo;
 }

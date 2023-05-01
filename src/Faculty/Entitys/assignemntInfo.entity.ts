@@ -21,6 +21,6 @@ export class AssignmentInfo {
   @Column()
   due_date: Date;
 
-  @ManyToOne(() => FacultyInfo, (facultyInfo) => facultyInfo.assignmentInfos)
-  facultyInfo: any;
+  //@ManyToOne(() => FacultyInfo, (facultyInfo) => facultyInfo.assignmentInfos)
+  //facultyInfo: any;
 }

@@ -151,7 +151,7 @@ export class FacultyController {
   }
 
   @Put('/updatenotice')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateNotice(@Body() noticedto: NoticeDto): any {
@@ -163,7 +163,7 @@ export class FacultyController {
   }
 
   @Put('/updatenoticeBy/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateNoticeById(
@@ -178,7 +178,7 @@ export class FacultyController {
   }
 
   @Delete('/deletenotice/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteNotice(@Param('id', ParseIntPipe) id: number): any {
