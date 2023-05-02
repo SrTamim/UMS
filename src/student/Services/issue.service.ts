@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import {IssueForm} from "../DTOs/issueform.dto";
+import {IssueForm, UpdateIssueForm} from "../DTOs/issueform.dto";
 import { IssueEntity } from "../Entities/issue.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -24,6 +24,12 @@ insertIssue(mydto:IssueForm):any {
     console.log(mydto);
       return this.studentRepository.save(mydto);
 }
+// updateIssue(mydto:UpdateIssueForm,id):any {
+//   return this.studentRepository.update(id,mydto);
+// }
+updateIssue(Isid,issueType,issue):any{
+  return this.studentRepository.update(Isid,{issueType:issueType,issue:issue});
+}
 getStudentByIssueID(id):any {
     return this.studentRepository.find({ 
           where: {Isid:id},
@@ -34,7 +40,7 @@ getStudentByIssueID(id):any {
     }
 
     getIssueById(id):any {
-      return this.studentRepository.find(id);
+      return this.studentRepository.findOneBy(id);
     }
 
     async sendEmail(mydata){
@@ -46,5 +52,7 @@ getStudentByIssueID(id):any {
            });
      
      }
-
+     deleteIssue(id):any {
+      return this.studentRepository.delete(id);        
+  }
 }

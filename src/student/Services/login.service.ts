@@ -27,14 +27,14 @@ async signup(mydto:LoginForm) {
 
     }
 
-    async signin(mydto:LoginForm){
-    const mydata= await this.studentRepository.findOneBy({email: mydto.email});
-    const isMatch= await bcrypt.compare(mydto.password, mydata.password);
+    // async signin(mydto:LoginForm){
+    // const mydata= await this.studentRepository.findOneBy({email: mydto.email});
+    // const isMatch= await bcrypt.compare(mydto.password, mydata.password);
    
-    if(isMatch) 
-    return true;
+    // if(isMatch) 
+    // return true;
     
-    else 
-    return false;    
-    }
+    // else 
+    // return false;    
+    // }
 }

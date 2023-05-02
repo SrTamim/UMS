@@ -31,7 +31,7 @@ export class StudentController
     }  
     
     @Post("/insertstudent")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertStudent(@Body() mydto:StudentForm): any {
@@ -44,7 +44,7 @@ export class StudentController
   
 
     @Put("/updatestudent/:id")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       updateStudentbyid( 
@@ -67,7 +67,7 @@ export class StudentController
 
 
     @Get("/grade/:id")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     getGrade(@Query() id:any): any {
       return this.studentService.getGrade(id);
     } 
@@ -83,7 +83,7 @@ export class StudentController
     } 
 
     @Get("getstudent/:id")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     getIssuesByStudentID(@Param('id', ParseIntPipe) id: number): any {
       return this.studentService.getIssuesByStudentID(id);
     }

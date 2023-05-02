@@ -10,7 +10,7 @@ export class FacfeedbackController
     constructor(private facfeedbackService: FacfeedbackService){}
 
     @Get("/index")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -20,8 +20,8 @@ export class FacfeedbackController
     }
   }
 
-    @Post("/inserfeedback")
-    @UseGuards(SessionGuard)
+    @Post("/insertfeedback")
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertFacfeedback(@Body() mydto:facfeedbackform): any {

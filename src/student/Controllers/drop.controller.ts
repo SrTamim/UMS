@@ -10,7 +10,7 @@ export class DropController
     constructor(private dropService: DropService ){}
 
     @Get("/index")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -21,7 +21,7 @@ export class DropController
   }
 
     @Post("/insertdrop")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertDrop(@Body() mydto:DropForm): any {
@@ -32,7 +32,7 @@ export class DropController
         }
     }
     @Delete("/deletedrop/:id")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     deleteDrop( 
       @Param("id") id:number

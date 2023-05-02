@@ -20,36 +20,36 @@ export class LoginController
       return this.loginService.signup(mydto);
     }    
 
-  @Post("/signin")
-    async signin(@Session() session, @Body() mydto:LoginForm)
-    {
-        const logininfo = await this.loginService.signin(mydto);
-    if(logininfo==true)
-    {  
-        session.email = mydto.email;
+//   @Post("/signin")
+//     // async signin(@Session() session, @Body() mydto:LoginForm)
+//     {
+//         const logininfo = await this.loginService.signin(mydto);
+//     if(logininfo==true)
+//     {  
+//         session.email = mydto.email;
 
-        console.log(mydto.email);
-        console.log(logininfo);
-        console.log(session.email);
+//         console.log(mydto.email);
+//         console.log(logininfo);
+//         console.log(session.email);
 
-        return {message:"success"};
-    }
-    else
-    {
-        return {message:"invalid credentials"};
-    }
-    }
+//         return {message:"success"};
+//     }
+//     else
+//     {
+//         return {message:"invalid credentials"};
+//     }
+//     }
 
-@Get('/signout')
-signout(@Session() session)
-{
-  if(session.destroy())
-  {
-    return {message:"you are logged out"};
-  }
-  else
-  {
-    throw new UnauthorizedException("invalid actions");
-  }
-}
-}
+// @Get('/signout')
+// signout(@Session() session)
+// {
+//   if(session.destroy())
+//   {
+//     return {message:"you are logged out"};
+//   }
+//   else
+//   {
+//     throw new UnauthorizedException("invalid actions");
+//   }
+// }
+ }

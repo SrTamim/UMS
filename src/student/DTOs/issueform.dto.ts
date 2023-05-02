@@ -7,3 +7,7 @@ export class IssueForm {
     studentId: number;
    
 }
+export class UpdateIssueForm {
+    issueType: string;
+    issue: string;
+}

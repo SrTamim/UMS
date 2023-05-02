@@ -30,7 +30,7 @@ export class UpassignmentController {
 constructor(private assignService: AssignService){}
 
 @Post('/upload')
-@UseGuards(SessionGuard)
+// @UseGuards(SessionGuard)
 @UseFilters(new HttpExceptionFilter())
 @UseInterceptors(FileInterceptor('myfile',
 {storage:diskStorage({

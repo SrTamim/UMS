@@ -10,7 +10,7 @@ export class GradeController
     constructor(private gradeService: GradeService){}
 
     @Get("/index")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -21,7 +21,7 @@ export class GradeController
   }
 
     @Post("/insertgrade")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertGrade(@Body() mydto:GradeForm): any {

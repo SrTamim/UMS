@@ -1,5 +1,5 @@
 import { BadRequestException, Body,Controller,Delete,Get,Param,ParseIntPipe,Post,Put,Query,UseFilters,UseGuards,UsePipes,ValidationPipe } from "@nestjs/common";
-import { IssueForm } from "../DTOs/issueform.dto";
+import { IssueForm, UpdateIssueForm } from "../DTOs/issueform.dto";
 import { IssueService } from "../Services/issue.service";
 import { HttpExceptionFilter } from "../custom.exception.filter";
 import { SessionGuard } from "../session.guard";
@@ -9,7 +9,7 @@ export class IssueController
 {
     constructor(private issueService: IssueService){}
     @Get("/index")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     getIndex():any {
       try {
@@ -19,7 +19,7 @@ export class IssueController
     }
     }
     @Post("/insertissue")
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     @UseFilters(new HttpExceptionFilter())
     @UsePipes(new ValidationPipe())
       insertIssue(@Body() mydto:IssueForm): any {
@@ -31,7 +31,7 @@ export class IssueController
     }
 
     @Post('/sendemail')
-    @UseGuards(SessionGuard)
+    // @UseGuards(SessionGuard)
     sendEmail(@Body() mydata){
     return this.issueService.sendEmail(mydata);
     }
@@ -42,11 +42,52 @@ export class IssueController
   }
 
   @Get("getissue/:id")
-  @UseGuards(SessionGuard)
+  // @UseGuards(SessionGuard)
   getStudentByIssueID(@Param('id', ParseIntPipe) id: number): any {
     return this.issueService.getStudentByIssueID(id);
   }
+  @Delete("/deleteissue/:id")
+  // @UseGuards(SessionGuard)
+  @UseFilters(new HttpExceptionFilter())
+  deleteDrop( 
+    @Param("id") id:number
+     ): any {
+      try {
+   return this.issueService.deleteIssue(id);
+  } catch (e) {
+    throw new BadRequestException(e.message);
+      }
+   }
+   
+  @Put('/updateissue/')
+  @UseFilters(new HttpExceptionFilter())
+  @UsePipes(new ValidationPipe())
+  updateIssue(
+    @Body('Isid',ParseIntPipe) Isid:number,
+    @Body('issueType') issueType:string,
+    @Body('issue') issue:string,
+  ): any {
+      return this.issueService.updateIssue(Isid, issueType,issue);
+    }
 
-  }
+//    @Put("/updateissue/:id")
+//    // @UseGuards(SessionGuard)
+//    @UseFilters(new HttpExceptionFilter())
+//    @UsePipes(new ValidationPipe())
+//      updateIssue( 
+//      @Body() mydto:UpdateIssueForm, 
+//      @Param('id', ParseIntPipe) id: number
+//      ): any {
+//        try{
+//    return this.issueService.updateIssue(mydto,id);
+//    } catch(e){
+//      throw new BadRequestException(e.message);
+//    }
+//  }
+
+}
+
+  
+  
     
 
