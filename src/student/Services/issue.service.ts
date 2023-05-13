@@ -40,7 +40,7 @@ getStudentByIssueID(id):any {
     }
 
     getIssueById(id):any {
-      return this.studentRepository.findOneBy(id);
+      return this.studentRepository.find({where: {Isid:id}});
     }
 
     async sendEmail(mydata){

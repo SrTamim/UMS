@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsEmail, IsInt, Length, Matches,IsOptional, IsPhoneNumber, IsString, MaxLength, MinLength, isNotEmpty } from "class-validator";
+import { IsNotEmpty, IsEmail, IsInt, Length, Matches,IsOptional, IsPhoneNumber, IsString, MaxLength, MinLength, IsDateString } from "class-validator";
 
 export class StudentForm {  
 
@@ -38,7 +38,7 @@ export class StudentForm {
     // section: string;
     // @IsNotEmpty({message: "Please enter your faculty"})
     // faculty: string;
-    @IsNotEmpty({message: "Please enter your Dato of birth"})
+    @IsNotEmpty({message: "Please enter your Date of birth"})
     Sdob: string;
 
     @IsNotEmpty({message: "Please enter your program"})
@@ -52,12 +52,4 @@ export class UpdateStudentform {
     @IsNotEmpty({message: "Please enter your phone"})
     @IsPhoneNumber("BD", {message: "Please enter valid phone number"})
     Snum: string;
-    // @IsNotEmpty({message: "Please enter your course"})
-    // course: string;
-    // @IsNotEmpty({message: "Please enter your section"})
-    // @MaxLength(1, {message: "Please enter valid section"})
-    // @Matches(/^[a-zA-Z]/,{message: "Please enter valid section"})
-    // section: string;
-    // @IsNotEmpty({message: "Please enter your faculty"})
-    // faculty: string;
 }

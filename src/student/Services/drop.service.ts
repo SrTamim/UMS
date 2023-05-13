@@ -18,7 +18,7 @@ getIndex():any {
 insertDrop(mydto:DropForm):any {
     
       const drop = new DropEntity();
-        drop.applicationStatus = mydto.applicationStatus;
+        drop.applicationStatus = "pending";
         drop.reason = mydto.reason;
       return this.studentRepository.save(drop);
 

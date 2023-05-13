@@ -42,6 +42,9 @@ insertStudent(mydto:StudentForm):any {
 updateStudentbyid(mydto:UpdateStudentform,id):any {
         return this.studentRepository.update(id,mydto);
     }
+    updateStudent(Sid,Saddress,Snum):any{
+      return this.studentRepository.update(Sid,{Saddress:Saddress,Snum:Snum});
+    }
   deleteCoursebyid(id):any {
     
         return "Delete id is "+id;
@@ -78,4 +81,16 @@ getIssuesByStudentID(id):any {
    });
 }
 
+async getstudent(id) {
+  const data=await this.studentRepository.find({where:{Sid: id} });
+  console.log(data);
+  if(data!==null) {
+      return data;
+  }
+ else 
+ {
+     return "No data found"; }
+
+
+}
 }

@@ -20,15 +20,15 @@ export class StudentController
         throw new BadRequestException(e.message);
       }
     }
-    @Get("/findcourse/:id")
-      getCourseByID(@Param('id', ParseIntPipe) id: number): any {
-      return this.studentService.getCourseByID(id);
-    }
+    // @Get("/findcourse/:id")
+    //   getCourseByID(@Param('id', ParseIntPipe) id: number): any {
+    //   return this.studentService.getCourseByID(id);
+    // }
 
-    @Get("/findcourse")
-      getUserByIDName(@Query() qry:any): any {
-      return this.studentService.getCourseByIDName(qry);
-    }  
+    // @Get("/findcourse")
+    //   getUserByIDName(@Query() qry:any): any {
+    //   return this.studentService.getCourseByIDName(qry);
+    // }  
     
     @Post("/insertstudent")
     // @UseGuards(SessionGuard)
@@ -43,52 +43,68 @@ export class StudentController
     }
   
 
-    @Put("/updatestudent/:id")
-    // @UseGuards(SessionGuard)
-    @UseFilters(new HttpExceptionFilter())
-    @UsePipes(new ValidationPipe())
-      updateStudentbyid( 
-      @Body() mydto:UpdateStudentform, 
-      @Param('id', ParseIntPipe) id: number
-      ): any {
-        try{
-    return this.studentService.updateStudentbyid(mydto,id);
-    } catch(e){
-      throw new BadRequestException(e.message);
+  //   @Put("/updatestudent/:id")
+  //   // @UseGuards(SessionGuard)
+  //   @UseFilters(new HttpExceptionFilter())
+  //   @UsePipes(new ValidationPipe())
+  //     updateStudentbyid( 
+  //     @Body() mydto:UpdateStudentform, 
+  //     @Param('id', ParseIntPipe) id: number
+  //     ): any {
+  //       try{
+  //   return this.studentService.updateStudentbyid(mydto,id);
+  //   } catch(e){
+  //     throw new BadRequestException(e.message);
+  //   }
+  // }
+  
+  @Put('/updatestudent/')
+  @UseFilters(new HttpExceptionFilter())
+  @UsePipes(new ValidationPipe())
+  updateIssue(
+    @Body('Sid',ParseIntPipe) Sid:number,
+    @Body('Saddress') Saddress:string,
+    @Body('Snum') Snum:string,  
+  ): any {
+      return this.studentService.updateStudent(Sid,Saddress,Snum );
     }
-  }
-
-    @Delete("/deletecourse/:id")
-     deleteCoursebyid( 
-     @Param("id") id:number
-      ): any {
-    return this.studentService.deleteCoursebyid(id);
-    }
 
 
-    @Get("/grade/:id")
-    // @UseGuards(SessionGuard)
-    getGrade(@Query() id:any): any {
-      return this.studentService.getGrade(id);
-    } 
+    // @Delete("/deletecourse/:id")
+    //  deleteCoursebyid( 
+    //  @Param("id") id:number
+    //   ): any {
+    // return this.studentService.deleteCoursebyid(id);
+    // }
 
-    @Get("/gradebysemester")
-    getGradeBySemester(@Query() qry:any): any {
-      return this.studentService.getGradeBySemester(qry);
-    } 
 
-    @Get("/paymentdetails")
-    getPaymentDetails(@Query() qry:any): any {
-      return this.studentService.getPaymentDetails(qry);
-    } 
+    // @Get("/grade/:id")
+    // // @UseGuards(SessionGuard)
+    // getGrade(@Query() id:any): any {
+    //   return this.studentService.getGrade(id);
+    // } 
 
-    @Get("getstudent/:id")
+    // @Get("/gradebysemester")
+    // getGradeBySemester(@Query() qry:any): any {
+    //   return this.studentService.getGradeBySemester(qry);
+    // } 
+
+    // @Get("/paymentdetails")
+    // getPaymentDetails(@Query() qry:any): any {
+    //   return this.studentService.getPaymentDetails(qry);
+    // } 
+
+    @Get("getstudentissue/:id")
     // @UseGuards(SessionGuard)
     getIssuesByStudentID(@Param('id', ParseIntPipe) id: number): any {
       return this.studentService.getIssuesByStudentID(id);
     }
 
-
+    @Get("getstudent/:id")
+    // @UseGuards(SessionGuard)
+    getstudent(@Param('id', ParseIntPipe) id: number): any {
+      return this.studentService.getstudent(id);
+    }
 
 
     // @Controller('cookie')

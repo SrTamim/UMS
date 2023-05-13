@@ -46,6 +46,7 @@ export class IssueController
   getStudentByIssueID(@Param('id', ParseIntPipe) id: number): any {
     return this.issueService.getStudentByIssueID(id);
   }
+  
   @Delete("/deleteissue/:id")
   // @UseGuards(SessionGuard)
   @UseFilters(new HttpExceptionFilter())

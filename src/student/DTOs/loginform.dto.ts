@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsEmail, IsInt, Length, Matches,IsOptional, IsPhoneNumber, IsString, MaxLength, MinLength, isNotEmpty } from "class-validator";
+import { IsNotEmpty, IsEmail, Length, Matches } from "class-validator";
 export class LoginForm {   
  
     @IsNotEmpty({message: "Please enter your email"})
