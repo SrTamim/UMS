@@ -13,7 +13,7 @@ year: string;
 @Column()
 amount: string;
 
-@OneToMany(() => FacultyEntity, (faculty) => faculty.facultysal)
-facultys: FacultyEntity[]
+// @OneToMany(() => FacultyEntity, (faculty) => faculty.facultysal)
+// facultys: FacultyEntity[]
 
 }

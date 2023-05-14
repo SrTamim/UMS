@@ -13,7 +13,6 @@ export class AdminEntity{
   pass:string;
   @Column()
   address: string;
-
   @Column()
   filename: string;
 
