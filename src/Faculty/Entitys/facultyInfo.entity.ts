@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { FacultyNotice } from './facultyNotice.entity';
+
 
 @Entity('facultyinfo')
 export class FacultyInfo {
@@ -30,10 +30,15 @@ export class FacultyInfo {
   @Column()
   Fsal: number;
 
-  @ManyToOne(
-    () => FacultyNotice,
-    (FacultyNotice) => FacultyNotice.facultyinfo,
-    { cascade: true },
-  )
-  facultyNotices: FacultyNotice[];
+  //@OneToMany(() => FacultyNotice, (FacultyNotice) => FacultyNotice.facultyinfo)
+  //facultyNotices: FacultyNotice[];
+
+  //@OneToMany(() => RequestRoom, (RequestRoom) => RequestRoom.facultyInfo)
+  //requestRooms: RequestRoom[];
+
+  // @OneToOne(() => UserInfo, (UserInfo) => UserInfo.facultyInfo)
+  // userInfo: UserInfo;
+
+  //@OneToMany(() => AssignmentInfo, (AssignmentInfo) => AssignmentInfo.facultyInfo)
+  //assignmentInfos: AssignmentInfo[];
 }

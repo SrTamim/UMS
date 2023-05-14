@@ -79,7 +79,7 @@ export class FacultyController {
   }
 
   @Get('/getall')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getAllFaculty(): any {
     try {
@@ -90,10 +90,11 @@ export class FacultyController {
   }
 
   @Get('/get/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getFacultyById(@Param('id', ParseIntPipe) id: number): any {
     try {
+      //console.log(id);
       return this.facultyService.getFacultyById(id);
     } catch (error) {
       throw new BadRequestException();
@@ -126,20 +127,20 @@ export class FacultyController {
 
   //Notice Controller
 
-  @Post('/insertnotice/:id')
+  @Post('/insertnotice')
   @UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
-  insertnotice(@Body() noticedto: NoticeDto, @Param() id: number): any {
+  insertnotice(@Body() noticedto: NoticeDto): any {
     try {
-      return this.noticeService.insertNotice(noticedto, id);
+      return this.noticeService.insertNotice(noticedto);
     } catch (error) {
       throw new BadRequestException();
     }
   }
 
   @Get('/getnotice')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getNotice(): any {
     try {
@@ -150,7 +151,7 @@ export class FacultyController {
   }
 
   @Put('/updatenotice')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateNotice(@Body() noticedto: NoticeDto): any {
@@ -162,7 +163,7 @@ export class FacultyController {
   }
 
   @Put('/updatenoticeBy/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateNoticeById(
@@ -177,7 +178,7 @@ export class FacultyController {
   }
 
   @Delete('/deletenotice/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteNotice(@Param('id', ParseIntPipe) id: number): any {
@@ -261,7 +262,7 @@ export class FacultyController {
   //Request Room Controller
 
   @Get('/getrequestroom')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getRequestRoom(): any {
     try {
@@ -362,7 +363,7 @@ export class FacultyController {
   //Student Grade Controller
 
   @Get('/getstudentgrade')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   getStudentGrade(): any {
     try {
@@ -417,11 +418,7 @@ export class FacultyController {
   }
 
   @Post('/signin')
-  async signin(
-    @Session() session,
-    @Body() userDto: UserDto,
-    @Res() res: Response,
-  ) {
+  async signin(@Session() session, @Body() userDto: UserDto) {
     const logininfo = await this.userservice.signin(userDto);
     if (logininfo == true) {
       session.email = userDto.email;
@@ -434,7 +431,7 @@ export class FacultyController {
         httpOnly: true,
         secure: true, // Set this to true in production
       });*/
-      
+
       return { message: 'success' };
     } else {
       return { message: 'invalid credentials' };
@@ -450,5 +447,3 @@ export class FacultyController {
     }
   }
 }
-
-
