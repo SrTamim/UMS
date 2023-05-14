@@ -38,7 +38,7 @@ export class FacultyService {
       const facultyNotice = new FacultyNotice();
       //facultyNotice.subject = facultydto?.facultyNotices[i].subject;
       //facultyNotice.Details = facultydto?.facultyNotices[i].Details;
-      faculty.facultyNotices.push(facultyNotice);
+      //faculty.facultyNotices.push(facultyNotice);
     }
 
     return this.facultyRepo.save(faculty);
@@ -46,19 +46,19 @@ export class FacultyService {
 
   getAllFaculty(): any {
     return this.facultyRepo.find(
-      { relations: { facultyNotices: true } }
+      //{ relations: { facultyNotices: true } }
     );
   }
 
   getNoticesByFacultyID(id): any { 
     return this.facultyRepo.find({
       where: { Fid: id },
-      relations: { facultyNotices : true },   
+      //relations: { facultyNotices : true },   
     });
   }
 
   getFacultyById(id): any {
-    return this.facultyRepo.findOneBy(id);
+    return this.facultyRepo.findOneBy({ Fid: id });
   }
 
   updateFaculty(facultydto, id): any {
