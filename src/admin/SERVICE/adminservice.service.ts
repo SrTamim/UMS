@@ -64,9 +64,9 @@ getAdminByID(id):any {
                     findsalbyfacultyid(Fid):any {
                         return this.facultyRepo.find({ 
                                 where: {Fid:Fid},
-                            relations: {
-                                facultysal: true,
-                            },
+                            // relations: {
+                            //     facultysal: true,
+                            // },
                          });
                         }
 
@@ -79,6 +79,9 @@ getAdminByID(id):any {
                         }
                         getCourse():any {
                             return this.courseRepo.find();
+                        }
+                        getAdmin():any {
+                            return this.adminRepo.find();
                         }
                         //-------------------------------
 
@@ -236,18 +239,23 @@ async signup(mydto) {
     mydto.pass= hassedpassed;
     return this.adminRepo.save(mydto);
     }
-    
+
+    //------------------------
     async signin(mydto){
-        console.log(mydto.pass);
-    const mydata= await this.adminRepo.findOneBy({email: mydto.email});
-    const isMatch= await bcrypt.compare(mydto.pass, mydata.pass);
-    if(isMatch) {
-    return 1;
-    }
-    else {
-        return 0;
-    }
-    
+   
+        if (mydto.email != null && mydto.pass != null) {
+            const mydata = await this.adminRepo.findOneBy({ email: mydto.email });
+            const isMatch = await bcrypt.compare(mydto.pass, mydata.pass);
+            if (isMatch) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+       
     }
 
 //---------------------------------------------------------------

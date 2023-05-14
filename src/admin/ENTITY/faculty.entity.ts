@@ -20,7 +20,7 @@ export class FacultyEntity{
   @Column()
   Fdob: string;
 
-  @ManyToOne(() => FacultysalEntity, (facultysal) => facultysal.facultys)
-  facultysal: FacultysalEntity;
+  // @ManyToOne(() => FacultysalEntity, (facultysal) => facultysal.facultys)
+  // facultysal: FacultysalEntity;
 
 }

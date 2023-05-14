@@ -10,22 +10,19 @@ import {
      } from "class-validator";
 
 export class AdminForm {   
-    @IsNotEmpty()
-    @IsAlpha()
+    //@IsNotEmpty()
     name: string;
-    @IsNotEmpty() 
+    //@IsNotEmpty() 
     email:string;
-    @IsNotEmpty() 
+    //@IsNotEmpty() 
     pass:string;
-    @IsNotEmpty() 
+    //@IsNotEmpty() 
     address:string;
     filename:string;
     }
 
     export class AdminCourse {  
       
-        @IsInt()
-        Cid:number;
         @IsNotEmpty()
         @IsAlpha()
         Cname: string;
@@ -48,86 +45,79 @@ export class AdminForm {
 
     export class AdminNotice {  
   
-    @IsInt()
-    @IsPositive()
-    Nid: number;
     @IsNotEmpty()
-    @IsAlpha()
+    // @IsAlpha()
     Ndetails: string;
     @IsNotEmpty() 
-    @IsAlpha()
+    //@IsAlpha()
     Nsub: string;
     }
 
     export class Adminstudent{
        
-        @IsInt()
-        Sid:number;
         @IsNotEmpty()
-        @IsInt()
+        //@IsInt()
         Sidd: number;
         @IsNotEmpty()
-        @IsAlpha()
+        //@IsAlpha()
         Sname: string;
         @IsNotEmpty()
         Sprogram: string;
         @IsNotEmpty()
-        @IsAlpha()
+        //@IsAlpha()
         Sdep: string;
         @IsNotEmpty()
-        @IsAlphanumeric()
+        //@IsAlphanumeric()
         Saddress: string;
         @IsNotEmpty()
         Snum: string;
         @IsNotEmpty()
-        @IsAlphanumeric()
+        //@IsAlphanumeric()
         Sdob: string;
     }
 
     export class Adminfaculty{
-        @IsInt()
-        Fid: number;
+       
         @IsNotEmpty()
         Fidd: string;
         @IsNotEmpty()
-        @IsAlpha()
+        //@IsAlpha()
         Fname: string;
         @IsNotEmpty()
-        @IsAlpha()
+        //@IsAlpha()
         Fprogram: string;
         @IsNotEmpty()
         Fdep: string;
         @IsNotEmpty()
-        @IsAlpha()
-        @IsAlphanumeric()
+        //@IsAlpha()
+        //@IsAlphanumeric()
         Faddress: string;
         @IsNotEmpty()
         Fnum: string;
         @IsNotEmpty()
-        @IsAlphanumeric()
+        //@IsAlphanumeric()
         Fdob: string;
 
 
     }
 
     export class Adminofficer{
-        @IsInt()
-        Oid: number;
+       
         @IsNotEmpty()
         Oidd: string;
         @IsNotEmpty()
-        @IsAlpha()
+        //@IsAlpha()
         Oname: string;
         @IsNotEmpty()
-        @IsAlpha()
+        //@IsAlpha()
         Odep: string;
         @IsNotEmpty()
-        @IsAlphanumeric()
+        //@IsAlphanumeric()
         Oaddress: string;
         @IsNotEmpty()
         Onum: string;
         @IsNotEmpty()
-        @IsAlphanumeric()
+        //@IsAlphanumeric()
         Odob: string;
     }
 
