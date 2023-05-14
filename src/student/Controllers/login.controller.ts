@@ -32,7 +32,7 @@ export class LoginController
         console.log(logininfo);
         console.log(session.email);
 
-        return {message:"success"};
+        return ({message:"success"});
     }
     else
     {
