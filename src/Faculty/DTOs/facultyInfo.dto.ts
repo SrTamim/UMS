@@ -71,7 +71,7 @@ export class FacultyInfoDTO {
   @IsAlpha()
   HSC: string;*/
 
-  @IsInt({ message: 'ID must be a number' })
+  //@IsInt({ message: 'ID must be a number' })
   Fid: number;
 
   @IsNotEmpty()
@@ -95,7 +95,7 @@ export class FacultyInfoDTO {
   Faddress: string;
 
   @IsNotEmpty()
-  @IsPhoneNumber('BD', { message: 'Phone number is not valid' })
+  //@IsPhoneNumber('BD', { message: 'Phone number is not valid' })
   Fnum: number;
 
   @IsNotEmpty()
@@ -104,5 +104,5 @@ export class FacultyInfoDTO {
   @IsNotEmpty()
   Fsal: number;
 
-  facultyNotices: NoticeDto[];
+  
 }

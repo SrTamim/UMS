@@ -67,8 +67,8 @@ export class FacultyController {
   }
 
   @Post('/insert')
-  @UseGuards(SessionGuard)
-  @UseFilters(HttpExceptionFilter)
+  //@UseGuards(SessionGuard)
+  //@UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   insertFaculty(@Body() facultydto: FacultyInfoDTO): any {
     try {
@@ -102,7 +102,7 @@ export class FacultyController {
   }
 
   @Put('/update/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateFaculty(@Body() facultydto, @Param('id', ParseIntPipe) id): any {
@@ -114,7 +114,7 @@ export class FacultyController {
   }
 
   @Delete('/delete/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteFaculty(@Param('id', ParseIntPipe) id): any {
@@ -128,8 +128,8 @@ export class FacultyController {
   //Notice Controller
 
   @Post('/insertnotice')
-  @UseGuards(SessionGuard)
-  @UseFilters(HttpExceptionFilter)
+  //@UseGuards(SessionGuard)
+  //@UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   insertnotice(@Body() noticedto: NoticeDto): any {
     try {
@@ -150,6 +150,17 @@ export class FacultyController {
     }
   }
 
+  @Get('/getnoticebyId/:id')
+  //@UseGuards(SessionGuard)
+  @UseFilters(HttpExceptionFilter)
+  getNoticeById(@Param('id', ParseIntPipe) id: number): any {
+    try {
+      return this.facultyNoticeService.getNoticeById(id);
+    } catch (error) {
+      throw new BadRequestException();
+    }
+  }
+  
   @Put('/updatenotice')
   //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
@@ -273,7 +284,7 @@ export class FacultyController {
   }
 
   @Post('/insertrequestroom')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   insertRequestRoom(@Body() requestRoomDto: RequestRoom): any {
@@ -285,7 +296,7 @@ export class FacultyController {
   }
 
   @Put('/updaterequestroom/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   updateRequestRoom(
@@ -300,7 +311,7 @@ export class FacultyController {
   }
 
   @Delete('deleterequestroom/:id')
-  @UseGuards(SessionGuard)
+  //@UseGuards(SessionGuard)
   @UseFilters(HttpExceptionFilter)
   @UsePipes(new ValidationPipe())
   deleteRequestRoom(@Param('id', ParseIntPipe) id): any {

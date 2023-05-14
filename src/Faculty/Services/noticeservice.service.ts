@@ -18,7 +18,7 @@ export class NoticeService {
   getNotice(): any {
     return this.NoticeRepo.find();
   }
-  
+
   insertNotice(noticedto: NoticeDto): any {
     const notice = new FacultyNotice();
     notice.subject = noticedto.subject;
@@ -35,13 +35,16 @@ export class NoticeService {
     // faculty.facultyNotices = [...faculty.facultyNotices,notice];
     //this.NoticeRepo.save(noticedto);
     //const faculty = this.facultyRepo.find({
-     // where: { Fid: 2 },
-     // relations: {
-     //   facultyNotices: true,
-     // },
+    // where: { Fid: 2 },
+    // relations: {
+    //   facultyNotices: true,
+    // },
     //});
     //faculty.facultyNotices = [...faculty.facultyNotices,notice];
+  }
 
+  getNoticeById(id): any {
+    return this.NoticeRepo.findOne({ where: { id: id } });
   }
 
   updateNotice(noticedto, id): any {
@@ -65,5 +68,3 @@ export class NoticeService {
     });
   }
 }
-
-
